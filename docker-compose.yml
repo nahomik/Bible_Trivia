@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  bible-trivia:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bible-trivia-game
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - NODE_ENV=production
+      - JWT_SECRET=change-this-in-production-for-bible-trivia
+    volumes:
+      - trivia-data:/app/server
+
+volumes:
+  trivia-data:
