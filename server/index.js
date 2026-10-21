@@ -423,13 +423,43 @@ io.on('connection', (socket) => {
     const { roomCode } = data || {};
     const room = rooms.get(roomCode);
     if (!room) return callback?.({ success: false, error: 'Room not found' });
+    socket.join(roomCode);
     room.gameState = 'lobby';
     room.questions = [];
     room.currentQuestion = 0;
     room.answers = {};
     room.players = room.players.map(p => ({ ...p, score: 0 }));
     io.to(roomCode).emit('room-updated', room);
+    io.to(roomCode).emit('return-to-lobby', room);
+    io.to(roomCode).emit('rematch-started', room);
     callback?.({ success: true, room });
+  });
+
+  socket.on('get-room', (data, callback) => {
+    const { roomCode } = data || {};
+    const room = rooms.get(roomCode);
+    if (!room) return callback?.({ success: false, error: 'Room not found' });
+    socket.join(roomCode);
+    callback?.({ success: true, room });
+  });
+
+  socket.on('leave-room', (data, callback) => {
+    const { roomCode } = data || {};
+    const room = rooms.get(roomCode);
+    if (room) {
+      const idx = room.players.findIndex(p => p.id === socket.id);
+      if (idx !== -1) {
+        room.players.splice(idx, 1);
+        socket.leave(roomCode);
+        if (room.players.length === 0) {
+          rooms.delete(roomCode);
+        } else {
+          if (room.host === socket.id) room.host = room.players[0].id;
+          io.to(roomCode).emit('room-updated', room);
+        }
+      }
+    }
+    callback?.({ success: true });
   });
 
   socket.on('disconnect', () => {

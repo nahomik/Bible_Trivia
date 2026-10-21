@@ -90,6 +90,24 @@ export default function OnlineLobby() {
     };
   }, [socket, navigate, dispatch]);
 
+  useEffect(() => {
+    if (state.room) {
+      setCurrentRoom(state.room);
+    }
+  }, [state.room]);
+
+  useEffect(() => {
+    const code = state.roomCode || state.room?.code;
+    if (socket && code) {
+      socket.emit('get-room', { roomCode: code }, (res) => {
+        if (res && res.success && res.room) {
+          setCurrentRoom(res.room);
+          dispatch({ type: 'SET_ROOM', payload: res.room });
+        }
+      });
+    }
+  }, [socket, state.roomCode, state.room?.code, dispatch]);
+
   const handleCreateRoom = async () => {
     sound.playClick();
     const userName = (state.playerName || playerName).trim();
@@ -206,6 +224,11 @@ export default function OnlineLobby() {
 
   const handleBack = () => {
     sound.playClick();
+    const code = currentRoom?.code || state.roomCode || state.room?.code;
+    if (socket && code) {
+      socket.emit('leave-room', { roomCode: code });
+    }
+    setCurrentRoom(null);
     dispatch({ type: 'RESET_GAME' });
     navigate('/');
   };

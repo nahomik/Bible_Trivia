@@ -139,25 +139,76 @@ export default function Results() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.gameOver]);
 
-  const { rematchRoom } = useSocket();
+  const { socket, rematchRoom } = useSocket();
+  const [isRematching, setIsRematching] = useState(false);
 
-  const handlePlayAgain = () => {
-    sound.playClick();
-    dispatch({ type: 'RESET_GAME' });
-    navigate(`/settings?mode=${state.mode || 'solo'}`);
-  };
+  const activeRoomCode = state.roomCode || state.room?.code;
+  const isOnlineRoom = Boolean(activeRoomCode);
+  const isHost = Boolean(state.room ? state.room.host === socket?.id : state.isHost);
+
+  // Synchronize returning to the ready lobby across all players in the room
+  useEffect(() => {
+    if (!socket || !activeRoomCode) return;
+
+    const handleReturnToLobby = (room) => {
+      sound.playClick();
+      dispatch({ type: 'RESET_FOR_REMATCH' });
+      if (room) {
+        dispatch({ type: 'SET_ROOM', payload: room });
+        if (room.players) {
+          dispatch({ type: 'SET_PLAYERS', payload: room.players });
+        }
+      }
+      navigate('/online');
+    };
+
+    socket.on('return-to-lobby', handleReturnToLobby);
+    socket.on('rematch-started', handleReturnToLobby);
+
+    const handleRoomUpdated = (room) => {
+      if (room && room.gameState === 'lobby') {
+        handleReturnToLobby(room);
+      }
+    };
+    socket.on('room-updated', handleRoomUpdated);
+
+    return () => {
+      socket.off('return-to-lobby', handleReturnToLobby);
+      socket.off('rematch-started', handleReturnToLobby);
+      socket.off('room-updated', handleRoomUpdated);
+    };
+  }, [socket, activeRoomCode, dispatch, navigate]);
 
   const handleRematch = async () => {
     sound.playClick();
-    if (state.roomCode) {
-      await rematchRoom(state.roomCode);
+    if (activeRoomCode) {
+      setIsRematching(true);
+      try {
+        await rematchRoom(activeRoomCode);
+      } catch (err) {
+        console.error('Failed to trigger rematch', err);
+      }
     }
     dispatch({ type: 'RESET_FOR_REMATCH' });
     navigate('/online');
   };
 
+  const handlePlayAgain = async () => {
+    sound.playClick();
+    // In online multiplayer rooms, both Play Again and Rematch send the whole room back to the ready page
+    if (isOnlineRoom) {
+      await handleRematch();
+      return;
+    }
+    dispatch({ type: 'RESET_GAME' });
+    navigate(`/settings?mode=${state.mode || 'solo'}`);
+  };
+
   const handleLeaveRoom = () => {
     sound.playClick();
+    if (socket && activeRoomCode) {
+      socket.emit('leave-room', { roomCode: activeRoomCode });
+    }
     dispatch({ type: 'RESET_GAME' });
     navigate('/');
   };
@@ -294,11 +345,28 @@ export default function Results() {
           </div>
         )}
 
+        {/* Online Room Rematch Banner */}
+        {isOnlineRoom && (
+          <div className="text-center p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 max-w-lg mx-auto space-y-1">
+            <p className="text-xs sm:text-sm font-semibold text-amber-600 dark:text-amber-400">
+              {isHost
+                ? '👑 Room Host: Click Rematch or Play Again to return all players back to the lobby ready page.'
+                : '⚔️ Fellowship Room: When the host clicks Rematch or Play Again, all players will return to the ready page together.'}
+            </p>
+          </div>
+        )}
+
         {/* Action Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-          <Button variant="default" size="lg" onClick={handlePlayAgain} className="gap-2 font-bold">
+          <Button
+            variant={isOnlineRoom ? 'gold' : 'default'}
+            size="lg"
+            onClick={handlePlayAgain}
+            disabled={isRematching}
+            className="gap-2 font-bold shadow-sm"
+          >
             <RotateCcw className="w-4 h-4" />
-            Play Again
+            {isRematching ? 'Returning to Ready Room...' : isOnlineRoom ? 'Play Again (Ready Page)' : 'Play Again'}
           </Button>
 
           <Button variant="secondary" size="lg" onClick={handleShare} className="gap-2 font-bold">
@@ -306,13 +374,24 @@ export default function Results() {
             Share Results
           </Button>
 
-          {state.players.length > 1 && state.roomCode && (
+          {isOnlineRoom && (
             <>
-              <Button variant="gold" size="lg" onClick={handleRematch} className="gap-2 font-bold">
+              <Button
+                variant="default"
+                size="lg"
+                onClick={handleRematch}
+                disabled={isRematching}
+                className="gap-2 font-bold shadow-sm"
+              >
                 <Swords className="w-4 h-4" />
-                Rematch
+                {isRematching ? 'Returning...' : 'Rematch'}
               </Button>
-              <Button variant="outline" size="lg" onClick={handleLeaveRoom} className="gap-2 font-bold">
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={handleLeaveRoom}
+                className="gap-2 font-bold text-destructive hover:text-destructive"
+              >
                 <LogOut className="w-4 h-4" />
                 Leave Room
               </Button>

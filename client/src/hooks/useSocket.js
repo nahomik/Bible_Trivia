@@ -71,6 +71,12 @@ export function useSocket() {
     });
   };
 
+  const getRoom = (roomCode) => {
+    return new Promise((resolve) => {
+      socket.emit('get-room', { roomCode }, resolve);
+    });
+  };
+
   return {
     socket,
     isConnected,
@@ -79,7 +85,8 @@ export function useSocket() {
     startGame,
     submitAnswer,
     nextQuestion,
-    rematchRoom
+    rematchRoom,
+    getRoom
   };
 }
 
