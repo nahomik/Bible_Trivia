@@ -1,0 +1,345 @@
+.results-page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+.results-hero {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.trophy-badge {
+  font-size: 3.5rem;
+  margin-bottom: 0.75rem;
+  filter: drop-shadow(0 4px 16px rgba(245, 158, 11, 0.4));
+  animation: bounceTrophy 1.5s ease infinite alternate;
+}
+
+@keyframes bounceTrophy {
+  from { transform: translateY(0); }
+  to { transform: translateY(-8px); }
+}
+
+.results-hero h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+}
+
+.results-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+}
+
+/* Achievement Unlocked Banner */
+.achievements-unlocked-banner {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(99, 102, 241, 0.1));
+  border: 2px solid var(--gold-light);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.2);
+}
+
+.achievements-unlocked-banner h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--gold-light);
+  margin-bottom: 1rem;
+}
+
+.unlocked-cards-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.unlocked-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--card-bg);
+  padding: 0.85rem 1.2rem;
+  border-radius: 0.85rem;
+  border: 1px solid var(--border-color);
+  flex: 1;
+  min-width: 220px;
+}
+
+.unlocked-icon {
+  font-size: 2rem;
+}
+
+.unlocked-card strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.unlocked-card p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 1.25rem;
+  padding: 1.75rem 1.25rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+}
+
+.stat-icon {
+  font-size: 1.5rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.stat-value {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Multiplayer Results */
+.winner-banner {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(99, 102, 241, 0.2));
+  border: 2px solid var(--gold-light);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.25);
+}
+
+.winner-banner h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--gold-light);
+}
+
+.player-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.player-stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.player-stat-card h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.stat-row strong {
+  color: var(--text-primary);
+}
+
+/* Head to Head */
+.head-to-head {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.head-to-head h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.head-to-head-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.head-to-head-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: var(--input-bg);
+  border-radius: 0.65rem;
+  font-size: 0.9rem;
+}
+
+.match-players {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.match-score {
+  font-weight: 800;
+  color: var(--primary-color);
+}
+
+/* Action Buttons */
+.results-actions {
+  display: flex;
+  gap: 0.85rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+/* Missed Questions Review */
+.missed-questions-review {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.missed-questions-review h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.review-intro {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.75rem;
+}
+
+.perfect-score-card {
+  text-align: center;
+  padding: 2.5rem 1rem;
+}
+
+.perfect-icon {
+  font-size: 3rem;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+.perfect-score-card h4 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--gold-light);
+  margin-bottom: 0.5rem;
+}
+
+.perfect-score-card p {
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.missed-question-card {
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.missed-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.missed-index {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.missed-question-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.answers-comparison {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.answer-line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.answer-line.wrong {
+  color: #ef4444;
+}
+
+.answer-line.right {
+  color: #10b981;
+}
+
+.explanation-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 0.65rem;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.exp-icon {
+  font-size: 1.1rem;
+}
