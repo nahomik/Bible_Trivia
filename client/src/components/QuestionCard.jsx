@@ -1,7 +1,9 @@
 import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
 import { Badge } from './ui/badge';
+import { useGame } from '../context/GameContext';
 import { sound } from '../utils/audio';
 import { cleanText, getScriptureVerse, getScriptureStory } from '../utils/scriptureHelper';
+import { getLocalizedQuestion, t } from '../utils/translations';
 import { BookOpen, CheckCircle2, XCircle, Sparkles, Lightbulb, Clock } from 'lucide-react';
 
 export default function QuestionCard({
@@ -14,10 +16,13 @@ export default function QuestionCard({
   hiddenOptionIndices = [],
   showHint = false
 }) {
+  const { state } = useGame();
   if (!question) return null;
 
-  const verseRef = getScriptureVerse(question);
-  const story = getScriptureStory(question);
+  const currentLang = state?.language || 'en';
+  const localizedQ = getLocalizedQuestion(question, currentLang);
+  const verseRef = getScriptureVerse(localizedQ);
+  const story = getScriptureStory(localizedQ);
 
   const cleanOption = (text) => cleanText(text);
 
@@ -57,17 +62,17 @@ export default function QuestionCard({
           <div className="flex items-center gap-2">
             <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
               <Clock className="w-3.5 h-3.5 text-primary" />
-              Question {questionNumber} of {totalQuestions}
+              {t('question', currentLang)} {questionNumber} {t('of', currentLang)} {totalQuestions}
             </span>
           </div>
           <div className="flex flex-wrap items-center gap-1.5">
-            <Badge variant="gold" className="flex items-center gap-1">
+            <Badge variant="gold" className="flex items-center gap-1 font-semibold">
               <BookOpen className="w-3 h-3" />
-              {cleanText(question.book)}
+              {cleanText(localizedQ.book)}
             </Badge>
-            <Badge variant="outline">{question.testament} Testament</Badge>
-            <Badge variant="secondary">{question.category}</Badge>
-            <Badge variant="outline">{question.difficulty}</Badge>
+            <Badge variant="outline">{localizedQ.testament}</Badge>
+            <Badge variant="secondary">{localizedQ.category}</Badge>
+            <Badge variant="outline">{localizedQ.difficulty}</Badge>
           </div>
         </div>
 
@@ -76,7 +81,9 @@ export default function QuestionCard({
           <div className="flex items-start gap-3 p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-900 dark:text-amber-200 text-sm mb-3 animate-in fade-in slide-in-from-top-2 duration-300">
             <Lightbulb className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
             <div>
-              <strong className="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">Divine Insight:</strong>
+              <strong className="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">
+                {currentLang === 'am' ? 'መንፈሳዊ ፍንጭ፡' : 'Divine Insight:'}
+              </strong>
               <span>{story}</span>
             </div>
           </div>
@@ -84,14 +91,14 @@ export default function QuestionCard({
 
         {/* Question Text */}
         <CardTitle className="text-xl sm:text-2xl font-extrabold text-foreground leading-snug mt-1">
-          {cleanText(question.question)}
+          {cleanText(localizedQ.question)}
         </CardTitle>
       </CardHeader>
 
       <CardContent className="p-6 pt-2">
         {/* 4 Balanced Options Grid - Equalized min-height so no option baits length */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-6">
-          {question.options.map((option, index) => {
+          {localizedQ.options.map((option, index) => {
             const letter = String.fromCharCode(65 + index);
             const isCorrectOption = showResult && index === question.correctAnswer;
             const isWrongSelected = showResult && selectedAnswer === index && index !== question.correctAnswer;
@@ -140,12 +147,12 @@ export default function QuestionCard({
                 {selectedAnswer === question.correctAnswer ? (
                   <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-extrabold text-lg">
                     <Sparkles className="w-5 h-5 text-emerald-500" />
-                    <span>Correct Answer!</span>
+                    <span>{currentLang === 'am' ? 'እልልታ! ትክክለኛ መልስ' : 'Correct Answer!'}</span>
                   </div>
                 ) : (
                   <div className="flex items-center gap-1.5 text-destructive font-extrabold text-lg">
                     <XCircle className="w-5 h-5 text-destructive" />
-                    <span>{selectedAnswer === -1 ? "Time's Up!" : "Incorrect"}</span>
+                    <span>{selectedAnswer === -1 ? t('timesUp', currentLang) : (currentLang === 'am' ? 'ትክክል አይደለም' : 'Incorrect')}</span>
                   </div>
                 )}
               </div>
@@ -153,21 +160,24 @@ export default function QuestionCard({
               {/* Exact Verse Citation Badge */}
               <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-700 dark:text-amber-300 font-bold text-sm">
                 <BookOpen className="w-4 h-4 text-amber-500" />
-                <span>Scripture: {verseRef}</span>
+                <span>{currentLang === 'am' ? 'ቅዱስ ቃል፡ ' : 'Scripture: '}{verseRef}</span>
               </div>
             </div>
 
             {/* If wrong, clearly remind correct answer */}
             {selectedAnswer !== question.correctAnswer && (
               <div className="text-sm font-semibold text-foreground/90 mb-3 bg-card/60 p-2.5 rounded-lg border border-border/60">
-                Correct answer was: <strong className="text-emerald-600 dark:text-emerald-400">{cleanOption(question.options[question.correctAnswer])}</strong>
+                {currentLang === 'am' ? 'ትክክለኛው መልስ፡ ' : 'Correct answer was: '}
+                <strong className="text-emerald-600 dark:text-emerald-400">
+                  {cleanOption(localizedQ.options[question.correctAnswer])}
+                </strong>
               </div>
             )}
 
             {/* Scripture Story & Context to Read */}
             <div className="text-left space-y-1.5">
               <span className="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 flex items-center gap-1">
-                📖 Biblical Story &amp; Context
+                📖 {t('scriptureStoryHeader', currentLang)}
               </span>
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                 {story}

@@ -13,6 +13,11 @@ import { getUnseenQuestions, resetSeenQuestions } from '../utils/seenQuestions';
 import { selectBalancedQuestions } from '../utils/questionFilters';
 import { sound } from '../utils/audio';
 import {
+  t,
+  CATEGORIES_AMHARIC,
+  DIFFICULTIES_AMHARIC
+} from '../utils/translations';
+import {
   Globe,
   Crown,
   Key,
@@ -253,7 +258,7 @@ export default function OnlineLobby() {
     
     return (
       <>
-        <NavBar title="Multiplayer Lobby" />
+        <NavBar title={t('multiplayerLobby', state.language)} />
         <div className="max-w-2xl mx-auto px-4 py-8 space-y-6">
           {/* Room Header & Code Card */}
           <Card className="border-primary/40 bg-card/95 backdrop-blur-sm shadow-lg overflow-hidden">
@@ -261,16 +266,16 @@ export default function OnlineLobby() {
             <CardContent className="p-6 space-y-6 text-center">
               <div className="flex items-center justify-between">
                 <Badge variant="gold" className="gap-1.5 shadow-sm text-xs font-semibold">
-                  <Sparkles className="w-3.5 h-3.5 fill-current" /> Live Game Room
+                  <Sparkles className="w-3.5 h-3.5 fill-current" /> {t('liveRoom', state.language)}
                 </Badge>
                 <Badge variant="outline" className="gap-1 font-mono text-xs">
                   <Users className="w-3.5 h-3.5 text-primary" />
-                  {currentRoom.players.length}/8 Disciples
+                  {currentRoom.players.length}/8 {t('disciples', state.language)}
                 </Badge>
               </div>
 
               <div>
-                <span className="text-xs uppercase font-mono tracking-widest text-muted-foreground">ROOM CODE</span>
+                <span className="text-xs uppercase font-mono tracking-widest text-muted-foreground">{t('roomCode', state.language)}</span>
                 <div className="flex items-center justify-center gap-3 mt-2">
                   <h2 className="text-4xl sm:text-5xl font-mono font-black tracking-widest text-primary drop-shadow-sm">
                     {currentRoom.code}
@@ -279,14 +284,14 @@ export default function OnlineLobby() {
                     variant="outline"
                     size="sm"
                     onClick={handleCopyCode}
-                    className="gap-1.5 h-10 px-3 hover:border-primary hover:text-primary transition-all"
+                    className="gap-1.5 h-10 px-3 hover:border-primary hover:text-primary transition-all font-semibold"
                   >
                     {copied ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
-                    <span>{copied ? 'Copied' : 'Copy'}</span>
+                    <span>{copied ? t('copied', state.language) : t('copyCode', state.language)}</span>
                   </Button>
                 </div>
                 <p className="text-sm text-muted-foreground mt-2 max-w-sm mx-auto">
-                  Share this 6-character room code with your friends or church study group to play together!
+                  {t('shareRoomHint', state.language)}
                 </p>
               </div>
             </CardContent>
@@ -297,49 +302,53 @@ export default function OnlineLobby() {
             <Card className="border bg-card/80 backdrop-blur-sm">
               <CardHeader className="pb-3">
                 <CardTitle className="text-base font-semibold flex items-center gap-2">
-                  <Settings2 className="w-4 h-4 text-primary" /> Game Rules (Host Controls)
+                  <Settings2 className="w-4 h-4 text-primary" /> {t('gameRulesHost', state.language)}
                 </CardTitle>
-                <CardDescription className="text-xs">Configure the match questions for all players</CardDescription>
+                <CardDescription className="text-xs">{t('configureRules', state.language)}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
                   <div className="space-y-1">
-                    <label className="text-xs font-medium text-muted-foreground">Testament</label>
+                    <label className="text-xs font-medium text-muted-foreground">{t('testament', state.language)}</label>
                     <select
                       className="w-full h-9 rounded-md border border-input bg-background px-3 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       value={filters.testament}
                       onChange={(e) => setFilters({ ...filters, testament: e.target.value })}
                     >
-                      <option value="all">All Testaments</option>
-                      <option value="Old">Old Testament</option>
-                      <option value="New">New Testament</option>
+                      <option value="all">{state.language === 'am' ? 'ሁሉም ኪዳናት' : 'All Testaments'}</option>
+                      <option value="Old">{state.language === 'am' ? 'ብሉይ ኪዳን' : 'Old Testament'}</option>
+                      <option value="New">{state.language === 'am' ? 'አዲስ ኪዳን' : 'New Testament'}</option>
                     </select>
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-xs font-medium text-muted-foreground">Difficulty</label>
+                    <label className="text-xs font-medium text-muted-foreground">{t('difficulty', state.language)}</label>
                     <select
                       className="w-full h-9 rounded-md border border-input bg-background px-3 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       value={filters.difficulty}
                       onChange={(e) => setFilters({ ...filters, difficulty: e.target.value })}
                     >
-                      <option value="all">All Difficulties</option>
+                      <option value="all">{state.language === 'am' ? 'ሁሉም ደረጃዎች' : 'All Difficulties'}</option>
                       {difficulties.map(d => (
-                        <option key={d} value={d}>{d}</option>
+                        <option key={d} value={d}>
+                          {state.language === 'am' ? (DIFFICULTIES_AMHARIC[d] || d) : d}
+                        </option>
                       ))}
                     </select>
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-xs font-medium text-muted-foreground">Category</label>
+                    <label className="text-xs font-medium text-muted-foreground">{t('category', state.language)}</label>
                     <select
                       className="w-full h-9 rounded-md border border-input bg-background px-3 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       value={filters.category}
                       onChange={(e) => setFilters({ ...filters, category: e.target.value })}
                     >
-                      <option value="all">All Categories</option>
+                      <option value="all">{state.language === 'am' ? 'ሁሉም ምድቦች' : 'All Categories'}</option>
                       {categories.map(c => (
-                        <option key={c} value={c}>{c}</option>
+                        <option key={c} value={c}>
+                          {state.language === 'am' ? (CATEGORIES_AMHARIC[c] || c) : c}
+                        </option>
                       ))}
                     </select>
                   </div>
@@ -418,15 +427,15 @@ export default function OnlineLobby() {
                 disabled={currentRoom.players.length < 2}
               >
                 {currentRoom.players.length >= 2 ? (
-                  <>Launch Trivia Game <ArrowRight className="w-4 h-4 ml-2" /></>
+                  <>{t('launchGame', state.language)} <ArrowRight className="w-4 h-4 ml-2" /></>
                 ) : (
-                  'Waiting for at least 1 more player...'
+                  t('waitingPlayers', state.language)
                 )}
               </Button>
             ) : (
               <div className="flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-primary/10 border border-primary/20 text-primary text-sm font-medium">
                 <Loader2 className="w-4 h-4 animate-spin" />
-                <span>Waiting for the room host to launch the game...</span>
+                <span>{t('waitingHost', state.language)}</span>
               </div>
             )}
 
@@ -436,7 +445,7 @@ export default function OnlineLobby() {
               onClick={handleBack}
               className="w-full text-muted-foreground hover:text-destructive hover:border-destructive/40"
             >
-              <LogOut className="w-4 h-4 mr-2" /> Leave Room
+              <LogOut className="w-4 h-4 mr-2" /> {t('leaveRoom', state.language)}
             </Button>
           </div>
         </div>

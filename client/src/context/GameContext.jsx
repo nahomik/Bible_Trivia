@@ -30,6 +30,7 @@ const initialState = {
   isHost: false,
   theme: localStorage.getItem('bible_trivia_theme') || 'dark',
   soundMuted: sound.isMuted(),
+  language: localStorage.getItem('bible_trivia_language') || 'en',
 
   // New features: Survival mode lives & Lifelines
   lives: 3,
@@ -202,6 +203,15 @@ function gameReducer(state, action) {
       const newMuted = sound.toggleMute();
       return { ...state, soundMuted: newMuted };
     }
+    case 'SET_LANGUAGE': {
+      localStorage.setItem('bible_trivia_language', action.payload);
+      return { ...state, language: action.payload };
+    }
+    case 'TOGGLE_LANGUAGE': {
+      const nextLang = state.language === 'am' ? 'en' : 'am';
+      localStorage.setItem('bible_trivia_language', nextLang);
+      return { ...state, language: nextLang };
+    }
     case 'SET_ACHIEVEMENT_TOAST':
       return { ...state, achievementToast: action.payload };
     case 'RESET_GAME':
@@ -209,6 +219,7 @@ function gameReducer(state, action) {
         ...initialState,
         theme: state.theme,
         soundMuted: state.soundMuted,
+        language: state.language,
         playerName: state.playerName,
         user: state.user
       };

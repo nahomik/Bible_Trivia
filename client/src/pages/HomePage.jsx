@@ -21,18 +21,24 @@ import {
   Sparkles,
   CheckCircle2
 } from 'lucide-react';
+import { t } from '../utils/translations';
 
 const SCRIPTURE_VERSES = [
-  { text: "Your word is a lamp to my feet and a light to my path.", ref: "Psalm 119:105" },
-  { text: "All Scripture is God-breathed and useful for teaching, rebuking, correcting and training in righteousness.", ref: "2 Timothy 3:16" },
-  { text: "For the word of God is alive and active. Sharper than any double-edged sword.", ref: "Hebrews 4:12" },
-  { text: "The grass withers and the flowers fall, but the word of our God endures forever.", ref: "Isaiah 40:8" }
+  {
+    en: { text: "Your word is a lamp to my feet and a light to my path.", ref: "Psalm 119:105" },
+    am: { text: "ሕግህ ለእግሬ መብራት ለመንገዴም ብርሃን ነው።", ref: "መዝሙረ ዳዊት 119:105" }
+  },
+  {
+    en: { text: "All Scripture is God-breathed and useful for teaching, rebuking, correcting and training in righteousness.", ref: "2 Timothy 3:16" },
+    am: { text: "የእግዚአብሔር መንፈስ ያለበት መጽሐፍ ሁሉ ለትምህርትና ለተግሣጽ ልብንም ለማቅናት ይጠቅማል።", ref: "2ኛ ጢሞቴዎስ 3:16" }
+  }
 ];
 
 export default function HomePage() {
   const navigate = useNavigate();
   const { state, dispatch } = useGame();
-  const verse = SCRIPTURE_VERSES[0];
+  const lang = state?.language || 'en';
+  const verse = SCRIPTURE_VERSES[0][lang] || SCRIPTURE_VERSES[0].en;
   const isDailyDone = isDailyCompletedToday();
   const dailyStreak = getDailyStreak();
   const dailyResult = getDailyResult();
@@ -84,13 +90,19 @@ export default function HomePage() {
         {/* Hero Section */}
         <div className="text-center space-y-4 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-primary/20 bg-primary/10 text-xs font-bold text-primary shadow-sm">
-            <span>✝️</span> Over 3,800 Scripture Questions &bull; Verse by Verse
+            <span>✝️</span> {lang === 'am' ? 'ከ 5,150+ በላይ የመጽሐፍ ቅዱስ ጥያቄዎች • በሁሉም 66ቱ መጻሕፍት' : 'Over 5,150+ Scripture Questions • All 66 Books • English & አማርኛ'}
           </div>
           <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-foreground">
-            Bible Trivia <span className="bg-gradient-to-r from-amber-500 via-indigo-500 to-purple-600 bg-clip-text text-transparent">Challenge</span>
+            {lang === 'am' ? (
+              <>የመጽሐፍ ቅዱስ <span className="bg-gradient-to-r from-amber-500 via-indigo-500 to-purple-600 bg-clip-text text-transparent">ዕውቀት ውድድር</span></>
+            ) : (
+              <>Bible Trivia <span className="bg-gradient-to-r from-amber-500 via-indigo-500 to-purple-600 bg-clip-text text-transparent">Challenge</span></>
+            )}
           </h1>
           <p className="text-muted-foreground text-base sm:text-xl leading-relaxed">
-            Test your knowledge of the Word of God from Genesis to Revelation. Deepen your faith with exact verse references and inspiring biblical stories after every answer.
+            {lang === 'am'
+              ? 'ከኦሪት ዘፍጥረት እስከ ዮሐንስ ራእይ ድረስ ያለዎትን የመጽሐፍ ቅዱስ ዕውቀት ይፈትሹ። ከእያንዳንዱ መልስ በኋላ በሚቀርቡት የመጽሐፍ ቅዱስ ታሪኮችና ጥቅሶች መንፈሳዊ ዕውቀትዎን ያሳድጉ።'
+              : 'Test your knowledge of the Word of God from Genesis to Revelation. Deepen your faith with exact verse references and inspiring biblical stories after every answer.'}
           </p>
         </div>
 
@@ -148,9 +160,11 @@ export default function HomePage() {
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
-                Select Game Mode
+                {lang === 'am' ? 'የጨዋታ ዓይነት ይምረጡ' : 'Select Game Mode'}
               </h2>
-              <p className="text-sm text-muted-foreground">Choose your pathway through the Scriptures</p>
+              <p className="text-sm text-muted-foreground">
+                {lang === 'am' ? 'የመጽሐፍ ቅዱስ ጉዞዎን ይምረጡ' : 'Choose your pathway through the Scriptures'}
+              </p>
             </div>
           </div>
 
@@ -165,17 +179,17 @@ export default function HomePage() {
                   <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                     <BookOpen className="w-6 h-6" />
                   </div>
-                  <Badge variant="secondary">Classic</Badge>
+                  <Badge variant="secondary">{lang === 'am' ? 'መደበኛ' : 'Classic'}</Badge>
                 </div>
                 <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors">
-                  Solo Journey
+                  {t('modeSolo', lang)}
                 </CardTitle>
                 <CardDescription>
-                  Custom study: pick specific books, testaments, categories, and question count at your own pace.
+                  {t('modeSoloDesc', lang)}
                 </CardDescription>
               </CardHeader>
               <CardContent className="pt-0 flex items-center justify-between text-xs font-semibold text-muted-foreground border-t border-border/40 mt-4 pt-4">
-                <span>🎯 Customizable Rules</span>
+                <span>{lang === 'am' ? '🎯 የሚስተካከሉ ሕጎች' : '🎯 Customizable Rules'}</span>
                 <ChevronRight className="w-4 h-4 text-primary group-hover:translate-x-1 transition-transform" />
               </CardContent>
             </Card>
@@ -190,17 +204,17 @@ export default function HomePage() {
                   <div className="w-12 h-12 rounded-xl bg-destructive/10 border border-destructive/20 flex items-center justify-center text-destructive group-hover:scale-110 transition-transform">
                     <ShieldAlert className="w-6 h-6" />
                   </div>
-                  <Badge variant="destructive">High Stakes</Badge>
+                  <Badge variant="destructive">{lang === 'am' ? 'ከፍተኛ ፉክክር' : 'High Stakes'}</Badge>
                 </div>
                 <CardTitle className="text-xl font-bold group-hover:text-destructive transition-colors">
-                  Survival Rush
+                  {t('modeSurvival', lang)}
                 </CardTitle>
                 <CardDescription>
-                  Test your endurance with 3 lives and 15 seconds per question. How far can your faith take you?
+                  {t('modeSurvivalDesc', lang)}
                 </CardDescription>
               </CardHeader>
               <CardContent className="pt-0 flex items-center justify-between text-xs font-semibold text-muted-foreground border-t border-border/40 mt-4 pt-4">
-                <span>❤️❤️❤️ 3 Lives</span>
+                <span>{lang === 'am' ? '❤️❤️❤️ 3 ዕድሎች' : '❤️❤️❤️ 3 Lives'}</span>
                 <ChevronRight className="w-4 h-4 text-destructive group-hover:translate-x-1 transition-transform" />
               </CardContent>
             </Card>
@@ -215,17 +229,17 @@ export default function HomePage() {
                   <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform">
                     <Zap className="w-6 h-6" />
                   </div>
-                  <Badge variant="gold">60s Sprint</Badge>
+                  <Badge variant="gold">{lang === 'am' ? '60 ሰከንድ' : '60s Sprint'}</Badge>
                 </div>
                 <CardTitle className="text-xl font-bold group-hover:text-amber-500 transition-colors">
-                  Speed Blitz
+                  {t('modeBlitz', lang)}
                 </CardTitle>
                 <CardDescription>
-                  60 seconds on the continuous clock! Answer as many Scripture questions as possible before time expires.
+                  {t('modeBlitzDesc', lang)}
                 </CardDescription>
               </CardHeader>
               <CardContent className="pt-0 flex items-center justify-between text-xs font-semibold text-muted-foreground border-t border-border/40 mt-4 pt-4">
-                <span>⏱️ 60s Total Timer</span>
+                <span>{lang === 'am' ? '⏱️ 60 ሰከንድ ሰዓት ቆጣሪ' : '⏱️ 60s Total Timer'}</span>
                 <ChevronRight className="w-4 h-4 text-amber-500 group-hover:translate-x-1 transition-transform" />
               </CardContent>
             </Card>
@@ -240,17 +254,17 @@ export default function HomePage() {
                   <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform">
                     <Users className="w-6 h-6" />
                   </div>
-                  <Badge variant="success">Fellowship</Badge>
+                  <Badge variant="success">{lang === 'am' ? 'ኅብረት' : 'Fellowship'}</Badge>
                 </div>
                 <CardTitle className="text-xl font-bold group-hover:text-emerald-500 transition-colors">
-                  Pass &amp; Play
+                  {t('modePassPlay', lang)}
                 </CardTitle>
                 <CardDescription>
-                  Gather 2-8 friends on one device! Take turns with device pass screens and round scoreboards.
+                  {t('modePassPlayDesc', lang)}
                 </CardDescription>
               </CardHeader>
               <CardContent className="pt-0 flex items-center justify-between text-xs font-semibold text-muted-foreground border-t border-border/40 mt-4 pt-4">
-                <span>📱 2-8 Local Players</span>
+                <span>{lang === 'am' ? '📱 ከ 2-8 ተጫዋቾች በአንድ ስልክ' : '📱 2-8 Local Players'}</span>
                 <ChevronRight className="w-4 h-4 text-emerald-500 group-hover:translate-x-1 transition-transform" />
               </CardContent>
             </Card>
@@ -265,17 +279,17 @@ export default function HomePage() {
                   <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                     <Globe className="w-6 h-6" />
                   </div>
-                  <Badge variant="secondary">Real-Time</Badge>
+                  <Badge variant="secondary">{lang === 'am' ? 'የቀጥታ' : 'Real-Time'}</Badge>
                 </div>
                 <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors">
-                  Online Multiplayer
+                  {t('modeOnline', lang)}
                 </CardTitle>
                 <CardDescription>
-                  Host private rooms with 6-letter codes or join friends online. Live scores and synchronized rounds!
+                  {t('modeOnlineDesc', lang)}
                 </CardDescription>
               </CardHeader>
               <CardContent className="pt-0 flex items-center justify-between text-xs font-semibold text-muted-foreground border-t border-border/40 mt-4 pt-4">
-                <span>⚡ Live WebSockets</span>
+                <span>{lang === 'am' ? '⚡ የቀጥታ ግንኙነት' : '⚡ Live WebSockets'}</span>
                 <ChevronRight className="w-4 h-4 text-primary group-hover:translate-x-1 transition-transform" />
               </CardContent>
             </Card>
@@ -290,17 +304,19 @@ export default function HomePage() {
                   <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform">
                     <Trophy className="w-6 h-6" />
                   </div>
-                  <Badge variant="gold">Champions</Badge>
+                  <Badge variant="gold">{lang === 'am' ? 'አሸናፊዎች' : 'Champions'}</Badge>
                 </div>
                 <CardTitle className="text-xl font-bold group-hover:text-amber-500 transition-colors">
-                  Global Leaderboard
+                  {lang === 'am' ? 'የደረጃ ሰንጠረዥ' : 'Global Leaderboard'}
                 </CardTitle>
                 <CardDescription>
-                  See where you rank against believers worldwide in score, streaks, and biblical accuracy.
+                  {lang === 'am'
+                    ? 'ከዓለም ዙሪያ ካሉ አማኞች ጋር በውጤትና በትክክለኛነት ደረጃዎን ይመልከቱ።'
+                    : 'See where you rank against believers worldwide in score, streaks, and biblical accuracy.'}
                 </CardDescription>
               </CardHeader>
               <CardContent className="pt-0 flex items-center justify-between text-xs font-semibold text-muted-foreground border-t border-border/40 mt-4 pt-4">
-                <span>🏆 Community Podiums</span>
+                <span>{lang === 'am' ? '🏆 የማኅበረሰብ ሰሌዳ' : '🏆 Community Podiums'}</span>
                 <ChevronRight className="w-4 h-4 text-amber-500 group-hover:translate-x-1 transition-transform" />
               </CardContent>
             </Card>
@@ -311,16 +327,22 @@ export default function HomePage() {
         <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">
           <div className="grid grid-cols-3 gap-6 sm:gap-12 text-center sm:text-left w-full sm:w-auto">
             <div>
-              <div className="text-2xl sm:text-3xl font-extrabold text-primary">3,820+</div>
-              <div className="text-xs sm:text-sm font-semibold text-muted-foreground">Scripture Questions</div>
+              <div className="text-2xl sm:text-3xl font-extrabold text-primary">5,150+</div>
+              <div className="text-xs sm:text-sm font-semibold text-muted-foreground">
+                {lang === 'am' ? 'የመጽሐፍ ቅዱስ ጥያቄዎች' : 'Scripture Questions'}
+              </div>
             </div>
             <div>
               <div className="text-2xl sm:text-3xl font-extrabold text-amber-500">66</div>
-              <div className="text-xs sm:text-sm font-semibold text-muted-foreground">Books of the Bible</div>
+              <div className="text-xs sm:text-sm font-semibold text-muted-foreground">
+                {lang === 'am' ? 'የመጽሐፍ ቅዱስ መጻሕፍት' : 'Books of the Bible'}
+              </div>
             </div>
             <div>
               <div className="text-2xl sm:text-3xl font-extrabold text-emerald-500">100%</div>
-              <div className="text-xs sm:text-sm font-semibold text-muted-foreground">Biblically Rooted</div>
+              <div className="text-xs sm:text-sm font-semibold text-muted-foreground">
+                {lang === 'am' ? 'በእግዚአብሔር ቃል ላይ' : 'Biblically Rooted'}
+              </div>
             </div>
           </div>
 
@@ -331,7 +353,7 @@ export default function HomePage() {
             className="font-bold gap-2 w-full sm:w-auto"
           >
             <Trophy className="w-4 h-4 text-amber-500" />
-            View Community Rankings
+            {lang === 'am' ? 'የደረጃ ሰንጠረዥ ይመልከቱ' : 'View Community Rankings'}
           </Button>
         </div>
       </main>

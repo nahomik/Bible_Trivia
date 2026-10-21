@@ -134,16 +134,34 @@ export const SCRIPTURE_STORIES = {
 
 export function getScriptureVerse(question) {
   if (!question) return 'Scripture Context';
-  if (question.verse) return cleanText(question.verse);
+  if (question.verse && question.verse !== 'Genesis Context') {
+    return cleanText(question.verse);
+  }
   const book = question.book || '';
-  return CANONICAL_VERSES[book] || `${book} Scripture Reference`;
+  if (CANONICAL_VERSES[book]) {
+    return CANONICAL_VERSES[book];
+  }
+  return `${book} Context`;
 }
 
 export function getScriptureStory(question) {
   if (!question) return '';
-  if (question.story) return cleanText(question.story);
   const book = question.book || '';
+  
+  // If story already provided on question and in English
+  if (question.story && !question.story.includes('Scripture reveals this sacred truth')) {
+    return cleanText(question.story);
+  }
+
+  // Check if book has a custom story in SCRIPTURE_STORIES
   const story = SCRIPTURE_STORIES[book];
   if (story) return story;
+
+  // Check if book is an Amharic name
+  const isAmharic = /[\u1200-\u137F]/.test(book);
+  if (isAmharic) {
+    return `ይህ የተቀደሰ መጽሐፍ ቅዱሳዊ እውነት በ${book} መጽሐፍ ውስጥ ተመዝግቧል። እግዚአብሔር በነቢያት፣ በነገሥታትና በሐዋርያት አማካኝነት ክብሩን፣ ጽድቁንና የዘላለም የድነት ዕቅዱን ለሕዝቡ ገልጧል።`;
+  }
+
   return `In the book of ${book}, God revealed His faithfulness, righteousness, and redemptive covenants through prophets, kings, and apostles, guiding His people into eternal truth and salvation.`;
 }

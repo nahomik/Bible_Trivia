@@ -4,6 +4,7 @@ import { useGame } from '../context/GameContext';
 import { isAuthenticated, getMe, logout, updateAvatar } from '../api';
 import { sound } from '../utils/audio';
 import { getDailyStreak } from '../utils/dailyChallenge';
+import { t } from '../utils/translations';
 import { Button } from './ui/button';
 import {
   Dialog,
@@ -131,7 +132,7 @@ export default function NavBar({ title }) {
               className={`gap-1.5 font-bold ${isNavActive('/') ? 'bg-secondary text-primary' : ''}`}
             >
               <Home className="w-4 h-4" />
-              Home
+              {t('navHome', state.language)}
             </Button>
 
             <Button
@@ -141,7 +142,7 @@ export default function NavBar({ title }) {
               className="gap-1.5 font-bold relative"
             >
               <Calendar className="w-4 h-4 text-amber-500" />
-              Daily
+              {t('modeDaily', state.language)}
               {streak > 0 && (
                 <span className="ml-1 inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-500 text-white shadow-sm">
                   <Flame className="w-2.5 h-2.5" /> {streak}
@@ -156,7 +157,7 @@ export default function NavBar({ title }) {
               className={`gap-1.5 font-bold ${isNavActive('/leaderboard') ? 'bg-secondary text-primary' : ''}`}
             >
               <Trophy className="w-4 h-4 text-amber-500" />
-              Leaderboard
+              {t('navLeaderboard', state.language)}
             </Button>
 
             <Button
@@ -166,12 +167,27 @@ export default function NavBar({ title }) {
               className={`gap-1.5 font-bold ${isNavActive('/stats') ? 'bg-secondary text-primary' : ''}`}
             >
               <BarChart3 className="w-4 h-4 text-primary" />
-              Stats &amp; Badges
+              {t('navProfile', state.language)}
             </Button>
           </nav>
 
           {/* Right Action Controls */}
           <div className="flex items-center gap-2">
+            {/* Language Toggle */}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                dispatch({ type: 'TOGGLE_LANGUAGE' });
+                sound.playClick();
+              }}
+              title={state.language === 'am' ? 'Switch to English' : 'ወደ አማርኛ ቀይር (Switch to Amharic)'}
+              className="h-9 px-2.5 rounded-lg font-bold text-xs gap-1.5 border-border hover:border-primary/60 transition-all shadow-sm"
+            >
+              <span className="text-sm">{state.language === 'am' ? '🇪🇹' : '🇺🇸'}</span>
+              <span className="font-mono text-xs">{state.language === 'am' ? 'አማ' : 'EN'}</span>
+            </Button>
+
             {/* Audio Toggle */}
             <Button
               variant="outline"
@@ -256,12 +272,28 @@ export default function NavBar({ title }) {
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-border bg-card p-4 space-y-2 animate-in slide-in-from-top-2 duration-200">
             <Button
+              variant="outline"
+              className="w-full justify-between font-bold gap-2 text-xs mb-1"
+              onClick={() => {
+                dispatch({ type: 'TOGGLE_LANGUAGE' });
+                sound.playClick();
+              }}
+            >
+              <span className="flex items-center gap-2">
+                <span>{state.language === 'am' ? '🇪🇹' : '🇺🇸'}</span>
+                <span>{state.language === 'am' ? 'ቋንቋ: አማርኛ' : 'Language: English'}</span>
+              </span>
+              <span className="text-[11px] text-muted-foreground uppercase font-mono">
+                {state.language === 'am' ? 'ወደ EN ቀይር' : 'Switch to አማ'}
+              </span>
+            </Button>
+            <Button
               variant={isNavActive('/') ? 'secondary' : 'ghost'}
               className="w-full justify-start font-bold gap-2"
               onClick={() => handleNav('/')}
             >
               <Home className="w-4 h-4" />
-              Home
+              {t('navHome', state.language)}
             </Button>
             <Button
               variant={isNavActive('/settings') && state.mode === 'daily' ? 'secondary' : 'ghost'}
@@ -269,7 +301,7 @@ export default function NavBar({ title }) {
               onClick={() => handleNav('/settings?mode=daily')}
             >
               <Calendar className="w-4 h-4 text-amber-500" />
-              Daily Challenge {streak > 0 && `(🔥 ${streak})`}
+              {t('modeDaily', state.language)} {streak > 0 && `(🔥 ${streak})`}
             </Button>
             <Button
               variant={isNavActive('/leaderboard') ? 'secondary' : 'ghost'}
@@ -277,7 +309,7 @@ export default function NavBar({ title }) {
               onClick={() => handleNav('/leaderboard')}
             >
               <Trophy className="w-4 h-4 text-amber-500" />
-              Leaderboard
+              {t('navLeaderboard', state.language)}
             </Button>
             <Button
               variant={isNavActive('/stats') ? 'secondary' : 'ghost'}
@@ -285,7 +317,7 @@ export default function NavBar({ title }) {
               onClick={() => handleNav('/stats')}
             >
               <BarChart3 className="w-4 h-4 text-primary" />
-              Stats &amp; Badges
+              {t('navProfile', state.language)}
             </Button>
             {user ? (
               <Button

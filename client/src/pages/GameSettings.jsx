@@ -20,8 +20,13 @@ import {
   Users,
   RotateCcw,
   SlidersHorizontal,
-  ChevronLeft
+  ChevronLeft,
+  Globe
 } from 'lucide-react';
+import {
+  BIBLE_BOOKS_AMHARIC,
+  CATEGORIES_AMHARIC
+} from '../utils/translations';
 
 const BIBLICAL_NAMES = ['David', 'Sarah', 'Peter', 'Esther', 'Paul', 'Ruth', 'Moses', 'Mary'];
 
@@ -290,6 +295,65 @@ export default function GameSettings() {
           </Card>
         )}
 
+        {/* Language Selection Card */}
+        <Card className="border-primary/40 bg-card shadow-sm">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base font-bold flex items-center justify-between">
+              <span className="flex items-center gap-2">
+                <Globe className="w-4 h-4 text-primary" />
+                {state.language === 'am' ? 'የጥያቄዎች ቋንቋ (Trivia Language)' : 'Question Language / ቋንቋ'}
+              </span>
+              <Badge variant="gold" className="text-xs">
+                {state.language === 'am' ? '🇪🇹 አማርኛ ንቁ ነው' : '🇺🇸 English Active'}
+              </Badge>
+            </CardTitle>
+            <CardDescription className="text-xs">
+              {state.language === 'am'
+                ? 'ጥያቄዎች፣ አማራጮችና የመጽሐፍ ቅዱስ ታሪኮች ሙሉ በሙሉ በአማርኛ ይቀርባሉ'
+                : 'Play all 5,000+ Scripture questions with biblical narratives in English or Amharic (አማርኛ)'}
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 gap-3">
+              <Button
+                variant={state.language === 'en' ? 'default' : 'outline'}
+                size="lg"
+                onClick={() => {
+                  dispatch({ type: 'SET_LANGUAGE', payload: 'en' });
+                  sound.playClick();
+                }}
+                className={`font-bold flex items-center justify-center gap-2.5 h-14 ${
+                  state.language === 'en' ? 'ring-2 ring-primary shadow-sm' : ''
+                }`}
+              >
+                <span className="text-2xl">🇺🇸</span>
+                <div className="text-left">
+                  <div className="leading-tight font-extrabold text-sm">English</div>
+                  <div className="text-[10px] opacity-75 font-normal">Scripture Trivia</div>
+                </div>
+              </Button>
+
+              <Button
+                variant={state.language === 'am' ? 'gold' : 'outline'}
+                size="lg"
+                onClick={() => {
+                  dispatch({ type: 'SET_LANGUAGE', payload: 'am' });
+                  sound.playClick();
+                }}
+                className={`font-bold flex items-center justify-center gap-2.5 h-14 ${
+                  state.language === 'am' ? 'ring-2 ring-amber-500 shadow-sm' : ''
+                }`}
+              >
+                <span className="text-2xl">🇪🇹</span>
+                <div className="text-left">
+                  <div className="leading-tight font-extrabold text-sm">አማርኛ</div>
+                  <div className="text-[10px] opacity-75 font-normal">የኢትዮጵያ መጽሐፍ ቅዱስ</div>
+                </div>
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Player Name */}
         {modeParam !== 'local' && (
           <Card>
@@ -436,58 +500,70 @@ export default function GameSettings() {
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-xs font-bold text-muted-foreground uppercase mb-1.5 block">Testament</label>
+                    <label className="text-xs font-bold text-muted-foreground uppercase mb-1.5 block">
+                      {state.language === 'am' ? 'ኪዳናት' : 'Testament'}
+                    </label>
                     <select
                       value={filters.testament}
                       onChange={(e) => setFilters({ ...filters, testament: e.target.value })}
                       className="w-full h-11 px-3 rounded-lg border border-input bg-background text-sm font-semibold text-foreground focus:ring-2 focus:ring-ring"
                     >
-                      <option value="all">All Testaments (Old &amp; New)</option>
-                      <option value="Old">Old Testament Only</option>
-                      <option value="New">New Testament Only</option>
+                      <option value="all">{state.language === 'am' ? 'ሁሉም ኪዳናት (ብሉይና ሐዲስ)' : 'All Testaments (Old & New)'}</option>
+                      <option value="Old">{state.language === 'am' ? 'ብሉይ ኪዳን ብቻ' : 'Old Testament Only'}</option>
+                      <option value="New">{state.language === 'am' ? 'አዲስ ኪዳን ብቻ' : 'New Testament Only'}</option>
                     </select>
                   </div>
 
                   <div>
-                    <label className="text-xs font-bold text-muted-foreground uppercase mb-1.5 block">Difficulty</label>
+                    <label className="text-xs font-bold text-muted-foreground uppercase mb-1.5 block">
+                      {state.language === 'am' ? 'ደረጃ' : 'Difficulty'}
+                    </label>
                     <select
                       value={filters.difficulty}
                       onChange={(e) => setFilters({ ...filters, difficulty: e.target.value })}
                       className="w-full h-11 px-3 rounded-lg border border-input bg-background text-sm font-semibold text-foreground focus:ring-2 focus:ring-ring"
                     >
-                      <option value="all">All Difficulties</option>
-                      <option value="Easy">Easy</option>
-                      <option value="Medium">Medium</option>
-                      <option value="Hard">Hard</option>
+                      <option value="all">{state.language === 'am' ? 'ሁሉም ደረጃዎች' : 'All Difficulties'}</option>
+                      <option value="Easy">{state.language === 'am' ? 'ቀላል' : 'Easy'}</option>
+                      <option value="Medium">{state.language === 'am' ? 'መካከለኛ' : 'Medium'}</option>
+                      <option value="Hard">{state.language === 'am' ? 'ከባድ' : 'Hard'}</option>
                     </select>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-xs font-bold text-muted-foreground uppercase mb-1.5 block">Category</label>
+                    <label className="text-xs font-bold text-muted-foreground uppercase mb-1.5 block">
+                      {state.language === 'am' ? 'ምድብ' : 'Category'}
+                    </label>
                     <select
                       value={filters.category}
                       onChange={(e) => setFilters({ ...filters, category: e.target.value })}
                       className="w-full h-11 px-3 rounded-lg border border-input bg-background text-sm font-semibold text-foreground focus:ring-2 focus:ring-ring"
                     >
-                      <option value="all">All Categories</option>
+                      <option value="all">{state.language === 'am' ? 'ሁሉም ምድቦች' : 'All Categories'}</option>
                       {categories.map(cat => (
-                        <option key={cat} value={cat}>{cat}</option>
+                        <option key={cat} value={cat}>
+                          {state.language === 'am' ? (CATEGORIES_AMHARIC[cat] || cat) : cat}
+                        </option>
                       ))}
                     </select>
                   </div>
 
                   <div>
-                    <label className="text-xs font-bold text-muted-foreground uppercase mb-1.5 block">Specific Book</label>
+                    <label className="text-xs font-bold text-muted-foreground uppercase mb-1.5 block">
+                      {state.language === 'am' ? 'የተወሰነ መጽሐፍ' : 'Specific Book'}
+                    </label>
                     <select
                       value={filters.book}
                       onChange={(e) => setFilters({ ...filters, book: e.target.value })}
                       className="w-full h-11 px-3 rounded-lg border border-input bg-background text-sm font-semibold text-foreground focus:ring-2 focus:ring-ring"
                     >
-                      <option value="all">All 66 Books</option>
+                      <option value="all">{state.language === 'am' ? 'ሁሉም 66ቱ መጻሕፍት' : 'All 66 Books'}</option>
                       {books.map(book => (
-                        <option key={book} value={book}>{book}</option>
+                        <option key={book} value={book}>
+                          {state.language === 'am' ? (BIBLE_BOOKS_AMHARIC[book] || book) : book}
+                        </option>
                       ))}
                     </select>
                   </div>

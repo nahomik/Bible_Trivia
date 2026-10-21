@@ -10,6 +10,7 @@ import { sound } from '../utils/audio';
 import { checkAchievements } from '../utils/achievements';
 import { recordDailyCompletion } from '../utils/dailyChallenge';
 import { cleanText, getScriptureVerse, getScriptureStory } from '../utils/scriptureHelper';
+import { getLocalizedQuestion, t } from '../utils/translations';
 import NavBar from '../components/NavBar';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
@@ -47,14 +48,15 @@ export default function Results() {
         else {
           const question = state.questions[questionIndex];
           if (question) {
+            const locQ = getLocalizedQuestion(question, state.language || 'en');
             missedQuestions.push({
-              question: cleanText(question.question),
-              yourAnswer: cleanText(question.options[answer.answer] || "Time's up!"),
-              correctAnswer: cleanText(question.options[question.correctAnswer]),
-              book: cleanText(question.book),
-              testament: question.testament,
-              verse: getScriptureVerse(question),
-              story: getScriptureStory(question)
+              question: cleanText(locQ.question),
+              yourAnswer: cleanText(locQ.options[answer.answer] || (state.language === 'am' ? "ጊዜው አልቋል!" : "Time's up!")),
+              correctAnswer: cleanText(locQ.options[question.correctAnswer]),
+              book: cleanText(locQ.book),
+              testament: locQ.testament,
+              verse: getScriptureVerse(locQ),
+              story: getScriptureStory(locQ)
             });
           }
         }
@@ -239,17 +241,17 @@ export default function Results() {
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground">
             {firstStats && firstStats.accuracy === 100
-              ? 'Flawless Knowledge!'
+              ? (state.language === 'am' ? 'ፍጹም ዕውቀት! 100%' : 'Flawless Knowledge!')
               : firstStats && firstStats.accuracy >= 70
-              ? 'Well Done, Good & Faithful!'
-              : 'Game Complete!'}
+              ? (state.language === 'am' ? 'መልካም ታማኝ አገልጋይ!' : 'Well Done, Good & Faithful!')
+              : (state.language === 'am' ? 'ጨዋታው ተጠናቋል!' : 'Game Complete!')}
           </h1>
           <p className="text-muted-foreground text-sm sm:text-base max-w-lg mx-auto">
             {state.mode === 'daily'
-              ? "Glorious work completing today's Scripture Challenge! Your daily streak has been preserved."
+              ? (state.language === 'am' ? 'የዛሬውን የዕለት ቃል ተግዳሮት በክብር አጠናቀዋል! የዕለት ተከታታይዎ ተጠብቋል።' : "Glorious work completing today's Scripture Challenge! Your daily streak has been preserved.")
               : state.mode === 'survival'
-              ? `End of the road! You held your ground through ${firstStats?.total || 0} questions.`
-              : 'Continue meditating on the Word of God day and night.'}
+              ? (state.language === 'am' ? `በሕይወት ተግዳሮት ${firstStats?.total || 0} ጥያቄዎችን በተሳካ ሁኔታ ተጋፍጠዋል።` : `End of the road! You held your ground through ${firstStats?.total || 0} questions.`)
+              : (state.language === 'am' ? 'በእግዚአብሔር ቃል ላይ በቀንም በሌሊትም ማሰላሰልዎን ይቀጥሉ።' : 'Continue meditating on the Word of God day and night.')}
           </p>
         </div>
 
@@ -258,7 +260,7 @@ export default function Results() {
           <div className="p-5 rounded-2xl border-2 border-amber-500 bg-amber-500/10 space-y-3 animate-in fade-in duration-300">
             <h3 className="font-extrabold text-amber-600 dark:text-amber-400 text-sm uppercase tracking-wider flex items-center gap-1.5">
               <Sparkles className="w-4 h-4" />
-              New Scripture Achievements Unlocked!
+              {state.language === 'am' ? 'አዲስ የመጽሐፍ ቅዱስ ሽልማት ተከፍቷል!' : 'New Scripture Achievements Unlocked!'}
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {newlyUnlockedAchievements.map(ach => (
@@ -278,24 +280,24 @@ export default function Results() {
         {state.players.length === 1 ? (
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <Card className="text-center p-5 space-y-1">
-              <span className="text-xs uppercase font-extrabold text-muted-foreground">Correct</span>
+              <span className="text-xs uppercase font-extrabold text-muted-foreground">{t('correctAnswers', state.language)}</span>
               <p className="text-3xl font-extrabold text-emerald-500">{firstStats?.correct}</p>
-              <span className="text-[11px] text-muted-foreground">Answers</span>
+              <span className="text-[11px] text-muted-foreground">{state.language === 'am' ? 'መልሶች' : 'Answers'}</span>
             </Card>
             <Card className="text-center p-5 space-y-1">
-              <span className="text-xs uppercase font-extrabold text-muted-foreground">Incorrect</span>
+              <span className="text-xs uppercase font-extrabold text-muted-foreground">{t('incorrectAnswers', state.language)}</span>
               <p className="text-3xl font-extrabold text-destructive">{(firstStats?.total || 0) - (firstStats?.correct || 0)}</p>
-              <span className="text-[11px] text-muted-foreground">Answers</span>
+              <span className="text-[11px] text-muted-foreground">{state.language === 'am' ? 'መልሶች' : 'Answers'}</span>
             </Card>
             <Card className="text-center p-5 space-y-1">
-              <span className="text-xs uppercase font-extrabold text-muted-foreground">Accuracy</span>
+              <span className="text-xs uppercase font-extrabold text-muted-foreground">{t('accuracy', state.language)}</span>
               <p className="text-3xl font-extrabold text-primary">{firstStats?.accuracy}%</p>
-              <span className="text-[11px] text-muted-foreground">Score</span>
+              <span className="text-[11px] text-muted-foreground">{t('score', state.language)}</span>
             </Card>
             <Card className="text-center p-5 space-y-1">
-              <span className="text-xs uppercase font-extrabold text-muted-foreground">Avg Speed</span>
+              <span className="text-xs uppercase font-extrabold text-muted-foreground">{t('avgSpeed', state.language)}</span>
               <p className="text-3xl font-extrabold text-amber-500">{firstStats?.avgTime}s</p>
-              <span className="text-[11px] text-muted-foreground">Per question</span>
+              <span className="text-[11px] text-muted-foreground">{state.language === 'am' ? 'በጥያቄ' : 'Per question'}</span>
             </Card>
           </div>
         ) : (
@@ -349,9 +351,7 @@ export default function Results() {
         {isOnlineRoom && (
           <div className="text-center p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 max-w-lg mx-auto space-y-1">
             <p className="text-xs sm:text-sm font-semibold text-amber-600 dark:text-amber-400">
-              {isHost
-                ? '👑 Room Host: Click Rematch or Play Again to return all players back to the lobby ready page.'
-                : '⚔️ Fellowship Room: When the host clicks Rematch or Play Again, all players will return to the ready page together.'}
+              {isHost ? t('hostRematchBanner', state.language) : t('guestRematchBanner', state.language)}
             </p>
           </div>
         )}
@@ -366,12 +366,16 @@ export default function Results() {
             className="gap-2 font-bold shadow-sm"
           >
             <RotateCcw className="w-4 h-4" />
-            {isRematching ? 'Returning to Ready Room...' : isOnlineRoom ? 'Play Again (Ready Page)' : 'Play Again'}
+            {isRematching
+              ? (state.language === 'am' ? 'ወደ ዝግጅት ገጽ በመመለስ ላይ...' : 'Returning to Ready Room...')
+              : isOnlineRoom
+              ? (state.language === 'am' ? 'እንደገና ተጫወት (ወደ ዝግጅት ገጽ)' : 'Play Again (Ready Page)')
+              : (state.language === 'am' ? 'እንደገና ተጫወት' : 'Play Again')}
           </Button>
 
           <Button variant="secondary" size="lg" onClick={handleShare} className="gap-2 font-bold">
             <Share2 className="w-4 h-4" />
-            Share Results
+            {t('shareResults', state.language)}
           </Button>
 
           {isOnlineRoom && (
@@ -384,7 +388,9 @@ export default function Results() {
                 className="gap-2 font-bold shadow-sm"
               >
                 <Swords className="w-4 h-4" />
-                {isRematching ? 'Returning...' : 'Rematch'}
+                {isRematching
+                  ? (state.language === 'am' ? 'በመመለስ ላይ...' : 'Returning...')
+                  : (state.language === 'am' ? 'እንደገና ግጠም' : 'Rematch')}
               </Button>
               <Button
                 variant="outline"
@@ -393,14 +399,14 @@ export default function Results() {
                 className="gap-2 font-bold text-destructive hover:text-destructive"
               >
                 <LogOut className="w-4 h-4" />
-                Leave Room
+                {t('leaveRoom', state.language)}
               </Button>
             </>
           )}
 
           <Button variant="outline" size="lg" onClick={() => navigate('/leaderboard')} className="gap-2 font-bold">
             <Trophy className="w-4 h-4 text-amber-500" />
-            Leaderboard
+            {t('leaderboardBtn', state.language)}
           </Button>
 
           <Button
@@ -410,7 +416,9 @@ export default function Results() {
             className="gap-2 font-bold"
           >
             <BookOpen className="w-4 h-4" />
-            {showReview ? 'Hide Scripture Stories' : 'Read Scripture Stories'}
+            {showReview
+              ? (state.language === 'am' ? 'ታሪኮችን ደብቅ' : 'Hide Scripture Stories')
+              : (state.language === 'am' ? 'የመጽሐፍ ቅዱስ ታሪኮችን አንብብ' : 'Read Scripture Stories')}
           </Button>
         </div>
 
@@ -420,11 +428,11 @@ export default function Results() {
             <div className="flex items-center gap-2">
               <BookOpen className="w-5 h-5 text-amber-500" />
               <h3 className="text-xl font-extrabold text-foreground">
-                Scripture Stories &amp; Study Notes
+                {t('scriptureNotesHeader', state.language)}
               </h3>
             </div>
             <p className="text-sm text-muted-foreground">
-              Deepen your biblical literacy with the exact verses and narratives behind the questions answered.
+              {t('scriptureNotesSub', state.language)}
             </p>
 
             {firstStats && firstStats.missedQuestions.length === 0 ? (
