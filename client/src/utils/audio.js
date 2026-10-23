@@ -22,6 +22,10 @@ class SoundEngine {
     return this.muted;
   }
 
+  toggle() {
+    return this.toggleMute();
+  }
+
   toggleMute() {
     this.muted = !this.muted;
     localStorage.setItem('bible_trivia_muted', String(this.muted));

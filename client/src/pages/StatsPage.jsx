@@ -87,14 +87,14 @@ export default function StatsPage() {
       <div className="max-w-5xl mx-auto px-4 py-8 space-y-8">
         {/* Hero Section */}
         <div className="text-center space-y-3">
-          <Badge variant="gold" className="gap-1.5 px-3 py-1 text-xs font-semibold">
-            <Sparkles className="w-3.5 h-3.5 fill-current" /> Disciple Profile
+          <Badge variant="gold" className="gap-1.5 px-3 py-1 text-xs font-bold">
+            <Sparkles className="w-3.5 h-3.5" /> Disciple Profile
           </Badge>
           <h1 className="text-3xl sm:text-4xl font-serif font-black tracking-tight text-foreground">
             Your Scripture Growth &amp; Records
           </h1>
           <p className="text-muted-foreground max-w-xl mx-auto text-base">
-            Track your knowledge across all 66 books of the Bible, review game histories, and collect holy badges.
+            Track your knowledge across all 66 books of the Bible, review game histories, and collect badges.
           </p>
         </div>
 

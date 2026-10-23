@@ -330,11 +330,12 @@ io.on('connection', (socket) => {
 
   socket.on('create-room', (data, callback) => {
     const roomCode = generateRoomCode();
+    const defaultSettings = { questionCount: 10, timePerQuestion: 20, filters: {} };
     const room = {
       code: roomCode, host: socket.id,
       players: [{ id: socket.id, name: data.playerName, score: 0 }],
       gameState: 'lobby', questions: [], currentQuestion: 0, answers: {},
-      settings: data.settings || { questionCount: 10, filters: {} }
+      settings: { ...defaultSettings, ...(data.settings || {}) }
     };
     rooms.set(roomCode, room);
     socket.join(roomCode);
@@ -351,6 +352,16 @@ io.on('connection', (socket) => {
     socket.join(roomCode);
     io.to(roomCode).emit('room-updated', room);
     callback({ success: true, room });
+  });
+
+  socket.on('update-room-settings', (data, callback) => {
+    const { roomCode, settings } = data || {};
+    const room = rooms.get(roomCode);
+    if (!room) return callback?.({ success: false, error: 'Room not found' });
+    if (room.host !== socket.id) return callback?.({ success: false, error: 'Only the host can modify room settings' });
+    room.settings = { ...room.settings, ...settings };
+    io.to(roomCode).emit('room-updated', room);
+    callback?.({ success: true, room });
   });
 
   socket.on('start-game', (data, callback) => {

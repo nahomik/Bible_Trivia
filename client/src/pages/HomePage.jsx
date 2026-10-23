@@ -13,12 +13,11 @@ import {
   Calendar,
   Flame,
   ShieldAlert,
-  Zap,
   Users,
-  Globe,
   Trophy,
   ChevronRight,
-  Sparkles,
+  ScrollText,
+  Compass,
   CheckCircle2
 } from 'lucide-react';
 import { t } from '../utils/translations';
@@ -69,86 +68,95 @@ export default function HomePage() {
   return (
     <>
       <NavBar />
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-10">
-        {/* Verse of the Day Banner */}
-        <div className="relative overflow-hidden rounded-2xl border border-amber-500/30 bg-gradient-to-r from-amber-500/10 via-background to-indigo-500/10 p-5 sm:p-6 shadow-sm">
-          <div className="flex items-start sm:items-center gap-4">
-            <div className="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0 text-amber-500">
-              <Sparkles className="w-5 h-5" />
-            </div>
-            <div className="flex-1">
-              <p className="font-serif italic text-base sm:text-lg text-foreground font-semibold leading-relaxed">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-10">
+        
+        {/* Scripture Verse of the Day Plate */}
+        <div className="relative rounded-xl border border-border bg-card p-6 sm:p-7 shadow-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="space-y-1.5 flex-1">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-dark dark:text-gold">
+                <ScrollText className="w-3.5 h-3.5" />
+                <span>{lang === 'am' ? 'የዕለቱ ቅዱስ ቃል' : 'Scripture of the Day'}</span>
+              </div>
+              <blockquote className="font-serif italic text-lg sm:text-xl text-foreground font-medium leading-relaxed">
                 &ldquo;{verse.text}&rdquo;
-              </p>
-              <span className="text-xs sm:text-sm font-bold text-amber-600 dark:text-amber-400 mt-1 inline-block">
+              </blockquote>
+              <div className="text-xs sm:text-sm font-semibold text-muted-foreground">
                 — {verse.ref}
-              </span>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Hero Section */}
-        <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-primary/20 bg-primary/10 text-xs font-bold text-primary shadow-sm">
-            <span>✝️</span> {lang === 'am' ? 'ከ 5,150+ በላይ የመጽሐፍ ቅዱስ ጥያቄዎች • በሁሉም 66ቱ መጻሕፍት' : 'Over 5,150+ Scripture Questions • All 66 Books • English & አማርኛ'}
+        <div className="text-center space-y-4 max-w-2xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-secondary text-xs font-semibold text-muted-foreground">
+            <span className="w-1.5 h-1.5 rounded-full bg-gold" />
+            <span>
+              {lang === 'am'
+                ? '475 የተመረጡ ጥያቄዎች • ከኦሪት ዘፍጥረት እስከ ዮሐንስ ራእይ • አማርኛ እና English'
+                : '475 Curated Scripture Questions • Genesis to Revelation • English & አማርኛ'}
+            </span>
           </div>
-          <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-foreground">
-            {lang === 'am' ? (
-              <>የመጽሐፍ ቅዱስ <span className="bg-gradient-to-r from-amber-500 via-indigo-500 to-purple-600 bg-clip-text text-transparent">ዕውቀት ውድድር</span></>
-            ) : (
-              <>Bible Trivia <span className="bg-gradient-to-r from-amber-500 via-indigo-500 to-purple-600 bg-clip-text text-transparent">Challenge</span></>
-            )}
+
+          <h1 className="text-3xl sm:text-5xl font-black font-serif tracking-tight text-foreground">
+            {lang === 'am' ? 'የመጽሐፍ ቅዱስ ዕውቀት ውድድር' : 'Scripture Trivia Challenge'}
           </h1>
-          <p className="text-muted-foreground text-base sm:text-xl leading-relaxed">
+
+          <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
             {lang === 'am'
-              ? 'ከኦሪት ዘፍጥረት እስከ ዮሐንስ ራእይ ድረስ ያለዎትን የመጽሐፍ ቅዱስ ዕውቀት ይፈትሹ። ከእያንዳንዱ መልስ በኋላ በሚቀርቡት የመጽሐፍ ቅዱስ ታሪኮችና ጥቅሶች መንፈሳዊ ዕውቀትዎን ያሳድጉ።'
-              : 'Test your knowledge of the Word of God from Genesis to Revelation. Deepen your faith with exact verse references and inspiring biblical stories after every answer.'}
+              ? 'በመጽሐፍ ቅዱስ ዕውቀትዎ ላይ የተመሰረተ ትክክለኛ ጥያቄና መልስ። እያንዳንዱ ጥያቄ ትክክለኛውን ጥቅስና ታሪክ ያካትታል።'
+              : 'Test your knowledge of the Word of God. Every question is verified with scripture citations and historical biblical context.'}
           </p>
         </div>
 
-        {/* Daily Challenge Highlight Card */}
+        {/* Daily Scripture Challenge Card */}
         <Card
-          className="border-2 border-amber-500/40 bg-gradient-to-br from-amber-500/10 via-card to-indigo-500/5 shadow-md hover:shadow-xl hover:border-amber-500 transition-all cursor-pointer group"
+          className="border-2 border-border hover:border-foreground/30 transition-all cursor-pointer group bg-card shadow-sm"
           onClick={() => handleStartMode('daily')}
         >
           <CardContent className="p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <div className="space-y-2 max-w-2xl">
+            <div className="space-y-2 max-w-xl">
               <div className="flex items-center gap-2">
-                <Badge variant="gold" className="gap-1">
+                <Badge variant="gold" className="gap-1 font-bold">
                   <Calendar className="w-3.5 h-3.5" />
-                  Daily Scripture Challenge
+                  {lang === 'am' ? 'የዕለቱ ውድድር' : 'Daily Challenge'}
                 </Badge>
                 {dailyStreak > 0 && (
-                  <Badge variant="destructive" className="gap-1 bg-amber-500 border-none font-bold">
-                    <Flame className="w-3.5 h-3.5 text-white" />
-                    {dailyStreak} Day Streak
+                  <Badge variant="secondary" className="gap-1 font-bold text-amber-700 dark:text-amber-400">
+                    <Flame className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 fill-amber-500" />
+                    {dailyStreak} {lang === 'am' ? 'ቀናት ተከታታይ' : 'Day Streak'}
                   </Badge>
                 )}
               </div>
-              <CardTitle className="text-2xl sm:text-3xl font-extrabold text-foreground group-hover:text-primary transition-colors">
-                Today&apos;s 5 Scripture Questions
+              <CardTitle className="text-2xl font-bold font-serif text-foreground group-hover:text-gold-dark dark:group-hover:text-gold transition-colors">
+                {lang === 'am' ? 'የዛሬዎቹ 5 የመጽሐፍ ቅዱስ ጥያቄዎች' : "Today's 5 Scripture Questions"}
               </CardTitle>
-              <CardDescription className="text-base text-muted-foreground">
+              <CardDescription className="text-sm sm:text-base text-muted-foreground">
                 {isDailyDone
-                  ? `Completed today! You scored ${dailyResult?.score || 0}/${dailyResult?.total || 5}. Check back tomorrow to maintain your holy streak!`
-                  : "Play today's curated questions. Every believer worldwide receives the exact same 5 questions today."}
+                  ? (lang === 'am'
+                      ? `የዛሬውን ጨርሰዋል! ያገኙት ውጤት ${dailyResult?.score || 0}/${dailyResult?.total || 5} ነው። ነገ ለቀጣዩ ፈተና ይመለሱ!`
+                      : `Completed today! You scored ${dailyResult?.score || 0}/${dailyResult?.total || 5}. Check back tomorrow for the next challenge!`)
+                  : (lang === 'am'
+                      ? 'የዛሬውን 5 ጥያቄዎች ይመልሱ። በዓለም ዙሪያ ያሉ አማኞች ዛሬ ተመሳሳይ 5 ጥያቄዎችን ይወስዳሉ።'
+                      : 'Play today\'s curated questions. Every player worldwide receives the exact same 5 questions today.')}
               </CardDescription>
             </div>
 
             <Button
               variant={isDailyDone ? 'outline' : 'gold'}
               size="lg"
-              className="gap-2 font-bold shrink-0 w-full md:w-auto"
+              className="w-full md:w-auto shrink-0 font-bold"
             >
               {isDailyDone ? (
                 <>
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                  Completed Today
+                  <CheckCircle2 className="w-4 h-4 mr-2" />
+                  {lang === 'am' ? 'ውጤት ይመልከቱ' : 'View Results'}
                 </>
               ) : (
                 <>
-                  Play Today&apos;s 5
-                  <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <Calendar className="w-4 h-4 mr-2" />
+                  {lang === 'am' ? 'ጀምር' : 'Play Today'}
                 </>
               )}
             </Button>
@@ -156,206 +164,154 @@ export default function HomePage() {
         </Card>
 
         {/* Game Modes Section */}
-        <div className="space-y-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
-                {lang === 'am' ? 'የጨዋታ ዓይነት ይምረጡ' : 'Select Game Mode'}
-              </h2>
-              <p className="text-sm text-muted-foreground">
-                {lang === 'am' ? 'የመጽሐፍ ቅዱስ ጉዞዎን ይምረጡ' : 'Choose your pathway through the Scriptures'}
-              </p>
-            </div>
+        <div className="space-y-4">
+          <div className="flex items-center justify-between pb-1 border-b border-border">
+            <h2 className="text-lg font-bold font-serif text-foreground tracking-wide uppercase">
+              {lang === 'am' ? 'የጨዋታ ዓይነቶች' : 'Select Game Mode'}
+            </h2>
+            <span className="text-xs font-semibold text-muted-foreground">
+              {lang === 'am' ? 'ብቻ ወይም ከጓደኞች ጋር' : 'Solo & Multiplayer'}
+            </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {/* Solo Journey */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
+            {/* Mode 1: Classic Study */}
             <Card
-              className="border-border hover:border-primary/60 hover:shadow-lg transition-all cursor-pointer group flex flex-col justify-between"
+              className="border-border hover:border-foreground/40 transition-all cursor-pointer group flex flex-col justify-between"
               onClick={() => handleStartMode('solo')}
             >
               <CardHeader className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                    <BookOpen className="w-6 h-6" />
+                  <div className="w-10 h-10 rounded-lg bg-secondary border border-border flex items-center justify-center text-foreground group-hover:border-foreground/30">
+                    <BookOpen className="w-5 h-5 text-gold-dark dark:text-gold" />
                   </div>
-                  <Badge variant="secondary">{lang === 'am' ? 'መደበኛ' : 'Classic'}</Badge>
+                  <Badge variant="outline">{lang === 'am' ? 'ነጻ ምርጫ' : 'Customizable'}</Badge>
                 </div>
-                <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors">
+                <CardTitle className="text-xl font-bold font-serif text-foreground">
                   {t('modeSolo', lang)}
                 </CardTitle>
                 <CardDescription>
                   {t('modeSoloDesc', lang)}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="pt-0 flex items-center justify-between text-xs font-semibold text-muted-foreground border-t border-border/40 mt-4 pt-4">
-                <span>{lang === 'am' ? '🎯 የሚስተካከሉ ሕጎች' : '🎯 Customizable Rules'}</span>
-                <ChevronRight className="w-4 h-4 text-primary group-hover:translate-x-1 transition-transform" />
+              <CardContent className="pt-0 flex items-center justify-between text-xs font-semibold text-muted-foreground border-t border-border mt-3 pt-3">
+                <span>{lang === 'am' ? 'ብሉይና ሐዲስ ኪዳን • ምዕራፎች' : 'Filter by Testament & Category'}</span>
+                <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground group-hover:translate-x-0.5 transition-transform" />
               </CardContent>
             </Card>
 
-            {/* Survival Rush */}
+            {/* Mode 2: Survival Rush */}
             <Card
-              className="border-border hover:border-destructive/60 hover:shadow-lg transition-all cursor-pointer group flex flex-col justify-between"
+              className="border-border hover:border-foreground/40 transition-all cursor-pointer group flex flex-col justify-between"
               onClick={() => handleStartMode('survival')}
             >
               <CardHeader className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <div className="w-12 h-12 rounded-xl bg-destructive/10 border border-destructive/20 flex items-center justify-center text-destructive group-hover:scale-110 transition-transform">
-                    <ShieldAlert className="w-6 h-6" />
+                  <div className="w-10 h-10 rounded-lg bg-secondary border border-border flex items-center justify-center text-foreground group-hover:border-foreground/30">
+                    <ShieldAlert className="w-5 h-5 text-red-600 dark:text-red-400" />
                   </div>
-                  <Badge variant="destructive">{lang === 'am' ? 'ከፍተኛ ፉክክር' : 'High Stakes'}</Badge>
+                  <Badge variant="destructive">{lang === 'am' ? '3 ሕይወት' : '3 Lives'}</Badge>
                 </div>
-                <CardTitle className="text-xl font-bold group-hover:text-destructive transition-colors">
+                <CardTitle className="text-xl font-bold font-serif text-foreground">
                   {t('modeSurvival', lang)}
                 </CardTitle>
                 <CardDescription>
                   {t('modeSurvivalDesc', lang)}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="pt-0 flex items-center justify-between text-xs font-semibold text-muted-foreground border-t border-border/40 mt-4 pt-4">
-                <span>{lang === 'am' ? '❤️❤️❤️ 3 ዕድሎች' : '❤️❤️❤️ 3 Lives'}</span>
-                <ChevronRight className="w-4 h-4 text-destructive group-hover:translate-x-1 transition-transform" />
+              <CardContent className="pt-0 flex items-center justify-between text-xs font-semibold text-muted-foreground border-t border-border mt-3 pt-3">
+                <span>{lang === 'am' ? 'የጥንካሬ ፈተና • ፈጣን ፍጥነት' : 'Sudden Death • Highest Streak'}</span>
+                <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground group-hover:translate-x-0.5 transition-transform" />
               </CardContent>
             </Card>
 
-            {/* Speed Blitz */}
+            {/* Mode 3: Online Multiplayer */}
             <Card
-              className="border-border hover:border-amber-500/60 hover:shadow-lg transition-all cursor-pointer group flex flex-col justify-between"
-              onClick={() => handleStartMode('blitz')}
-            >
-              <CardHeader className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform">
-                    <Zap className="w-6 h-6" />
-                  </div>
-                  <Badge variant="gold">{lang === 'am' ? '60 ሰከንድ' : '60s Sprint'}</Badge>
-                </div>
-                <CardTitle className="text-xl font-bold group-hover:text-amber-500 transition-colors">
-                  {t('modeBlitz', lang)}
-                </CardTitle>
-                <CardDescription>
-                  {t('modeBlitzDesc', lang)}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="pt-0 flex items-center justify-between text-xs font-semibold text-muted-foreground border-t border-border/40 mt-4 pt-4">
-                <span>{lang === 'am' ? '⏱️ 60 ሰከንድ ሰዓት ቆጣሪ' : '⏱️ 60s Total Timer'}</span>
-                <ChevronRight className="w-4 h-4 text-amber-500 group-hover:translate-x-1 transition-transform" />
-              </CardContent>
-            </Card>
-
-            {/* Pass & Play */}
-            <Card
-              className="border-border hover:border-emerald-500/60 hover:shadow-lg transition-all cursor-pointer group flex flex-col justify-between"
-              onClick={() => handleStartMode('local')}
-            >
-              <CardHeader className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform">
-                    <Users className="w-6 h-6" />
-                  </div>
-                  <Badge variant="success">{lang === 'am' ? 'ኅብረት' : 'Fellowship'}</Badge>
-                </div>
-                <CardTitle className="text-xl font-bold group-hover:text-emerald-500 transition-colors">
-                  {t('modePassPlay', lang)}
-                </CardTitle>
-                <CardDescription>
-                  {t('modePassPlayDesc', lang)}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="pt-0 flex items-center justify-between text-xs font-semibold text-muted-foreground border-t border-border/40 mt-4 pt-4">
-                <span>{lang === 'am' ? '📱 ከ 2-8 ተጫዋቾች በአንድ ስልክ' : '📱 2-8 Local Players'}</span>
-                <ChevronRight className="w-4 h-4 text-emerald-500 group-hover:translate-x-1 transition-transform" />
-              </CardContent>
-            </Card>
-
-            {/* Online Multiplayer */}
-            <Card
-              className="border-border hover:border-primary/60 hover:shadow-lg transition-all cursor-pointer group flex flex-col justify-between"
+              className="border-border hover:border-foreground/40 transition-all cursor-pointer group flex flex-col justify-between"
               onClick={() => handleStartMode('online')}
             >
               <CardHeader className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                    <Globe className="w-6 h-6" />
+                  <div className="w-10 h-10 rounded-lg bg-secondary border border-border flex items-center justify-center text-foreground group-hover:border-foreground/30">
+                    <Users className="w-5 h-5 text-gold-dark dark:text-gold" />
                   </div>
-                  <Badge variant="secondary">{lang === 'am' ? 'የቀጥታ' : 'Real-Time'}</Badge>
+                  <Badge variant="gold">{lang === 'am' ? 'የቀጥታ ክፍል' : 'Live Room'}</Badge>
                 </div>
-                <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors">
+                <CardTitle className="text-xl font-bold font-serif text-foreground">
                   {t('modeOnline', lang)}
                 </CardTitle>
                 <CardDescription>
                   {t('modeOnlineDesc', lang)}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="pt-0 flex items-center justify-between text-xs font-semibold text-muted-foreground border-t border-border/40 mt-4 pt-4">
-                <span>{lang === 'am' ? '⚡ የቀጥታ ግንኙነት' : '⚡ Live WebSockets'}</span>
-                <ChevronRight className="w-4 h-4 text-primary group-hover:translate-x-1 transition-transform" />
+              <CardContent className="pt-0 flex items-center justify-between text-xs font-semibold text-muted-foreground border-t border-border mt-3 pt-3">
+                <span>{lang === 'am' ? 'ክፍል ይፍጠሩ • በኮድ ይጋብዙ' : '6-Digit Code • Real-Time Scoring'}</span>
+                <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground group-hover:translate-x-0.5 transition-transform" />
               </CardContent>
             </Card>
 
-            {/* Global Leaderboard Card */}
+            {/* Mode 4: Pass & Play (Local Multiplayer) */}
             <Card
-              className="border-border hover:border-amber-500/60 hover:shadow-lg transition-all cursor-pointer group flex flex-col justify-between bg-gradient-to-br from-card to-amber-500/5"
-              onClick={() => navigate('/leaderboard')}
+              className="border-border hover:border-foreground/40 transition-all cursor-pointer group flex flex-col justify-between"
+              onClick={() => handleStartMode('local')}
             >
               <CardHeader className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform">
-                    <Trophy className="w-6 h-6" />
+                  <div className="w-10 h-10 rounded-lg bg-secondary border border-border flex items-center justify-center text-foreground group-hover:border-foreground/30">
+                    <Compass className="w-5 h-5 text-muted-foreground" />
                   </div>
-                  <Badge variant="gold">{lang === 'am' ? 'አሸናፊዎች' : 'Champions'}</Badge>
+                  <Badge variant="secondary">{lang === 'am' ? 'በአንድ ስልክ' : 'Same Device'}</Badge>
                 </div>
-                <CardTitle className="text-xl font-bold group-hover:text-amber-500 transition-colors">
-                  {lang === 'am' ? 'የደረጃ ሰንጠረዥ' : 'Global Leaderboard'}
+                <CardTitle className="text-xl font-bold font-serif text-foreground">
+                  {t('modePassPlay', lang)}
                 </CardTitle>
                 <CardDescription>
-                  {lang === 'am'
-                    ? 'ከዓለም ዙሪያ ካሉ አማኞች ጋር በውጤትና በትክክለኛነት ደረጃዎን ይመልከቱ።'
-                    : 'See where you rank against believers worldwide in score, streaks, and biblical accuracy.'}
+                  {t('modePassPlayDesc', lang)}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="pt-0 flex items-center justify-between text-xs font-semibold text-muted-foreground border-t border-border/40 mt-4 pt-4">
-                <span>{lang === 'am' ? '🏆 የማኅበረሰብ ሰሌዳ' : '🏆 Community Podiums'}</span>
-                <ChevronRight className="w-4 h-4 text-amber-500 group-hover:translate-x-1 transition-transform" />
+              <CardContent className="pt-0 flex items-center justify-between text-xs font-semibold text-muted-foreground border-t border-border mt-3 pt-3">
+                <span>{lang === 'am' ? 'ተራ በተራ ማስተላለፍ' : 'Turn-by-Turn Local Head-to-Head'}</span>
+                <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground group-hover:translate-x-0.5 transition-transform" />
               </CardContent>
             </Card>
+
           </div>
         </div>
 
-        {/* Global Statistics Banner */}
-        <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">
+        {/* Global Statistics & Trust Strip */}
+        <div className="rounded-xl border border-border bg-card p-6 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">
           <div className="grid grid-cols-3 gap-6 sm:gap-12 text-center sm:text-left w-full sm:w-auto">
             <div>
-              <div className="text-2xl sm:text-3xl font-extrabold text-primary">5,150+</div>
-              <div className="text-xs sm:text-sm font-semibold text-muted-foreground">
+              <div className="text-2xl font-bold font-serif text-foreground">475</div>
+              <div className="text-xs font-medium text-muted-foreground">
                 {lang === 'am' ? 'የመጽሐፍ ቅዱስ ጥያቄዎች' : 'Scripture Questions'}
               </div>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-extrabold text-amber-500">66</div>
-              <div className="text-xs sm:text-sm font-semibold text-muted-foreground">
+              <div className="text-2xl font-bold font-serif text-gold-dark dark:text-gold">66</div>
+              <div className="text-xs font-medium text-muted-foreground">
                 {lang === 'am' ? 'የመጽሐፍ ቅዱስ መጻሕፍት' : 'Books of the Bible'}
               </div>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-extrabold text-emerald-500">100%</div>
-              <div className="text-xs sm:text-sm font-semibold text-muted-foreground">
-                {lang === 'am' ? 'በእግዚአብሔር ቃል ላይ' : 'Biblically Rooted'}
+              <div className="text-2xl font-bold font-serif text-emerald-700 dark:text-emerald-400">100%</div>
+              <div className="text-xs font-medium text-muted-foreground">
+                {lang === 'am' ? 'በጥቅስ የተረጋገጠ' : 'Verse-Verified'}
               </div>
             </div>
           </div>
 
           <Button
             variant="outline"
-            size="lg"
             onClick={() => navigate('/leaderboard')}
-            className="font-bold gap-2 w-full sm:w-auto"
+            className="font-semibold gap-2 w-full sm:w-auto"
           >
-            <Trophy className="w-4 h-4 text-amber-500" />
-            {lang === 'am' ? 'የደረጃ ሰንጠረዥ ይመልከቱ' : 'View Community Rankings'}
+            <Trophy className="w-4 h-4 text-gold-dark dark:text-gold" />
+            <span>{lang === 'am' ? 'የደረጃ ሰንጠረዥ ይመልከቱ' : 'Community Leaderboard'}</span>
           </Button>
         </div>
+
       </main>
     </>
   );

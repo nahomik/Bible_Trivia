@@ -30,18 +30,14 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-background relative overflow-hidden">
-      {/* Subtle background glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
-
-      <Card className="w-full max-w-md border-border/80 bg-card/95 backdrop-blur-sm shadow-xl relative z-10">
-        <div className="h-1.5 bg-gradient-to-r from-amber-500 via-primary to-amber-600 rounded-t-lg" />
+    <div className="min-h-screen flex items-center justify-center p-4 bg-background">
+      <Card className="w-full max-w-md border border-border bg-card shadow-sm">
         <CardHeader className="text-center space-y-2 pb-4">
-          <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mx-auto shadow-inner">
-            <BookOpen className="w-7 h-7" />
+          <div className="w-12 h-12 rounded-lg bg-secondary border border-border text-gold-dark dark:text-gold flex items-center justify-center mx-auto">
+            <BookOpen className="w-6 h-6" />
           </div>
-          <CardTitle className="text-2xl font-serif font-black tracking-tight text-foreground">
-            Welcome Back
+          <CardTitle className="text-2xl font-serif font-bold text-foreground">
+            Sign In
           </CardTitle>
           <CardDescription className="text-sm text-muted-foreground">
             Sign in to track your Scripture score and join leaderboards
@@ -50,8 +46,8 @@ export default function LoginPage() {
 
         <CardContent className="space-y-4">
           {error && (
-            <div className="flex items-center gap-2 p-3 text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-lg">
-              <ShieldAlert className="w-4 h-4 shrink-0" />
+            <div className="flex items-center gap-2 p-3 text-sm text-red-700 dark:text-red-300 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900 rounded-lg">
+              <ShieldAlert className="w-4 h-4 shrink-0 text-red-600" />
               <span>{error}</span>
             </div>
           )}
@@ -94,7 +90,7 @@ export default function LoginPage() {
             <Button
               type="submit"
               variant="gold"
-              className="w-full font-semibold py-5 text-base shadow-sm mt-2"
+              className="w-full font-bold py-5 text-base shadow-sm mt-2"
               disabled={loading}
             >
               {loading ? (
@@ -110,10 +106,10 @@ export default function LoginPage() {
           </form>
         </CardContent>
 
-        <CardFooter className="flex flex-col gap-3 pt-2 text-center text-sm border-t border-border/50">
+        <CardFooter className="flex flex-col gap-3 pt-2 text-center text-sm border-t border-border">
           <p className="text-muted-foreground">
             Don&apos;t have an account?{' '}
-            <Link to="/register" className="font-semibold text-primary hover:underline">
+            <Link to="/register" className="font-semibold text-foreground hover:underline">
               Create an Account
             </Link>
           </p>

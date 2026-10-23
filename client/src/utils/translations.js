@@ -125,6 +125,8 @@ export const UI_TRANSLATIONS = {
     modeSoloDesc: "Walk through Scripture at your own pace with deep study notes.",
     modePassPlay: "Pass & Play",
     modePassPlayDesc: "Play locally with friends on the same device.",
+    modeMulti: "Pass & Play",
+    modeMultiDesc: "Play locally with friends on the same device.",
     modeDaily: "Daily Scripture Challenge",
     modeDailyDesc: "10 curated questions refreshed daily. Build your streak!",
     modeSurvival: "Scripture Survival",
@@ -197,6 +199,21 @@ export const UI_TRANSLATIONS = {
     hostRematchBanner: "👑 Room Host: Click Rematch or Play Again to return all players back to the lobby ready page.",
     guestRematchBanner: "⚔️ Fellowship Room: When the host clicks Rematch or Play Again, all players will return to the ready page together.",
 
+    // Multiplayer Timer & Review
+    timePerQuestionLabel: "Time to Answer",
+    secondsPerQuestionDesc: "Adjust seconds allowed for each trivia question",
+    lowerSeconds: "Lower (-5s)",
+    increaseSeconds: "Increase (+5s)",
+    configuredByHost: "Configured by Host",
+    reviewAllQuestions: "Review All Questions",
+    reviewFilterAll: "All Questions",
+    reviewFilterMissed: "Missed",
+    reviewFilterCorrect: "Correct",
+    statusCorrect: "Correct",
+    statusIncorrect: "Incorrect",
+    statusTimesUp: "Time's Up",
+    scriptureVerseBadge: "Scripture Verse",
+
     // Settings
     gameSettingsTitle: "Match Configuration",
     gameSettingsSubtitle: "Tailor your Scripture trivia journey",
@@ -226,6 +243,8 @@ export const UI_TRANSLATIONS = {
     modeSoloDesc: "ጥልቀት ባላቸው የመጽሐፍ ቅዱስ ማስታወሻዎች በራስዎ ፍጥነት ይማሩ።",
     modePassPlay: "ተቀባብሎ መጫወት",
     modePassPlayDesc: "በአንድ ስልክ ወይም ኮምፒውተር ከጓደኞችዎ ጋር ተራ በተራ ይወዳደሩ።",
+    modeMulti: "ተቀባብሎ መጫወት",
+    modeMultiDesc: "በአንድ ስልክ ወይም ኮምፒውተር ከጓደኞችዎ ጋር ተራ በተራ ይወዳደሩ።",
     modeDaily: "የዕለት ተግዳሮት",
     modeDailyDesc: "በየቀኑ የሚታደሱ 10 ልዩ ጥያቄዎች። የዕለት ተከታታይ ውጤትዎን ይጠብቁ!",
     modeSurvival: "የሕይወት ተግዳሮት (ሰርቫይቫል)",
@@ -297,6 +316,21 @@ export const UI_TRANSLATIONS = {
     waitingHost: "አስተናጋጁ ጨዋታውን እስኪጀምር ድረስ በመጠበቅ ላይ...",
     hostRematchBanner: "👑 ክፍል አስተናጋጅ፡ 'እንደገና ግጠም' ወይም 'እንደገና ተጫወት' ሲጫኑ ሁሉም ተጫዋቾች ወደ ዝግጅት ገጽ ይመለሳሉ።",
     guestRematchBanner: "⚔️ የኅብረት ክፍል፡ አስተናጋጁ 'እንደገና ግጠም' ሲጫን ሁሉም ተጫዋቾች አብረው ወደ ዝግጅት ገጽ ይመለሳሉ።",
+
+    // Multiplayer Timer & Review
+    timePerQuestionLabel: "ለእያንዳንዱ ጥያቄ የሚሰጥ ጊዜ",
+    secondsPerQuestionDesc: "እያንዳንዱን ጥያቄ ለመመለስ የሚፈቀደውን ሰከንድ ይወስኑ",
+    lowerSeconds: "ቀንስ (-5 ሰ)",
+    increaseSeconds: "ጨምር (+5 ሰ)",
+    configuredByHost: "በአስተናጋጁ የተወሰነ",
+    reviewAllQuestions: "ሁሉንም ጥያቄዎች ይገምግሙ",
+    reviewFilterAll: "ሁሉም ጥያቄዎች",
+    reviewFilterMissed: "የተሳሳቱ",
+    reviewFilterCorrect: "ትክክል የተመለሱ",
+    statusCorrect: "ትክክል",
+    statusIncorrect: "ስህተት",
+    statusTimesUp: "ጊዜው አልቋል",
+    scriptureVerseBadge: "የመጽሐፍ ቅዱስ ጥቅስ",
 
     // Settings
     gameSettingsTitle: "የጨዋታ ቅንብሮች",

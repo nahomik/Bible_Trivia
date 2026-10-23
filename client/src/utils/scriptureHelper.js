@@ -133,15 +133,15 @@ export const SCRIPTURE_STORIES = {
 };
 
 export function getScriptureVerse(question) {
-  if (!question) return 'Scripture Context';
-  if (question.verse && question.verse !== 'Genesis Context') {
+  if (!question) return 'Scripture Verse';
+  if (question.verse && !question.verse.includes('Context') && !question.verse.includes('Reference') && /\d/.test(question.verse)) {
     return cleanText(question.verse);
   }
   const book = question.book || '';
   if (CANONICAL_VERSES[book]) {
     return CANONICAL_VERSES[book];
   }
-  return `${book} Context`;
+  return `${book} 1:1`;
 }
 
 export function getScriptureStory(question) {

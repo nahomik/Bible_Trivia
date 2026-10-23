@@ -14,6 +14,11 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+        serif: ['"Cinzel"', '"Noto Serif Ethiopic"', 'Georgia', 'serif'],
+        ethiopic: ['"Noto Serif Ethiopic"', 'serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -48,11 +53,30 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        parchment: {
+          50: "#fdfbf7",
+          100: "#f8f5ee",
+          200: "#ede7da",
+          300: "#ded4c0",
+          400: "#c7b79a",
+          500: "#b09b78",
+          600: "#988160",
+          700: "#7b674d",
+          800: "#645440",
+          900: "#524536",
+        },
         gold: {
-          DEFAULT: "#f59e0b",
-          light: "#fbbf24",
-          dark: "#d97706",
+          DEFAULT: "#c28828",
+          light: "#d49a3d",
+          dark: "#a16b18",
+          amber: "#d97706",
         }
+      },
+      boxShadow: {
+        'tactile': '0 3px 0 0 rgba(0, 0, 0, 0.08)',
+        'tactile-pressed': '0 1px 0 0 rgba(0, 0, 0, 0.08)',
+        'elevated': '0 4px 16px -2px rgba(28, 25, 23, 0.08), 0 2px 4px -2px rgba(28, 25, 23, 0.04)',
+        'book': '0 10px 30px -5px rgba(28, 25, 23, 0.12), 0 4px 6px -2px rgba(28, 25, 23, 0.05)',
       },
       borderRadius: {
         lg: "var(--radius)",

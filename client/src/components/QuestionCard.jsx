@@ -4,7 +4,7 @@ import { useGame } from '../context/GameContext';
 import { sound } from '../utils/audio';
 import { cleanText, getScriptureVerse, getScriptureStory } from '../utils/scriptureHelper';
 import { getLocalizedQuestion, t } from '../utils/translations';
-import { BookOpen, CheckCircle2, XCircle, Sparkles, Lightbulb, Clock } from 'lucide-react';
+import { BookOpen, CheckCircle2, XCircle, Lightbulb, Clock, Check, X } from 'lucide-react';
 
 export default function QuestionCard({
   question,
@@ -28,21 +28,21 @@ export default function QuestionCard({
 
   const getOptionClasses = (index) => {
     if (hiddenOptionIndices.includes(index)) {
-      return 'opacity-20 pointer-events-none scale-95 border-dashed';
+      return 'opacity-25 pointer-events-none border-dashed bg-muted/40';
     }
     if (!showResult) {
       if (selectedAnswer === index) {
-        return 'border-primary ring-2 ring-primary bg-primary/10 shadow-md';
+        return 'border-foreground bg-secondary ring-2 ring-foreground/20 shadow-sm';
       }
-      return 'border-border bg-card hover:border-primary/60 hover:bg-accent/60 shadow-sm';
+      return 'border-border bg-card hover:border-foreground/40 hover:bg-secondary/60 shadow-sm';
     }
     if (index === question.correctAnswer) {
-      return 'border-emerald-500 bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 ring-2 ring-emerald-500 shadow-lg';
+      return 'border-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-950 dark:text-emerald-200 ring-2 ring-emerald-500/30';
     }
     if (selectedAnswer === index && index !== question.correctAnswer) {
-      return 'border-destructive bg-destructive/15 text-destructive ring-2 ring-destructive';
+      return 'border-red-600 bg-red-50 dark:bg-red-950/40 text-red-950 dark:text-red-200 ring-2 ring-red-500/30';
     }
-    return 'border-border/60 opacity-60';
+    return 'border-border/60 opacity-50 bg-card';
   };
 
   const handleOptionClick = (index) => {
@@ -52,21 +52,19 @@ export default function QuestionCard({
   };
 
   return (
-    <Card className="w-full border-border bg-card shadow-lg overflow-hidden relative transition-all">
-      {/* Top accent bar */}
-      <div className="h-1.5 w-full bg-gradient-to-r from-indigo-500 via-amber-400 to-indigo-600" />
-
-      <CardHeader className="p-6 pb-4">
-        {/* Header Badges & Meta */}
-        <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
-              <Clock className="w-3.5 h-3.5 text-primary" />
+    <Card className="w-full border-border bg-card shadow-sm transition-all overflow-hidden">
+      <CardHeader className="p-5 sm:p-7 pb-4">
+        {/* Header Meta Strip */}
+        <div className="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b border-border">
+          <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <Clock className="w-3.5 h-3.5 text-gold-dark dark:text-gold" />
+            <span>
               {t('question', currentLang)} {questionNumber} {t('of', currentLang)} {totalQuestions}
             </span>
           </div>
+
           <div className="flex flex-wrap items-center gap-1.5">
-            <Badge variant="gold" className="flex items-center gap-1 font-semibold">
+            <Badge variant="gold" className="gap-1 font-bold">
               <BookOpen className="w-3 h-3" />
               {cleanText(localizedQ.book)}
             </Badge>
@@ -76,28 +74,28 @@ export default function QuestionCard({
           </div>
         </div>
 
-        {/* Scripture Hint if Lifeline was activated */}
+        {/* Lifeline Divine Hint */}
         {showHint && (
-          <div className="flex items-start gap-3 p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-900 dark:text-amber-200 text-sm mb-3 animate-in fade-in slide-in-from-top-2 duration-300">
-            <Lightbulb className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+          <div className="flex items-start gap-3 p-3.5 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-700/60 text-amber-950 dark:text-amber-200 text-sm mb-4">
+            <Lightbulb className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
             <div>
-              <strong className="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">
-                {currentLang === 'am' ? 'መንፈሳዊ ፍንጭ፡' : 'Divine Insight:'}
+              <strong className="block text-amber-800 dark:text-amber-400 font-bold mb-0.5">
+                {currentLang === 'am' ? 'መንፈሳዊ ፍንጭ፡' : 'Scripture Insight:'}
               </strong>
               <span>{story}</span>
             </div>
           </div>
         )}
 
-        {/* Question Text */}
-        <CardTitle className="text-xl sm:text-2xl font-extrabold text-foreground leading-snug mt-1">
+        {/* Question Heading */}
+        <CardTitle className="text-xl sm:text-2xl font-bold font-sans text-foreground leading-snug">
           {cleanText(localizedQ.question)}
         </CardTitle>
       </CardHeader>
 
-      <CardContent className="p-6 pt-2">
-        {/* 4 Balanced Options Grid - Equalized min-height so no option baits length */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-6">
+      <CardContent className="p-5 sm:p-7 pt-2">
+        {/* 4 Multiple Choice Option Tiles */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
           {localizedQ.options.map((option, index) => {
             const letter = String.fromCharCode(65 + index);
             const isCorrectOption = showResult && index === question.correctAnswer;
@@ -108,78 +106,82 @@ export default function QuestionCard({
                 key={index}
                 onClick={() => handleOptionClick(index)}
                 disabled={showResult || hiddenOptionIndices.includes(index)}
-                className={`relative flex items-center min-h-[68px] p-4 rounded-xl border-2 text-left font-semibold text-base transition-all duration-200 cursor-pointer ${getOptionClasses(index)}`}
+                className={`relative flex items-center min-h-[64px] p-3.5 sm:p-4 rounded-lg border-2 text-left font-medium text-base transition-all duration-150 cursor-pointer ${getOptionClasses(index)}`}
               >
-                {/* Letter Circle */}
-                <span className={`w-9 h-9 rounded-full shrink-0 flex items-center justify-center font-bold text-sm mr-3 border transition-colors ${
+                {/* Letter Box */}
+                <span className={`w-8 h-8 rounded-md shrink-0 flex items-center justify-center font-bold text-xs mr-3 border transition-colors ${
                   isCorrectOption
-                    ? 'bg-emerald-500 text-white border-emerald-500 shadow-sm'
+                    ? 'bg-emerald-600 text-white border-emerald-600'
                     : isWrongSelected
-                    ? 'bg-destructive text-white border-destructive'
-                    : 'bg-muted border-border text-foreground'
+                    ? 'bg-red-600 text-white border-red-600'
+                    : 'bg-secondary border-border text-foreground'
                 }`}>
                   {letter}
                 </span>
 
-                {/* Option Text with uniform styling */}
-                <span className="flex-1 text-foreground leading-snug pr-2">
+                {/* Option Text */}
+                <span className="flex-1 text-foreground leading-snug pr-2 font-medium">
                   {cleanOption(option)}
                 </span>
 
-                {/* Status Icon Indicator */}
+                {/* Status Indicator */}
                 {isCorrectOption && (
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
+                  <Check className="w-5 h-5 text-emerald-600 shrink-0 stroke-[2.5]" />
                 )}
                 {isWrongSelected && (
-                  <XCircle className="w-5 h-5 text-destructive shrink-0" />
+                  <X className="w-5 h-5 text-red-600 shrink-0 stroke-[2.5]" />
                 )}
               </button>
             );
           })}
         </div>
 
-        {/* Real-time Scripture Verse & Story Narrative Reveal */}
+        {/* Scripture Study & Explanation Box */}
         {showResult && (
-          <div className="mt-4 rounded-2xl border border-border bg-muted/40 p-5 shadow-sm animate-in fade-in zoom-in-95 duration-300">
-            {/* Status Header */}
-            <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-border/60">
+          <div className="mt-4 rounded-lg border border-border bg-secondary/50 p-4 sm:p-5">
+            {/* Answer Status & Verse Reference */}
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-border/80">
               <div className="flex items-center gap-2">
                 {selectedAnswer === question.correctAnswer ? (
-                  <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-extrabold text-lg">
-                    <Sparkles className="w-5 h-5 text-emerald-500" />
-                    <span>{currentLang === 'am' ? 'እልልታ! ትክክለኛ መልስ' : 'Correct Answer!'}</span>
+                  <div className="flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400 font-bold text-base">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                    <span>{currentLang === 'am' ? 'ትክክለኛ መልስ!' : 'Correct Answer!'}</span>
                   </div>
                 ) : (
-                  <div className="flex items-center gap-1.5 text-destructive font-extrabold text-lg">
-                    <XCircle className="w-5 h-5 text-destructive" />
-                    <span>{selectedAnswer === -1 ? t('timesUp', currentLang) : (currentLang === 'am' ? 'ትክክል አይደለም' : 'Incorrect')}</span>
+                  <div className="flex items-center gap-1.5 text-red-700 dark:text-red-400 font-bold text-base">
+                    <XCircle className="w-4 h-4 text-red-600 dark:text-red-400" />
+                    <span>
+                      {selectedAnswer === -1
+                        ? t('timesUp', currentLang)
+                        : (currentLang === 'am' ? 'ትክክል አልነበረም' : 'Incorrect')}
+                    </span>
                   </div>
                 )}
               </div>
 
-              {/* Exact Verse Citation Badge */}
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-700 dark:text-amber-300 font-bold text-sm">
-                <BookOpen className="w-4 h-4 text-amber-500" />
-                <span>{currentLang === 'am' ? 'ቅዱስ ቃል፡ ' : 'Scripture: '}{verseRef}</span>
+              {/* Scripture Citation Badge */}
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-card border border-border text-foreground font-semibold text-xs">
+                <BookOpen className="w-3.5 h-3.5 text-gold-dark dark:text-gold" />
+                <span>{verseRef}</span>
               </div>
             </div>
 
-            {/* If wrong, clearly remind correct answer */}
+            {/* Answer Correction reminder if incorrect */}
             {selectedAnswer !== question.correctAnswer && (
-              <div className="text-sm font-semibold text-foreground/90 mb-3 bg-card/60 p-2.5 rounded-lg border border-border/60">
-                {currentLang === 'am' ? 'ትክክለኛው መልስ፡ ' : 'Correct answer was: '}
-                <strong className="text-emerald-600 dark:text-emerald-400">
+              <div className="text-sm font-semibold text-foreground mb-3 p-2.5 rounded-md bg-card border border-border">
+                {currentLang === 'am' ? 'ትክክለኛው መልስ፡ ' : 'Correct answer: '}
+                <strong className="text-emerald-700 dark:text-emerald-400 ml-1">
                   {cleanOption(localizedQ.options[question.correctAnswer])}
                 </strong>
               </div>
             )}
 
-            {/* Scripture Story & Context to Read */}
-            <div className="text-left space-y-1.5">
-              <span className="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 flex items-center gap-1">
-                📖 {t('scriptureStoryHeader', currentLang)}
-              </span>
-              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+            {/* Commentary note */}
+            <div className="text-left space-y-1">
+              <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
+                <span>{t('scriptureStoryHeader', currentLang)}</span>
+              </div>
+              <p className="text-sm text-foreground/80 leading-relaxed font-sans">
                 {story}
               </p>
             </div>

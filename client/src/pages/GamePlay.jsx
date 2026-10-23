@@ -57,7 +57,7 @@ export default function GamePlay() {
     }
   }, []);
 
-  const timerDuration = isBlitz ? 60 : (state.timePerQuestion || 20);
+  const timerDuration = isBlitz ? 60 : (state.timePerQuestion || state.settings?.timePerQuestion || 20);
   const { timeLeft, start, stop, reset, addTime } = useTimer(timerDuration, handleTimeUp);
 
   useEffect(() => {
@@ -347,26 +347,26 @@ export default function GamePlay() {
       <NavBar />
       <div className="max-w-4xl mx-auto px-4 py-6 flex flex-col min-h-[calc(100vh-80px)]">
         {/* Game Header Bar */}
-        <Card className="mb-5 bg-card/95 backdrop-blur-sm border shadow-sm">
+        <Card className="mb-4 bg-card border border-border shadow-sm">
           <CardContent className="p-4 flex flex-wrap items-center justify-between gap-4">
-            <div className="flex flex-col gap-1.5">
+            <div className="flex flex-col gap-1">
               {isLocalMultiplayer && (
                 <div className="flex items-center gap-2">
                   <span className="text-xs uppercase tracking-wider text-muted-foreground">Current Turn:</span>
-                  <Badge variant="secondary" className="font-bold text-primary">
+                  <Badge variant="secondary" className="font-bold">
                     {currentPlayer?.name}
                   </Badge>
                 </div>
               )}
               
               <div className="flex items-center gap-3 flex-wrap">
-                <span className="text-base font-semibold text-foreground">
-                  Question <span className="text-primary font-bold font-mono">{state.currentQuestionIndex + 1}</span> of{' '}
+                <span className="text-sm sm:text-base font-semibold text-foreground">
+                  Question <span className="font-bold font-mono text-gold-dark dark:text-gold">{state.currentQuestionIndex + 1}</span> of{' '}
                   <span className="font-mono">{state.questions.length}</span>
                 </span>
                 {state.streak >= 2 && (
-                  <Badge className="bg-gradient-to-r from-amber-500 to-rose-500 text-white gap-1 shadow-sm font-semibold animate-pulse">
-                    <Flame className="w-3.5 h-3.5 fill-current" /> {state.streak} Streak!
+                  <Badge variant="gold" className="gap-1 font-bold">
+                    <Flame className="w-3.5 h-3.5 fill-gold-dark dark:fill-gold" /> {state.streak} Streak
                   </Badge>
                 )}
               </div>
@@ -376,7 +376,7 @@ export default function GamePlay() {
               {/* Lives Indicator for Survival Mode */}
               {isSurvival && (
                 <div
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/20"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-secondary border border-border"
                   title={`${state.lives} of ${state.maxLives} lives left`}
                 >
                   {[0, 1, 2].map(i => {
@@ -384,10 +384,10 @@ export default function GamePlay() {
                     return (
                       <Heart
                         key={i}
-                        className={`w-5 h-5 transition-all ${
+                        className={`w-4 h-4 transition-all ${
                           active
-                            ? 'text-rose-500 fill-rose-500 drop-shadow-sm scale-100'
-                            : 'text-muted-foreground/30 fill-none scale-90'
+                            ? 'text-red-600 fill-red-600'
+                            : 'text-muted-foreground/30 fill-none'
                         }`}
                       />
                     );
@@ -403,21 +403,21 @@ export default function GamePlay() {
 
         {/* Lifelines Bar (Solo / Survival / Daily) */}
         {!isMultiplayer && !isLocalMultiplayer && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-4">
             <Button
               variant="outline"
               size="sm"
               onClick={handleUseFiftyFifty}
               disabled={state.lifelines.fiftyFifty || hasSubmitted}
-              className={`h-11 justify-center gap-2 transition-all ${
+              className={`h-10 justify-center gap-2 transition-all ${
                 state.lifelines.fiftyFifty
                   ? 'opacity-40 border-dashed'
-                  : 'hover:border-primary hover:bg-primary/5 hover:text-primary shadow-xs'
+                  : 'hover:border-foreground/40'
               }`}
               title="Remove two incorrect options"
             >
-              <Scissors className="w-4 h-4 text-primary" />
-              <span className="font-medium">50 : 50</span>
+              <Scissors className="w-3.5 h-3.5 text-muted-foreground" />
+              <span className="font-medium text-xs sm:text-sm">50 : 50</span>
               {state.lifelines.fiftyFifty && <span className="text-[10px] text-muted-foreground ml-1">(Used)</span>}
             </Button>
 
@@ -427,15 +427,15 @@ export default function GamePlay() {
                 size="sm"
                 onClick={handleUseExtraTime}
                 disabled={state.lifelines.extraTime || hasSubmitted}
-                className={`h-11 justify-center gap-2 transition-all ${
+                className={`h-10 justify-center gap-2 transition-all ${
                   state.lifelines.extraTime
                     ? 'opacity-40 border-dashed'
-                    : 'hover:border-primary hover:bg-primary/5 hover:text-primary shadow-xs'
+                    : 'hover:border-foreground/40'
                 }`}
                 title="Add 15 seconds to the timer"
               >
-                <Clock className="w-4 h-4 text-amber-500" />
-                <span className="font-medium">+15s Time</span>
+                <Clock className="w-3.5 h-3.5 text-gold-dark dark:text-gold" />
+                <span className="font-medium text-xs sm:text-sm">+15s Time</span>
                 {state.lifelines.extraTime && <span className="text-[10px] text-muted-foreground ml-1">(Used)</span>}
               </Button>
             )}
@@ -445,15 +445,15 @@ export default function GamePlay() {
               size="sm"
               onClick={handleUseHint}
               disabled={state.lifelines.hint || hasSubmitted}
-              className={`h-11 justify-center gap-2 transition-all col-span-2 sm:col-span-1 ${
+              className={`h-10 justify-center gap-2 transition-all col-span-2 sm:col-span-1 ${
                 state.lifelines.hint
                   ? 'opacity-40 border-dashed'
-                  : 'hover:border-primary hover:bg-primary/5 hover:text-primary shadow-xs'
+                  : 'hover:border-foreground/40'
               }`}
               title="Reveal Scripture context insight"
             >
-              <Sparkles className="w-4 h-4 text-indigo-500" />
-              <span className="font-medium">Scripture Hint</span>
+              <Sparkles className="w-3.5 h-3.5 text-gold-dark dark:text-gold" />
+              <span className="font-medium text-xs sm:text-sm">Scripture Hint</span>
               {state.lifelines.hint && <span className="text-[10px] text-muted-foreground ml-1">(Used)</span>}
             </Button>
           </div>
@@ -462,12 +462,12 @@ export default function GamePlay() {
         {/* Game Main Question Card */}
         <div className="flex-1 flex flex-col justify-center">
           {waitingForOpponent ? (
-            <Card className="p-8 text-center border-dashed border-2 border-primary/40 bg-card/80 backdrop-blur-sm shadow-md">
+            <Card className="p-8 text-center border-dashed border-2 border-border bg-card shadow-sm">
               <CardContent className="space-y-4 py-6">
-                <Loader2 className="w-10 h-10 animate-spin text-primary mx-auto" />
-                <h3 className="text-xl font-bold font-serif text-foreground">Answer Recorded!</h3>
-                <p className="text-muted-foreground max-w-md mx-auto">
-                  Waiting for the other player to submit their answer before revealing the Scripture story...
+                <Loader2 className="w-8 h-8 animate-spin text-gold mx-auto" />
+                <h3 className="text-xl font-bold font-serif text-foreground">Answer Submitted</h3>
+                <p className="text-muted-foreground max-w-md mx-auto text-sm">
+                  Waiting for other players to submit their answer before revealing scripture context...
                 </p>
               </CardContent>
             </Card>
@@ -487,29 +487,29 @@ export default function GamePlay() {
         </div>
 
         {/* Game Stats Bottom Bar */}
-        <Card className="mt-6 bg-card/80 border text-muted-foreground text-sm font-medium">
+        <Card className="mt-4 bg-card border border-border text-muted-foreground text-xs sm:text-sm font-medium">
           <CardContent className="p-3 flex items-center justify-center gap-6 flex-wrap">
             {isMultiplayer ? (
               <span className="flex items-center gap-2">
-                <Users className="w-4 h-4 text-primary" /> Online Match • 1 point per correct answer
+                <Users className="w-4 h-4 text-foreground" /> Online Match • 1 pt per correct answer
               </span>
             ) : isSurvival ? (
               <span className="flex items-center gap-2">
-                <Trophy className="w-4 h-4 text-amber-500" /> Survival Mode • {correctCount} correct • {state.lives} lives remaining
+                <Trophy className="w-4 h-4 text-gold-dark dark:text-gold" /> Survival Mode • {correctCount} correct • {state.lives} lives remaining
               </span>
             ) : isBlitz ? (
               <span className="flex items-center gap-2">
-                <Flame className="w-4 h-4 text-rose-500" /> Speed Blitz • {correctCount} answered correctly
+                <Flame className="w-4 h-4 text-red-600" /> Speed Blitz • {correctCount} answered correctly
               </span>
             ) : (
               <>
-                <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-semibold">
+                <span className="flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400 font-semibold">
                   <CheckCircle2 className="w-4 h-4" /> {correctCount} correct
                 </span>
-                <span className="flex items-center gap-1.5 text-rose-600 dark:text-rose-400 font-semibold">
+                <span className="flex items-center gap-1.5 text-red-700 dark:text-red-400 font-semibold">
                   <XCircle className="w-4 h-4" /> {answeredCount - correctCount} incorrect
                 </span>
-                <span className="flex items-center gap-1.5 text-foreground/80 font-mono">
+                <span className="flex items-center gap-1.5 text-foreground font-mono">
                   <Clock className="w-4 h-4 text-muted-foreground" /> {totalTime}s total
                 </span>
               </>
@@ -520,10 +520,10 @@ export default function GamePlay() {
         {/* Achievement Toast */}
         {state.achievementToast && (
           <div className="fixed bottom-6 right-6 z-50 animate-in slide-in-from-bottom-5 fade-in duration-300">
-            <Card className="border-amber-400/50 bg-gradient-to-r from-amber-500/10 to-yellow-500/10 backdrop-blur-md shadow-xl p-4 flex items-center gap-3 max-w-sm">
+            <Card className="border border-gold bg-card shadow-elevated p-4 flex items-center gap-3 max-w-sm">
               <span className="text-3xl">{state.achievementToast.icon}</span>
               <div>
-                <span className="text-[10px] uppercase font-bold text-amber-500 tracking-wider">Achievement Unlocked!</span>
+                <span className="text-[10px] uppercase font-bold text-gold-dark dark:text-gold tracking-wider">Achievement Unlocked!</span>
                 <h4 className="font-serif font-bold text-foreground text-sm">{state.achievementToast.title}</h4>
                 <p className="text-xs text-muted-foreground">{state.achievementToast.description}</p>
               </div>

@@ -4,16 +4,15 @@ import { useGame } from '../context/GameContext';
 import NavBar from '../components/NavBar';
 import questions from '../data/questions.json';
 import { getUnseenQuestions, resetSeenQuestions, getSeenQuestionIds } from '../utils/seenQuestions';
-import { selectBalancedQuestions } from '../utils/questionFilters';
+import { selectBalancedQuestions, shuffleQuestionOptions } from '../utils/questionFilters';
 import { getDailyQuestions, getDailyStreak } from '../utils/dailyChallenge';
 import { sound } from '../utils/audio';
-import { cleanText } from '../utils/scriptureHelper';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { Input } from '../components/ui/input';
 import {
-  Sparkles,
+  BookOpen,
   Calendar,
   ShieldAlert,
   Zap,
@@ -36,6 +35,7 @@ export default function GameSettings() {
   const { state, dispatch } = useGame();
   
   const modeParam = searchParams.get('mode') || state.mode || 'solo';
+  const isLocalMode = modeParam === 'local' || modeParam === 'multi';
 
   useEffect(() => {
     if (modeParam && state.mode !== modeParam) {
@@ -98,19 +98,9 @@ export default function GameSettings() {
     }
 
     if (modeParam === 'survival') {
-      const pool = selectBalancedQuestions(questions, 50).sort(() => Math.random() - 0.5).map(q => {
-        const indices = q.options.map((_, i) => i);
-        for (let i = indices.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [indices[i], indices[j]] = [indices[j], indices[i]];
-        }
-        return {
-          ...q,
-          question: cleanText(q.question),
-          options: indices.map(i => cleanText(q.options[i])),
-          correctAnswer: indices.indexOf(q.correctAnswer)
-        };
-      });
+      const pool = selectBalancedQuestions(questions, 50)
+        .sort(() => Math.random() - 0.5)
+        .map(q => shuffleQuestionOptions(q));
 
       const players = [{ id: 'player-1', name: playerName || state.user?.username || 'Survivor' }];
       dispatch({ type: 'SET_PLAYER_NAME', payload: playerName || state.user?.username || 'Survivor' });
@@ -123,19 +113,9 @@ export default function GameSettings() {
     }
 
     if (modeParam === 'blitz') {
-      const pool = selectBalancedQuestions(questions, 40).sort(() => Math.random() - 0.5).map(q => {
-        const indices = q.options.map((_, i) => i);
-        for (let i = indices.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [indices[i], indices[j]] = [indices[j], indices[i]];
-        }
-        return {
-          ...q,
-          question: cleanText(q.question),
-          options: indices.map(i => cleanText(q.options[i])),
-          correctAnswer: indices.indexOf(q.correctAnswer)
-        };
-      });
+      const pool = selectBalancedQuestions(questions, 40)
+        .sort(() => Math.random() - 0.5)
+        .map(q => shuffleQuestionOptions(q));
 
       const players = [{ id: 'player-1', name: playerName || state.user?.username || 'Speed Runner' }];
       dispatch({ type: 'SET_PLAYER_NAME', payload: playerName || state.user?.username || 'Speed Runner' });
@@ -181,21 +161,11 @@ export default function GameSettings() {
 
     const balancedPool = selectBalancedQuestions(filteredQuestions, count);
     const shuffled = [...balancedPool].sort(() => Math.random() - 0.5);
-    const selectedQuestions = shuffled.slice(0, Math.min(count, shuffled.length)).map(q => {
-      const indices = q.options.map((_, i) => i);
-      for (let i = indices.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [indices[i], indices[j]] = [indices[j], indices[i]];
-      }
-      return {
-        ...q,
-        question: cleanText(q.question),
-        options: indices.map(i => cleanText(q.options[i])),
-        correctAnswer: indices.indexOf(q.correctAnswer)
-      };
-    });
+    const selectedQuestions = shuffled
+      .slice(0, Math.min(count, shuffled.length))
+      .map(q => shuffleQuestionOptions(q));
 
-    const players = modeParam === 'solo' 
+    const players = !isLocalMode
       ? [{ id: 'player-1', name: playerName || state.user?.username || 'Player 1' }]
       : playerNames.map((name, index) => ({ id: `player-${index + 1}`, name: name.trim() || `Player ${index + 1}` }));
 
@@ -219,7 +189,7 @@ export default function GameSettings() {
     if (modeParam === 'daily') return 'Daily Scripture Challenge';
     if (modeParam === 'survival') return 'Survival Rush Setup';
     if (modeParam === 'blitz') return 'Speed Blitz Setup';
-    if (modeParam === 'local') return 'Pass & Play Setup';
+    if (isLocalMode) return 'Pass & Play Setup';
     return 'Game Setup';
   };
 
@@ -296,21 +266,21 @@ export default function GameSettings() {
         )}
 
         {/* Language Selection Card */}
-        <Card className="border-primary/40 bg-card shadow-sm">
+        <Card className="border-border bg-card shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base font-bold flex items-center justify-between">
+            <CardTitle className="text-base font-bold font-serif flex items-center justify-between">
               <span className="flex items-center gap-2">
-                <Globe className="w-4 h-4 text-primary" />
+                <Globe className="w-4 h-4 text-gold-dark dark:text-gold" />
                 {state.language === 'am' ? 'የጥያቄዎች ቋንቋ (Trivia Language)' : 'Question Language / ቋንቋ'}
               </span>
               <Badge variant="gold" className="text-xs">
-                {state.language === 'am' ? '🇪🇹 አማርኛ ንቁ ነው' : '🇺🇸 English Active'}
+                {state.language === 'am' ? '🇪🇹 አማርኛ' : '🇺🇸 English'}
               </Badge>
             </CardTitle>
             <CardDescription className="text-xs">
               {state.language === 'am'
                 ? 'ጥያቄዎች፣ አማራጮችና የመጽሐፍ ቅዱስ ታሪኮች ሙሉ በሙሉ በአማርኛ ይቀርባሉ'
-                : 'Play all 5,000+ Scripture questions with biblical narratives in English or Amharic (አማርኛ)'}
+                : 'Play all 475 curated Scripture questions with biblical narratives in English or Amharic (አማርኛ)'}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -322,31 +292,31 @@ export default function GameSettings() {
                   dispatch({ type: 'SET_LANGUAGE', payload: 'en' });
                   sound.playClick();
                 }}
-                className={`font-bold flex items-center justify-center gap-2.5 h-14 ${
-                  state.language === 'en' ? 'ring-2 ring-primary shadow-sm' : ''
+                className={`font-bold flex items-center justify-center gap-2.5 h-12 ${
+                  state.language === 'en' ? 'border-2 border-foreground/60 shadow-sm' : ''
                 }`}
               >
-                <span className="text-2xl">🇺🇸</span>
+                <span className="text-xl">🇺🇸</span>
                 <div className="text-left">
-                  <div className="leading-tight font-extrabold text-sm">English</div>
+                  <div className="leading-tight font-bold text-sm">English</div>
                   <div className="text-[10px] opacity-75 font-normal">Scripture Trivia</div>
                 </div>
               </Button>
 
               <Button
-                variant={state.language === 'am' ? 'gold' : 'outline'}
+                variant={state.language === 'am' ? 'default' : 'outline'}
                 size="lg"
                 onClick={() => {
                   dispatch({ type: 'SET_LANGUAGE', payload: 'am' });
                   sound.playClick();
                 }}
-                className={`font-bold flex items-center justify-center gap-2.5 h-14 ${
-                  state.language === 'am' ? 'ring-2 ring-amber-500 shadow-sm' : ''
+                className={`font-bold flex items-center justify-center gap-2.5 h-12 ${
+                  state.language === 'am' ? 'border-2 border-gold shadow-sm' : ''
                 }`}
               >
-                <span className="text-2xl">🇪🇹</span>
+                <span className="text-xl">🇪🇹</span>
                 <div className="text-left">
-                  <div className="leading-tight font-extrabold text-sm">አማርኛ</div>
+                  <div className="leading-tight font-bold text-sm font-serif">አማርኛ</div>
                   <div className="text-[10px] opacity-75 font-normal">የኢትዮጵያ መጽሐፍ ቅዱስ</div>
                 </div>
               </Button>
@@ -355,7 +325,7 @@ export default function GameSettings() {
         </Card>
 
         {/* Player Name */}
-        {modeParam !== 'local' && (
+        {!isLocalMode && (
           <Card>
             <CardHeader className="pb-3">
               <CardTitle className="text-base font-bold">Player Name</CardTitle>
@@ -372,7 +342,7 @@ export default function GameSettings() {
         )}
 
         {/* Local Multiplayer: Number of players & names */}
-        {modeParam === 'local' && (
+        {isLocalMode && (
           <Card>
             <CardHeader>
               <CardTitle className="text-base font-bold flex items-center gap-2">
@@ -419,7 +389,7 @@ export default function GameSettings() {
         )}
 
         {/* Solo / Local Options */}
-        {(modeParam === 'solo' || modeParam === 'local') && (
+        {(modeParam === 'solo' || isLocalMode) && (
           <>
             {/* Question Count */}
             <Card>
@@ -584,14 +554,14 @@ export default function GameSettings() {
 
         {/* Start Game Action */}
         <div className="flex items-center justify-between pt-4">
-          <Button variant="outline" size="lg" onClick={() => navigate('/')} className="gap-1.5 font-bold">
+          <Button variant="outline" size="lg" onClick={() => navigate('/')} className="gap-1.5 font-semibold">
             <ChevronLeft className="w-4 h-4" />
             Home
           </Button>
 
-          <Button variant="default" size="lg" onClick={handleStart} className="gap-2 font-extrabold px-8 shadow-md">
-            <Sparkles className="w-4 h-4 text-amber-400" />
-            Begin Trivia Game
+          <Button variant="gold" size="lg" onClick={handleStart} className="gap-2 font-bold px-8 shadow-sm">
+            <BookOpen className="w-4 h-4" />
+            Start Trivia Game
           </Button>
         </div>
       </main>

@@ -77,6 +77,12 @@ export function useSocket() {
     });
   };
 
+  const updateRoomSettings = (roomCode, settings) => {
+    return new Promise((resolve) => {
+      socket.emit('update-room-settings', { roomCode, settings }, resolve);
+    });
+  };
+
   return {
     socket,
     isConnected,
@@ -86,7 +92,8 @@ export function useSocket() {
     submitAnswer,
     nextQuestion,
     rematchRoom,
-    getRoom
+    getRoom,
+    updateRoomSettings
   };
 }
 

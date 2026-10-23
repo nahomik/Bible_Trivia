@@ -49,3 +49,25 @@ export function selectBalancedQuestions(questionsPool, count) {
   return [...balanced, ...remaining];
 }
 
+/**
+ * Shuffles a question's options while keeping options_am and correctAnswer perfectly synchronized
+ */
+export function shuffleQuestionOptions(q, prng = Math.random) {
+  if (!q || !Array.isArray(q.options)) return q;
+  const indices = q.options.map((_, i) => i);
+  for (let i = indices.length - 1; i > 0; i--) {
+    const j = Math.floor(prng() * (i + 1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
+  }
+
+  const hasAmharic = Array.isArray(q.options_am) && q.options_am.length === q.options.length;
+
+  return {
+    ...q,
+    question: normalizeOptionText(q.question),
+    options: indices.map(i => normalizeOptionText(q.options[i])),
+    options_am: hasAmharic ? indices.map(i => q.options_am[i]) : q.options_am,
+    correctAnswer: indices.indexOf(q.correctAnswer)
+  };
+}
+

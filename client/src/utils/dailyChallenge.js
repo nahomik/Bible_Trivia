@@ -1,4 +1,5 @@
 // Daily Scripture Challenge utility (deterministic question set per day)
+import { shuffleQuestionOptions } from './questionFilters';
 
 export function getDailyDateString() {
   const now = new Date();
@@ -50,19 +51,7 @@ export function getDailyQuestions(allQuestions, count = 5) {
   pickFrom(nt, 2);
   pickFrom(allQuestions, count - selected.length);
 
-  return selected.map(q => {
-    // Deterministically shuffle options
-    const indices = q.options.map((_, i) => i);
-    for (let i = indices.length - 1; i > 0; i--) {
-      const j = Math.floor(prng() * (i + 1));
-      [indices[i], indices[j]] = [indices[j], indices[i]];
-    }
-    return {
-      ...q,
-      options: indices.map(i => q.options[i]),
-      correctAnswer: indices.indexOf(q.correctAnswer)
-    };
-  });
+  return selected.map(q => shuffleQuestionOptions(q, prng));
 }
 
 export function isDailyCompletedToday() {

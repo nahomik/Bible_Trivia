@@ -15,7 +15,7 @@ export default function Timer({ timeLeft, maxTime }) {
   if (isUntimed) {
     return (
       <Badge variant="outline" className="gap-1 px-3 py-1.5 text-xs font-mono font-semibold">
-        <InfinityIcon className="w-3.5 h-3.5 text-primary" /> Untimed
+        <InfinityIcon className="w-3.5 h-3.5 text-muted-foreground" /> Untimed
       </Badge>
     );
   }
@@ -27,13 +27,13 @@ export default function Timer({ timeLeft, maxTime }) {
   const circumference = 2 * Math.PI * radius;
 
   return (
-    <div className="relative flex items-center justify-center w-16 h-16">
+    <div className="relative flex items-center justify-center w-14 h-14">
       <svg className="w-full h-full -rotate-90" viewBox="0 0 68 68">
         <circle
           cx="34"
           cy="34"
           r={radius}
-          className="fill-none stroke-muted/60"
+          className="fill-none stroke-secondary"
           strokeWidth="5"
         />
         <circle
@@ -42,10 +42,10 @@ export default function Timer({ timeLeft, maxTime }) {
           r={radius}
           className={`fill-none transition-all duration-300 ${
             isUrgent
-              ? 'stroke-rose-500'
+              ? 'stroke-red-600'
               : isLow
-              ? 'stroke-amber-500'
-              : 'stroke-primary'
+              ? 'stroke-amber-600'
+              : 'stroke-foreground'
           }`}
           strokeWidth="5"
           strokeLinecap="round"
@@ -56,8 +56,8 @@ export default function Timer({ timeLeft, maxTime }) {
         />
       </svg>
       <div
-        className={`absolute font-mono font-bold text-base ${
-          isUrgent ? 'text-rose-500 scale-110 font-black' : isLow ? 'text-amber-500' : 'text-foreground'
+        className={`absolute font-mono font-bold text-sm ${
+          isUrgent ? 'text-red-600 scale-105 font-black' : isLow ? 'text-amber-600' : 'text-foreground'
         }`}
       >
         {timeLeft}

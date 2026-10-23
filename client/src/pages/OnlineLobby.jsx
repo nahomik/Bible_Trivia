@@ -10,7 +10,7 @@ import { Input } from '../components/ui/input';
 import { Badge } from '../components/ui/badge';
 import questions from '../data/questions.json';
 import { getUnseenQuestions, resetSeenQuestions } from '../utils/seenQuestions';
-import { selectBalancedQuestions } from '../utils/questionFilters';
+import { selectBalancedQuestions, shuffleQuestionOptions } from '../utils/questionFilters';
 import { sound } from '../utils/audio';
 import {
   t,
@@ -29,7 +29,10 @@ import {
   LogOut,
   Sparkles,
   Loader2,
-  ShieldAlert
+  ShieldAlert,
+  Clock,
+  Plus,
+  Minus
 } from 'lucide-react';
 import './OnlineLobby.css';
 
@@ -44,6 +47,9 @@ export default function OnlineLobby() {
   const [isCreating, setIsCreating] = useState(false);
   const [copied, setCopied] = useState(false);
   const [questionCount, setQuestionCount] = useState(state.settings.questionCount || 10);
+  const [timePerQuestion, setTimePerQuestion] = useState(
+    state.room?.settings?.timePerQuestion || state.settings?.timePerQuestion || 20
+  );
   const [filters, setFilters] = useState(state.settings.filters || {
     testament: 'all',
     category: 'all',
@@ -75,9 +81,20 @@ export default function OnlineLobby() {
     const handleRoomUpdated = (room) => {
       setCurrentRoom(room);
       dispatch({ type: 'SET_ROOM', payload: room });
+      if (room.settings?.timePerQuestion) {
+        setTimePerQuestion(room.settings.timePerQuestion);
+      }
+      if (room.settings?.questionCount) {
+        setQuestionCount(room.settings.questionCount);
+      }
+      if (room.settings?.filters) {
+        setFilters(room.settings.filters);
+      }
     };
 
     const handleGameStarted = (room) => {
+      const roomTime = room.settings?.timePerQuestion || timePerQuestion || 20;
+      dispatch({ type: 'SET_SETTINGS', payload: { ...room.settings, timePerQuestion: roomTime } });
       dispatch({ type: 'SET_PLAYERS', payload: room.players });
       dispatch({ type: 'SET_QUESTIONS', payload: room.questions });
       dispatch({ type: 'SET_ROOM_CODE', payload: room.code });
@@ -93,11 +110,14 @@ export default function OnlineLobby() {
       socket.off('room-updated', handleRoomUpdated);
       socket.off('game-started', handleGameStarted);
     };
-  }, [socket, navigate, dispatch]);
+  }, [socket, navigate, dispatch, timePerQuestion]);
 
   useEffect(() => {
     if (state.room) {
       setCurrentRoom(state.room);
+      if (state.room.settings?.timePerQuestion) {
+        setTimePerQuestion(state.room.settings.timePerQuestion);
+      }
     }
   }, [state.room]);
 
@@ -108,23 +128,41 @@ export default function OnlineLobby() {
         if (res && res.success && res.room) {
           setCurrentRoom(res.room);
           dispatch({ type: 'SET_ROOM', payload: res.room });
+          if (res.room.settings?.timePerQuestion) {
+            setTimePerQuestion(res.room.settings.timePerQuestion);
+          }
         }
       });
     }
   }, [socket, state.roomCode, state.room?.code, dispatch]);
 
+  const changeTimePerQuestion = (newTime) => {
+    sound.playClick();
+    const clamped = Math.max(5, Math.min(120, Number(newTime)));
+    setTimePerQuestion(clamped);
+    if (socket && currentRoom?.code && (currentRoom.host === socket.id || state.isHost)) {
+      socket.emit('update-room-settings', {
+        roomCode: currentRoom.code,
+        settings: { timePerQuestion: clamped }
+      });
+    }
+  };
+
   const handleCreateRoom = async () => {
     sound.playClick();
-    const userName = (state.playerName || playerName).trim();
-    if (!userName) {
-      setError('Please enter your display name');
-      return;
-    }
+    const userName = (state.playerName || playerName).trim() || state.user?.username || 'Faithful Disciple';
 
     setIsCreating(true);
     setError('');
 
-    const result = await createRoom(userName, state.settings);
+    const roomSettings = {
+      ...state.settings,
+      questionCount,
+      timePerQuestion,
+      filters
+    };
+
+    const result = await createRoom(userName, roomSettings);
     
     if (result.success) {
       setCurrentRoom(result.room);
@@ -132,6 +170,7 @@ export default function OnlineLobby() {
       dispatch({ type: 'SET_ROOM_CODE', payload: result.roomCode });
       dispatch({ type: 'SET_ROOM', payload: result.room });
       dispatch({ type: 'SET_PLAYER_NAME', payload: userName });
+      dispatch({ type: 'SET_SETTINGS', payload: roomSettings });
       setPlayerName(userName);
     } else {
       setError(result.error || 'Failed to create room');
@@ -142,11 +181,7 @@ export default function OnlineLobby() {
 
   const handleJoinRoom = async () => {
     sound.playClick();
-    const userName = (state.playerName || playerName).trim();
-    if (!userName) {
-      setError('Please enter your display name');
-      return;
-    }
+    const userName = (state.playerName || playerName).trim() || state.user?.username || 'Faithful Disciple';
     if (!roomCode.trim()) {
       setError('Please enter a room code');
       return;
@@ -199,19 +234,9 @@ export default function OnlineLobby() {
     const shuffledQuestions = [...balancedPool]
       .sort(() => Math.random() - 0.5)
       .slice(0, Math.min(questionCount, balancedPool.length))
-      .map(q => {
-        const indices = q.options.map((_, i) => i);
-        for (let i = indices.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [indices[i], indices[j]] = [indices[j], indices[i]];
-        }
-        return {
-          ...q,
-          options: indices.map(i => q.options[i]),
-          correctAnswer: indices.indexOf(q.correctAnswer)
-        };
-      });
+      .map(q => shuffleQuestionOptions(q));
 
+    dispatch({ type: 'SET_SETTINGS', payload: { ...currentRoom.settings, timePerQuestion } });
     const result = await startGame(currentRoom.code, shuffledQuestions);
     
     if (!result.success) {
@@ -261,15 +286,14 @@ export default function OnlineLobby() {
         <NavBar title={t('multiplayerLobby', state.language)} />
         <div className="max-w-2xl mx-auto px-4 py-8 space-y-6">
           {/* Room Header & Code Card */}
-          <Card className="border-primary/40 bg-card/95 backdrop-blur-sm shadow-lg overflow-hidden">
-            <div className="h-2 bg-gradient-to-r from-amber-500 via-primary to-amber-600" />
+          <Card className="border border-border bg-card shadow-sm overflow-hidden">
             <CardContent className="p-6 space-y-6 text-center">
               <div className="flex items-center justify-between">
-                <Badge variant="gold" className="gap-1.5 shadow-sm text-xs font-semibold">
-                  <Sparkles className="w-3.5 h-3.5 fill-current" /> {t('liveRoom', state.language)}
+                <Badge variant="gold" className="gap-1.5 text-xs font-bold">
+                  <Sparkles className="w-3.5 h-3.5" /> {t('liveRoom', state.language)}
                 </Badge>
                 <Badge variant="outline" className="gap-1 font-mono text-xs">
-                  <Users className="w-3.5 h-3.5 text-primary" />
+                  <Users className="w-3.5 h-3.5 text-gold-dark dark:text-gold" />
                   {currentRoom.players.length}/8 {t('disciples', state.language)}
                 </Badge>
               </div>
@@ -277,16 +301,16 @@ export default function OnlineLobby() {
               <div>
                 <span className="text-xs uppercase font-mono tracking-widest text-muted-foreground">{t('roomCode', state.language)}</span>
                 <div className="flex items-center justify-center gap-3 mt-2">
-                  <h2 className="text-4xl sm:text-5xl font-mono font-black tracking-widest text-primary drop-shadow-sm">
+                  <h2 className="text-4xl sm:text-5xl font-mono font-black tracking-widest text-foreground">
                     {currentRoom.code}
                   </h2>
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={handleCopyCode}
-                    className="gap-1.5 h-10 px-3 hover:border-primary hover:text-primary transition-all font-semibold"
+                    className="gap-1.5 h-10 px-3 font-semibold"
                   >
-                    {copied ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
+                    {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
                     <span>{copied ? t('copied', state.language) : t('copyCode', state.language)}</span>
                   </Button>
                 </div>
@@ -297,16 +321,100 @@ export default function OnlineLobby() {
             </CardContent>
           </Card>
 
-          {/* Host Settings */}
-          {isHost && (
-            <Card className="border bg-card/80 backdrop-blur-sm">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-base font-semibold flex items-center gap-2">
-                  <Settings2 className="w-4 h-4 text-primary" /> {t('gameRulesHost', state.language)}
-                </CardTitle>
-                <CardDescription className="text-xs">{t('configureRules', state.language)}</CardDescription>
-              </CardHeader>
-              <CardContent>
+          {/* Room Settings & Timer Configuration */}
+          <Card className="border border-border bg-card">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-base font-semibold flex items-center justify-between">
+                <span className="flex items-center gap-2">
+                  <Settings2 className="w-4 h-4 text-primary" /> {isHost ? t('gameRulesHost', state.language) : t('gameSettingsTitle', state.language)}
+                </span>
+                {isHost ? (
+                  <Badge variant="gold" className="text-[10px] gap-1 px-2 py-0.5">
+                    <Crown className="w-3 h-3 fill-current" /> {t('hostBadge', state.language)}
+                  </Badge>
+                ) : (
+                  <Badge variant="outline" className="text-[10px] px-2 py-0.5 text-muted-foreground">
+                    {t('configuredByHost', state.language)}
+                  </Badge>
+                )}
+              </CardTitle>
+              <CardDescription className="text-xs">
+                {isHost ? t('configureRules', state.language) : t('configuredByHost', state.language)}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {/* Seconds to Answer: Increase / Lower Controls */}
+              <div className="p-3.5 rounded-xl bg-muted/40 border border-border/80 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div className="flex items-center gap-3 w-full sm:w-auto">
+                  <div className="p-2.5 rounded-xl bg-primary/10 text-primary shrink-0">
+                    <Clock className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-bold text-foreground flex items-center gap-2">
+                      <span>{t('timePerQuestionLabel', state.language)}</span>
+                      <Badge variant="gold" className="font-mono text-xs font-bold px-2 py-0.5">
+                        {timePerQuestion} {state.language === 'am' ? 'ሰከንድ' : 'sec'}
+                      </Badge>
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                      {isHost ? t('secondsPerQuestionDesc', state.language) : `${t('configuredByHost', state.language)} (${timePerQuestion}s)`}
+                    </p>
+                  </div>
+                </div>
+
+                {isHost ? (
+                  <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-end">
+                    <div className="flex items-center gap-1 bg-background border rounded-lg p-1 shadow-sm">
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 px-2.5 text-xs font-bold hover:bg-muted"
+                        onClick={() => changeTimePerQuestion(timePerQuestion - 5)}
+                        disabled={timePerQuestion <= 5}
+                        title={t('lowerSeconds', state.language)}
+                      >
+                        <Minus className="w-3.5 h-3.5 mr-1" /> -5s
+                      </Button>
+                      <span className="w-12 text-center font-mono font-bold text-sm text-foreground">
+                        {timePerQuestion}s
+                      </span>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 px-2.5 text-xs font-bold hover:bg-muted"
+                        onClick={() => changeTimePerQuestion(timePerQuestion + 5)}
+                        disabled={timePerQuestion >= 120}
+                        title={t('increaseSeconds', state.language)}
+                      >
+                        <Plus className="w-3.5 h-3.5 mr-1" /> +5s
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center gap-1">
+                      {[10, 15, 20, 30, 45, 60].map(sec => (
+                        <Button
+                          key={sec}
+                          type="button"
+                          variant={timePerQuestion === sec ? "gold" : "outline"}
+                          size="sm"
+                          className="h-8 px-2 text-xs font-semibold"
+                          onClick={() => changeTimePerQuestion(sec)}
+                        >
+                          {sec}s
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <Badge variant="gold" className="px-3 py-1 font-mono text-xs font-bold">
+                    ⏱️ {timePerQuestion}s
+                  </Badge>
+                )}
+              </div>
+
+              {isHost ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
                   <div className="space-y-1">
                     <label className="text-xs font-medium text-muted-foreground">{t('testament', state.language)}</label>
@@ -354,21 +462,27 @@ export default function OnlineLobby() {
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-xs font-medium text-muted-foreground">Question Count</label>
+                    <label className="text-xs font-medium text-muted-foreground">{t('questionCount', state.language)}</label>
                     <select
                       className="w-full h-9 rounded-md border border-input bg-background px-3 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       value={questionCount}
                       onChange={(e) => setQuestionCount(Number(e.target.value))}
                     >
                       {[5, 10, 15, 20, 25].map(cnt => (
-                        <option key={cnt} value={cnt}>{cnt} Questions</option>
+                        <option key={cnt} value={cnt}>{cnt} {state.language === 'am' ? 'ጥያቄዎች' : 'Questions'}</option>
                       ))}
                     </select>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-          )}
+              ) : (
+                <div className="flex flex-wrap gap-2 text-xs text-muted-foreground pt-1">
+                  <Badge variant="outline">{t('questionCount', state.language)}: {currentRoom.settings?.questionCount || questionCount}</Badge>
+                  <Badge variant="outline">{t('difficulty', state.language)}: {currentRoom.settings?.filters?.difficulty || filters.difficulty}</Badge>
+                  <Badge variant="outline">{t('testament', state.language)}: {currentRoom.settings?.filters?.testament || filters.testament}</Badge>
+                </div>
+              )}
+            </CardContent>
+          </Card>
 
           {/* Players List */}
           <Card className="border bg-card/80 backdrop-blur-sm">
@@ -498,10 +612,10 @@ export default function OnlineLobby() {
         {/* Actions Grid: Create vs Join */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
           {/* Create Room Card */}
-          <Card className="border hover:border-primary/50 transition-all hover:shadow-md bg-card/90 flex flex-col justify-between">
+          <Card className="border border-border hover:border-foreground/40 transition-all bg-card flex flex-col justify-between shadow-sm">
             <CardHeader>
-              <div className="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center mb-2">
-                <Crown className="w-6 h-6 fill-current" />
+              <div className="w-10 h-10 rounded-lg bg-secondary border border-border flex items-center justify-center text-gold-dark dark:text-gold mb-2">
+                <Crown className="w-5 h-5 fill-current" />
               </div>
               <CardTitle className="text-xl font-serif">Create a Room</CardTitle>
               <CardDescription className="text-sm">
@@ -511,7 +625,7 @@ export default function OnlineLobby() {
             <CardContent className="pt-2">
               <Button
                 variant="gold"
-                className="w-full font-semibold shadow-sm"
+                className="w-full font-bold shadow-sm"
                 onClick={handleCreateRoom}
                 disabled={isCreating}
               >
@@ -529,10 +643,10 @@ export default function OnlineLobby() {
           </Card>
 
           {/* Join Room Card */}
-          <Card className="border hover:border-primary/50 transition-all hover:shadow-md bg-card/90 flex flex-col justify-between">
+          <Card className="border border-border hover:border-foreground/40 transition-all bg-card flex flex-col justify-between shadow-sm">
             <CardHeader>
-              <div className="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center mb-2">
-                <Key className="w-6 h-6" />
+              <div className="w-10 h-10 rounded-lg bg-secondary border border-border flex items-center justify-center text-foreground mb-2">
+                <Key className="w-5 h-5" />
               </div>
               <CardTitle className="text-xl font-serif">Join with Code</CardTitle>
               <CardDescription className="text-sm">
@@ -550,7 +664,7 @@ export default function OnlineLobby() {
               />
               <Button
                 variant="default"
-                className="w-full font-semibold shadow-sm"
+                className="w-full font-bold shadow-sm"
                 onClick={handleJoinRoom}
               >
                 Join Room <ArrowRight className="w-4 h-4 ml-2" />

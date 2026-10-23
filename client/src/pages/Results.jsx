@@ -32,6 +32,7 @@ export default function Results() {
   const { state, dispatch } = useGame();
   const hasSavedRef = useRef(false);
   const [showReview, setShowReview] = useState(true);
+  const [reviewFilter, setReviewFilter] = useState('all'); // 'all', 'missed', 'correct'
   const [newlyUnlockedAchievements, setNewlyUnlockedAchievements] = useState([]);
 
   const calculateStats = (playerId) => {
@@ -39,25 +40,33 @@ export default function Results() {
     let total = 0;
     let totalTime = 0;
     const missedQuestions = [];
+    const allQuestions = [];
 
     Object.keys(state.answers).forEach(questionIndex => {
       const answer = state.answers[questionIndex][playerId];
       if (answer) {
         total++;
-        if (answer.isCorrect) correct++;
-        else {
-          const question = state.questions[questionIndex];
-          if (question) {
-            const locQ = getLocalizedQuestion(question, state.language || 'en');
-            missedQuestions.push({
-              question: cleanText(locQ.question),
-              yourAnswer: cleanText(locQ.options[answer.answer] || (state.language === 'am' ? "ጊዜው አልቋል!" : "Time's up!")),
-              correctAnswer: cleanText(locQ.options[question.correctAnswer]),
-              book: cleanText(locQ.book),
-              testament: locQ.testament,
-              verse: getScriptureVerse(locQ),
-              story: getScriptureStory(locQ)
-            });
+        const question = state.questions[questionIndex];
+        if (question) {
+          const locQ = getLocalizedQuestion(question, state.language || 'en');
+          const isCorrect = !!answer.isCorrect;
+          if (isCorrect) correct++;
+
+          const reviewItem = {
+            questionIndex: Number(questionIndex) + 1,
+            question: cleanText(locQ.question),
+            yourAnswer: cleanText(locQ.options[answer.answer] || (state.language === 'am' ? "ጊዜው አልቋል!" : "Time's up!")),
+            correctAnswer: cleanText(locQ.options[question.correctAnswer]),
+            isCorrect,
+            book: cleanText(locQ.book),
+            testament: locQ.testament,
+            verse: getScriptureVerse(locQ),
+            story: getScriptureStory(locQ)
+          };
+
+          allQuestions.push(reviewItem);
+          if (!isCorrect) {
+            missedQuestions.push(reviewItem);
           }
         }
         totalTime += answer.timeSpent || 0;
@@ -70,7 +79,8 @@ export default function Results() {
       accuracy: total > 0 ? Math.round((correct / total) * 100) : 0,
       avgTime: total > 0 ? Math.round(totalTime / total) : 0,
       totalTime,
-      missedQuestions
+      missedQuestions,
+      allQuestions
     };
   };
 
@@ -236,10 +246,10 @@ export default function Results() {
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-8">
         {/* Victory Header */}
         <div className="text-center space-y-3">
-          <div className="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500 mx-auto shadow-sm">
-            <Trophy className="w-8 h-8 text-amber-500" />
+          <div className="w-14 h-14 rounded-xl bg-secondary border border-border flex items-center justify-center text-gold-dark dark:text-gold mx-auto shadow-sm">
+            <Trophy className="w-7 h-7" />
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground">
+          <h1 className="text-3xl sm:text-4xl font-serif font-black tracking-tight text-foreground">
             {firstStats && firstStats.accuracy === 100
               ? (state.language === 'am' ? 'ፍጹም ዕውቀት! 100%' : 'Flawless Knowledge!')
               : firstStats && firstStats.accuracy >= 70
@@ -279,24 +289,24 @@ export default function Results() {
         {/* Primary Stats Grid */}
         {state.players.length === 1 ? (
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <Card className="text-center p-5 space-y-1">
-              <span className="text-xs uppercase font-extrabold text-muted-foreground">{t('correctAnswers', state.language)}</span>
-              <p className="text-3xl font-extrabold text-emerald-500">{firstStats?.correct}</p>
+            <Card className="text-center p-5 space-y-1 border border-border shadow-sm">
+              <span className="text-xs uppercase font-bold text-muted-foreground">{t('correctAnswers', state.language)}</span>
+              <p className="text-3xl font-bold font-serif text-emerald-700 dark:text-emerald-400">{firstStats?.correct}</p>
               <span className="text-[11px] text-muted-foreground">{state.language === 'am' ? 'መልሶች' : 'Answers'}</span>
             </Card>
-            <Card className="text-center p-5 space-y-1">
-              <span className="text-xs uppercase font-extrabold text-muted-foreground">{t('incorrectAnswers', state.language)}</span>
-              <p className="text-3xl font-extrabold text-destructive">{(firstStats?.total || 0) - (firstStats?.correct || 0)}</p>
+            <Card className="text-center p-5 space-y-1 border border-border shadow-sm">
+              <span className="text-xs uppercase font-bold text-muted-foreground">{t('incorrectAnswers', state.language)}</span>
+              <p className="text-3xl font-bold font-serif text-red-700 dark:text-red-400">{(firstStats?.total || 0) - (firstStats?.correct || 0)}</p>
               <span className="text-[11px] text-muted-foreground">{state.language === 'am' ? 'መልሶች' : 'Answers'}</span>
             </Card>
-            <Card className="text-center p-5 space-y-1">
-              <span className="text-xs uppercase font-extrabold text-muted-foreground">{t('accuracy', state.language)}</span>
-              <p className="text-3xl font-extrabold text-primary">{firstStats?.accuracy}%</p>
+            <Card className="text-center p-5 space-y-1 border border-border shadow-sm">
+              <span className="text-xs uppercase font-bold text-muted-foreground">{t('accuracy', state.language)}</span>
+              <p className="text-3xl font-bold font-serif text-foreground">{firstStats?.accuracy}%</p>
               <span className="text-[11px] text-muted-foreground">{t('score', state.language)}</span>
             </Card>
-            <Card className="text-center p-5 space-y-1">
-              <span className="text-xs uppercase font-extrabold text-muted-foreground">{t('avgSpeed', state.language)}</span>
-              <p className="text-3xl font-extrabold text-amber-500">{firstStats?.avgTime}s</p>
+            <Card className="text-center p-5 space-y-1 border border-border shadow-sm">
+              <span className="text-xs uppercase font-bold text-muted-foreground">{t('avgSpeed', state.language)}</span>
+              <p className="text-3xl font-bold font-serif text-gold-dark dark:text-gold">{firstStats?.avgTime}s</p>
               <span className="text-[11px] text-muted-foreground">{state.language === 'am' ? 'በጥያቄ' : 'Per question'}</span>
             </Card>
           </div>
@@ -314,9 +324,9 @@ export default function Results() {
 
               return (
                 <>
-                  <div className="p-5 rounded-2xl border-2 border-amber-500 bg-gradient-to-r from-amber-500/15 via-card to-amber-500/15 text-center shadow-md">
-                    <h2 className="text-2xl font-extrabold text-amber-500">
-                      {isTie ? "🤝 It's a Tie!" : `🏆 ${winner.name} Wins the Fellowship Match!`}
+                  <div className="p-5 rounded-xl border border-border bg-secondary text-center shadow-sm">
+                    <h2 className="text-2xl font-bold font-serif text-foreground">
+                      {isTie ? "🤝 It's a Tie!" : `🏆 ${winner.name} Wins the Match!`}
                     </h2>
                   </div>
 
@@ -425,37 +435,95 @@ export default function Results() {
         {/* Scripture Review & Study Stories */}
         {showReview && (
           <div className="space-y-4 pt-6 border-t border-border">
-            <div className="flex items-center gap-2">
-              <BookOpen className="w-5 h-5 text-amber-500" />
-              <h3 className="text-xl font-extrabold text-foreground">
-                {t('scriptureNotesHeader', state.language)}
-              </h3>
-            </div>
-            <p className="text-sm text-muted-foreground">
-              {t('scriptureNotesSub', state.language)}
-            </p>
-
-            {firstStats && firstStats.missedQuestions.length === 0 ? (
-              <Card className="p-8 text-center bg-emerald-500/10 border-emerald-500/30">
-                <div className="space-y-2">
-                  <CheckCircle2 className="w-10 h-10 text-emerald-500 mx-auto" />
-                  <h4 className="text-lg font-extrabold text-foreground">Perfection! All Answers Correct</h4>
-                  <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                    You answered every Scripture question correctly. May the Word of God continue to dwell in you richly!
-                  </p>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <div className="flex items-center gap-2">
+                  <BookOpen className="w-5 h-5 text-amber-500" />
+                  <h3 className="text-xl font-extrabold text-foreground">
+                    {t('scriptureNotesHeader', state.language)}
+                  </h3>
                 </div>
-              </Card>
-            ) : (
-              firstStats?.missedQuestions.map((item, idx) => (
+                <p className="text-sm text-muted-foreground mt-0.5">
+                  {t('scriptureNotesSub', state.language)}
+                </p>
+              </div>
+
+              {/* Review Filter Pills */}
+              {firstStats && firstStats.allQuestions && firstStats.allQuestions.length > 0 && (
+                <div className="flex items-center gap-1.5 p-1 bg-muted/60 border rounded-xl self-start sm:self-auto">
+                  <Button
+                    type="button"
+                    variant={reviewFilter === 'all' ? 'gold' : 'ghost'}
+                    size="sm"
+                    className="h-8 px-3 text-xs font-bold"
+                    onClick={() => setReviewFilter('all')}
+                  >
+                    {t('reviewFilterAll', state.language)} ({firstStats.allQuestions.length})
+                  </Button>
+                  <Button
+                    type="button"
+                    variant={reviewFilter === 'missed' ? 'destructive' : 'ghost'}
+                    size="sm"
+                    className="h-8 px-3 text-xs font-bold"
+                    onClick={() => setReviewFilter('missed')}
+                  >
+                    {t('reviewFilterMissed', state.language)} ({firstStats.missedQuestions.length})
+                  </Button>
+                  <Button
+                    type="button"
+                    variant={reviewFilter === 'correct' ? 'secondary' : 'ghost'}
+                    size="sm"
+                    className="h-8 px-3 text-xs font-bold text-emerald-600 dark:text-emerald-400"
+                    onClick={() => setReviewFilter('correct')}
+                  >
+                    {t('reviewFilterCorrect', state.language)} ({firstStats.correct})
+                  </Button>
+                </div>
+              )}
+            </div>
+
+            {(() => {
+              const displayed = reviewFilter === 'missed'
+                ? (firstStats?.missedQuestions || [])
+                : reviewFilter === 'correct'
+                ? ((firstStats?.allQuestions || []).filter(q => q.isCorrect))
+                : (firstStats?.allQuestions || []);
+
+              if (displayed.length === 0) {
+                return (
+                  <Card className="p-8 text-center bg-card/60 border-border/70">
+                    <p className="text-sm text-muted-foreground">
+                      {reviewFilter === 'missed'
+                        ? (state.language === 'am' ? 'ምንም የተሳሳቱ ጥያቄዎች የሉም! ሁሉንም በትክክል መልሰዋል።' : 'No missed questions! You answered everything correctly.')
+                        : (state.language === 'am' ? 'ምንም የሚገመገሙ ጥያቄዎች የሉም።' : 'No questions found in this category.')}
+                    </p>
+                  </Card>
+                );
+              }
+
+              return displayed.map((item, idx) => (
                 <Card key={idx} className="overflow-hidden border-border/80">
                   <CardHeader className="p-5 pb-3 bg-muted/30">
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                      <span className="text-xs font-extrabold uppercase text-muted-foreground">
-                        Question Review #{idx + 1}
-                      </span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-extrabold uppercase text-muted-foreground">
+                          {state.language === 'am' ? 'የጥያቄ ቁጥር' : 'Question'} #{item.questionIndex}
+                        </span>
+                        {item.isCorrect ? (
+                          <Badge className="bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border-emerald-500/40 text-[11px] gap-1 font-bold">
+                            <CheckCircle2 className="w-3.5 h-3.5" /> {t('statusCorrect', state.language)}
+                          </Badge>
+                        ) : (
+                          <Badge className="bg-destructive/20 text-destructive border-destructive/40 text-[11px] gap-1 font-bold">
+                            <XCircle className="w-3.5 h-3.5" /> {t('statusIncorrect', state.language)}
+                          </Badge>
+                        )}
+                      </div>
                       <div className="flex items-center gap-2">
                         <Badge variant="gold">{item.book}</Badge>
-                        <Badge variant="outline">Scripture: {item.verse}</Badge>
+                        <Badge variant="outline" className="font-mono text-xs font-semibold">
+                          📖 {item.verse}
+                        </Badge>
                       </div>
                     </div>
                     <CardTitle className="text-base sm:text-lg font-bold text-foreground">
@@ -464,26 +532,32 @@ export default function Results() {
                   </CardHeader>
                   <CardContent className="p-5 pt-3 space-y-3">
                     <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 text-sm">
-                      <div className="flex items-center gap-1.5 text-destructive font-semibold">
-                        <XCircle className="w-4 h-4 shrink-0" />
-                        <span>Your answer: {item.yourAnswer}</span>
+                      <div className={`flex items-center gap-1.5 font-semibold ${item.isCorrect ? 'text-emerald-600 dark:text-emerald-400' : 'text-destructive'}`}>
+                        {item.isCorrect ? (
+                          <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-500" />
+                        ) : (
+                          <XCircle className="w-4 h-4 shrink-0 text-destructive" />
+                        )}
+                        <span>{t('yourAnswer', state.language)}: {item.yourAnswer}</span>
                       </div>
-                      <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-bold">
-                        <CheckCircle2 className="w-4 h-4 shrink-0" />
-                        <span>Correct answer: {item.correctAnswer}</span>
-                      </div>
+                      {!item.isCorrect && (
+                        <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-bold">
+                          <CheckCircle2 className="w-4 h-4 shrink-0" />
+                          <span>{t('correctAnswerLabel', state.language)}: {item.correctAnswer}</span>
+                        </div>
+                      )}
                     </div>
 
                     <div className="p-4 rounded-xl bg-card border border-border/80 text-sm text-muted-foreground leading-relaxed">
                       <strong className="block text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-wider mb-1">
-                        📖 Biblical Story &amp; Context
+                        📖 {t('scriptureStoryHeader', state.language)}
                       </strong>
                       {item.story}
                     </div>
                   </CardContent>
                 </Card>
-              ))
-            )}
+              ));
+            })()}
           </div>
         )}
       </main>

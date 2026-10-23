@@ -27,7 +27,7 @@ import {
   Menu,
   X,
   Flame,
-  Sparkles
+  Users
 } from 'lucide-react';
 
 const AVATAR_OPTIONS = ['📖', '🕊️', '👑', '✝️', '🛡️', '⛵', '🍞', '🕯️', '🍇', '🦁', '⚡', '🌟'];
@@ -40,6 +40,8 @@ export default function NavBar({ title }) {
   const [showAvatarDialog, setShowAvatarDialog] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const streak = getDailyStreak();
+
+  const isAmharic = state?.language === 'am';
 
   useEffect(() => {
     if (isAuthenticated() && !user) {
@@ -93,32 +95,29 @@ export default function NavBar({ title }) {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/85 backdrop-blur-md">
+      <header className="sticky top-0 z-50 w-full border-b border-border bg-card/95 backdrop-blur-md transition-colors">
         <div className="max-w-7xl mx-auto flex h-16 items-center justify-between px-4 sm:px-6">
-          {/* Brand Logo */}
+          {/* Brand Logo & Name */}
           <div
-            className="flex items-center gap-2.5 cursor-pointer select-none transition-transform active:scale-95"
+            className="flex items-center gap-3 cursor-pointer select-none group"
             onClick={() => handleNav('/')}
           >
-            <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shadow-sm">
-              <BookOpen className="w-5 h-5 text-primary" />
+            <div className="w-10 h-10 rounded-lg bg-secondary border border-border flex items-center justify-center text-foreground group-hover:border-gold transition-colors">
+              <BookOpen className="w-5 h-5 text-gold-dark dark:text-gold" />
             </div>
             <div>
-              <div className="font-extrabold text-base sm:text-lg leading-tight flex items-center gap-1.5">
-                <span className="bg-gradient-to-r from-amber-500 to-indigo-500 bg-clip-text text-transparent">
-                  Bible Trivia
-                </span>
-                <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+              <div className="font-serif font-black tracking-wider text-base sm:text-lg leading-tight text-foreground uppercase">
+                {isAmharic ? 'የመጽሐፍ ቅዱስ ዕውቀት' : 'Scripture Trivia'}
               </div>
-              <p className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">
-                Scripture Challenge
-              </p>
+              <div className="text-[10px] font-semibold tracking-widest text-muted-foreground uppercase">
+                {isAmharic ? 'የመንፈስ ፈተና' : 'The Bible Challenge'}
+              </div>
             </div>
           </div>
 
-          {/* Title tag if provided */}
+          {/* Optional Title tag if provided */}
           {title && (
-            <div className="hidden lg:flex items-center px-3 py-1 rounded-full bg-secondary border border-border text-xs font-bold text-foreground">
+            <div className="hidden lg:flex items-center px-3 py-1 rounded-md bg-secondary border border-border text-xs font-semibold text-foreground">
               {title}
             </div>
           )}
@@ -129,64 +128,96 @@ export default function NavBar({ title }) {
               variant={isNavActive('/') ? 'secondary' : 'ghost'}
               size="sm"
               onClick={() => handleNav('/')}
-              className={`gap-1.5 font-bold ${isNavActive('/') ? 'bg-secondary text-primary' : ''}`}
+              className="gap-1.5 font-medium"
             >
-              <Home className="w-4 h-4" />
-              {t('navHome', state.language)}
+              <Home className="w-4 h-4 text-muted-foreground" />
+              <span>{t('navHome', state.language)}</span>
             </Button>
 
             <Button
               variant={isNavActive('/settings') && state.mode === 'daily' ? 'secondary' : 'ghost'}
               size="sm"
               onClick={() => handleNav('/settings?mode=daily')}
-              className="gap-1.5 font-bold relative"
+              className="gap-1.5 font-medium"
             >
-              <Calendar className="w-4 h-4 text-amber-500" />
-              {t('modeDaily', state.language)}
+              <Calendar className="w-4 h-4 text-gold-dark dark:text-gold" />
+              <span>{t('modeDaily', state.language)}</span>
               {streak > 0 && (
-                <span className="ml-1 inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-500 text-white shadow-sm">
-                  <Flame className="w-2.5 h-2.5" /> {streak}
+                <span className="inline-flex items-center gap-0.5 text-[11px] px-1.5 py-0.2 rounded bg-amber-500/15 text-amber-700 dark:text-amber-400 font-bold border border-amber-500/30">
+                  <Flame className="w-3 h-3 text-amber-600 dark:text-amber-400 fill-amber-500" />
+                  {streak}
                 </span>
               )}
+            </Button>
+
+            <Button
+              variant={isNavActive('/online') ? 'secondary' : 'ghost'}
+              size="sm"
+              onClick={() => handleNav('/online')}
+              className="gap-1.5 font-medium"
+            >
+              <Users className="w-4 h-4 text-muted-foreground" />
+              <span>{isAmharic ? 'የመስመር ላይ' : 'Multiplayer'}</span>
             </Button>
 
             <Button
               variant={isNavActive('/leaderboard') ? 'secondary' : 'ghost'}
               size="sm"
               onClick={() => handleNav('/leaderboard')}
-              className={`gap-1.5 font-bold ${isNavActive('/leaderboard') ? 'bg-secondary text-primary' : ''}`}
+              className="gap-1.5 font-medium"
             >
-              <Trophy className="w-4 h-4 text-amber-500" />
-              {t('navLeaderboard', state.language)}
+              <Trophy className="w-4 h-4 text-gold-dark dark:text-gold" />
+              <span>{t('navLeaderboard', state.language)}</span>
             </Button>
 
             <Button
               variant={isNavActive('/stats') ? 'secondary' : 'ghost'}
               size="sm"
               onClick={() => handleNav('/stats')}
-              className={`gap-1.5 font-bold ${isNavActive('/stats') ? 'bg-secondary text-primary' : ''}`}
+              className="gap-1.5 font-medium"
             >
-              <BarChart3 className="w-4 h-4 text-primary" />
-              {t('navProfile', state.language)}
+              <BarChart3 className="w-4 h-4 text-muted-foreground" />
+              <span>{t('navProfile', state.language)}</span>
             </Button>
           </nav>
 
-          {/* Right Action Controls */}
+          {/* Quick Action Controls */}
           <div className="flex items-center gap-2">
-            {/* Language Toggle */}
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => {
-                dispatch({ type: 'TOGGLE_LANGUAGE' });
-                sound.playClick();
-              }}
-              title={state.language === 'am' ? 'Switch to English' : 'ወደ አማርኛ ቀይር (Switch to Amharic)'}
-              className="h-9 px-2.5 rounded-lg font-bold text-xs gap-1.5 border-border hover:border-primary/60 transition-all shadow-sm"
-            >
-              <span className="text-sm">{state.language === 'am' ? '🇪🇹' : '🇺🇸'}</span>
-              <span className="font-mono text-xs">{state.language === 'am' ? 'አማ' : 'EN'}</span>
-            </Button>
+            {/* Segmented Language Switcher */}
+            <div className="inline-flex items-center rounded-lg border border-border bg-secondary p-0.5 shadow-sm text-xs font-semibold">
+              <button
+                type="button"
+                onClick={() => {
+                  if (state.language !== 'en') {
+                    dispatch({ type: 'TOGGLE_LANGUAGE' });
+                    sound.playClick();
+                  }
+                }}
+                className={`px-2.5 py-1 rounded-md transition-all ${
+                  !isAmharic
+                    ? 'bg-card text-foreground font-bold shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                EN
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  if (state.language !== 'am') {
+                    dispatch({ type: 'TOGGLE_LANGUAGE' });
+                    sound.playClick();
+                  }
+                }}
+                className={`px-2.5 py-1 rounded-md transition-all font-serif ${
+                  isAmharic
+                    ? 'bg-card text-foreground font-bold shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                አማ
+              </button>
+            </div>
 
             {/* Audio Toggle */}
             <Button
@@ -194,15 +225,13 @@ export default function NavBar({ title }) {
               size="icon"
               onClick={() => {
                 dispatch({ type: 'TOGGLE_SOUND' });
-                sound.playClick();
               }}
               title={state.soundMuted ? 'Unmute Audio' : 'Mute Audio'}
-              className="rounded-lg h-9 w-9"
             >
               {state.soundMuted ? (
                 <VolumeX className="w-4 h-4 text-muted-foreground" />
               ) : (
-                <Volume2 className="w-4 h-4 text-primary" />
+                <Volume2 className="w-4 h-4 text-foreground" />
               )}
             </Button>
 
@@ -214,53 +243,51 @@ export default function NavBar({ title }) {
                 dispatch({ type: 'TOGGLE_THEME' });
                 sound.playClick();
               }}
-              title={state.theme === 'light' ? 'Dark Mode' : 'Light Mode'}
-              className="rounded-lg h-9 w-9"
+              title="Toggle Theme"
             >
-              {state.theme === 'light' ? (
-                <Moon className="w-4 h-4 text-foreground" />
+              {state.theme === 'dark' ? (
+                <Sun className="w-4 h-4 text-gold" />
               ) : (
-                <Sun className="w-4 h-4 text-amber-400" />
+                <Moon className="w-4 h-4 text-muted-foreground" />
               )}
             </Button>
 
-            {/* User Profile Chip or Sign In */}
+            {/* User Avatar / Login */}
             {user ? (
-              <div
-                className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-card shadow-sm cursor-pointer hover:border-primary/50 transition-colors"
-                onClick={() => setShowAvatarDialog(true)}
-              >
-                <span className="text-lg leading-none">{user.avatar || '📖'}</span>
-                <span className="text-xs font-bold text-foreground max-w-[80px] sm:max-w-[110px] truncate">
-                  {user.username}
-                </span>
+              <div className="relative flex items-center gap-1.5 pl-1">
                 <button
-                  className="p-1 text-muted-foreground hover:text-destructive transition-colors"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleLogout();
-                  }}
-                  title="Sign Out"
+                  onClick={() => setShowAvatarDialog(true)}
+                  title="Change Avatar"
+                  className="w-9 h-9 rounded-lg bg-secondary border border-border hover:border-gold flex items-center justify-center text-lg shadow-sm transition-all"
                 >
-                  <LogOut className="w-3.5 h-3.5" />
+                  {user.avatar || '📖'}
                 </button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleLogout}
+                  title="Sign Out"
+                  className="hidden sm:inline-flex text-muted-foreground hover:text-destructive"
+                >
+                  <LogOut className="w-4 h-4" />
+                </Button>
               </div>
             ) : (
               <Button
                 variant="default"
                 size="sm"
                 onClick={() => handleNav('/login')}
-                className="font-bold gap-1 shadow-sm"
+                className="hidden sm:inline-flex font-semibold"
               >
                 Sign In
               </Button>
             )}
 
-            {/* Mobile Hamburger Toggle */}
+            {/* Mobile Menu Button */}
             <Button
               variant="outline"
               size="icon"
-              className="md:hidden rounded-lg h-9 w-9"
+              className="md:hidden"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -270,84 +297,79 @@ export default function NavBar({ title }) {
 
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-border bg-card p-4 space-y-2 animate-in slide-in-from-top-2 duration-200">
-            <Button
-              variant="outline"
-              className="w-full justify-between font-bold gap-2 text-xs mb-1"
-              onClick={() => {
-                dispatch({ type: 'TOGGLE_LANGUAGE' });
-                sound.playClick();
-              }}
-            >
-              <span className="flex items-center gap-2">
-                <span>{state.language === 'am' ? '🇪🇹' : '🇺🇸'}</span>
-                <span>{state.language === 'am' ? 'ቋንቋ: አማርኛ' : 'Language: English'}</span>
-              </span>
-              <span className="text-[11px] text-muted-foreground uppercase font-mono">
-                {state.language === 'am' ? 'ወደ EN ቀይር' : 'Switch to አማ'}
-              </span>
-            </Button>
+          <div className="md:hidden border-t border-border bg-card p-4 space-y-2">
             <Button
               variant={isNavActive('/') ? 'secondary' : 'ghost'}
-              className="w-full justify-start font-bold gap-2"
+              className="w-full justify-start font-medium gap-2.5"
               onClick={() => handleNav('/')}
             >
-              <Home className="w-4 h-4" />
-              {t('navHome', state.language)}
+              <Home className="w-4 h-4 text-muted-foreground" />
+              <span>{t('navHome', state.language)}</span>
             </Button>
             <Button
               variant={isNavActive('/settings') && state.mode === 'daily' ? 'secondary' : 'ghost'}
-              className="w-full justify-start font-bold gap-2"
+              className="w-full justify-start font-medium gap-2.5"
               onClick={() => handleNav('/settings?mode=daily')}
             >
-              <Calendar className="w-4 h-4 text-amber-500" />
-              {t('modeDaily', state.language)} {streak > 0 && `(🔥 ${streak})`}
+              <Calendar className="w-4 h-4 text-gold-dark dark:text-gold" />
+              <span>{t('modeDaily', state.language)}</span>
+              {streak > 0 && <span className="ml-auto font-bold text-xs text-amber-600">🔥 {streak}</span>}
+            </Button>
+            <Button
+              variant={isNavActive('/online') ? 'secondary' : 'ghost'}
+              className="w-full justify-start font-medium gap-2.5"
+              onClick={() => handleNav('/online')}
+            >
+              <Users className="w-4 h-4 text-muted-foreground" />
+              <span>{isAmharic ? 'የመስመር ላይ' : 'Multiplayer'}</span>
             </Button>
             <Button
               variant={isNavActive('/leaderboard') ? 'secondary' : 'ghost'}
-              className="w-full justify-start font-bold gap-2"
+              className="w-full justify-start font-medium gap-2.5"
               onClick={() => handleNav('/leaderboard')}
             >
-              <Trophy className="w-4 h-4 text-amber-500" />
-              {t('navLeaderboard', state.language)}
+              <Trophy className="w-4 h-4 text-gold-dark dark:text-gold" />
+              <span>{t('navLeaderboard', state.language)}</span>
             </Button>
             <Button
               variant={isNavActive('/stats') ? 'secondary' : 'ghost'}
-              className="w-full justify-start font-bold gap-2"
+              className="w-full justify-start font-medium gap-2.5"
               onClick={() => handleNav('/stats')}
             >
-              <BarChart3 className="w-4 h-4 text-primary" />
-              {t('navProfile', state.language)}
+              <BarChart3 className="w-4 h-4 text-muted-foreground" />
+              <span>{t('navProfile', state.language)}</span>
             </Button>
-            {user ? (
-              <Button
-                variant="destructive"
-                className="w-full justify-start font-bold gap-2 mt-2"
-                onClick={handleLogout}
-              >
-                <LogOut className="w-4 h-4" />
-                Sign Out ({user.username})
-              </Button>
-            ) : (
-              <Button
-                variant="default"
-                className="w-full justify-start font-bold gap-2 mt-2"
-                onClick={() => handleNav('/login')}
-              >
-                Sign In / Register
-              </Button>
-            )}
+
+            <div className="pt-2 border-t border-border">
+              {user ? (
+                <Button
+                  variant="outline"
+                  className="w-full justify-start font-medium gap-2.5 text-destructive"
+                  onClick={handleLogout}
+                >
+                  <LogOut className="w-4 h-4" />
+                  Sign Out ({user.username})
+                </Button>
+              ) : (
+                <Button
+                  variant="default"
+                  className="w-full justify-center font-bold"
+                  onClick={() => handleNav('/login')}
+                >
+                  Sign In / Register
+                </Button>
+              )}
+            </div>
           </div>
         )}
       </header>
 
-      {/* shadcn Dialog for Biblical Avatar Picker */}
+      {/* Avatar Picker Dialog */}
       <Dialog open={showAvatarDialog} onOpenChange={setShowAvatarDialog}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-xl font-extrabold flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-amber-500" />
-              Select Biblical Avatar
+            <DialogTitle className="text-xl font-bold font-serif">
+              Select Profile Emblem
             </DialogTitle>
             <DialogDescription>
               Choose an emblem to represent your profile on global leaderboards and online lobbies.
@@ -359,10 +381,10 @@ export default function NavBar({ title }) {
               <button
                 key={av}
                 onClick={() => handleSelectAvatar(av)}
-                className={`aspect-square flex items-center justify-center text-3xl rounded-xl border-2 transition-all hover:scale-105 ${
+                className={`aspect-square flex items-center justify-center text-2xl rounded-lg border transition-all ${
                   user?.avatar === av
-                    ? 'border-amber-500 bg-amber-500/15 shadow-md ring-2 ring-amber-500/30'
-                    : 'border-border bg-muted/40 hover:bg-accent'
+                    ? 'border-gold bg-gold/15 shadow-sm font-bold'
+                    : 'border-border bg-secondary hover:border-foreground/40'
                 }`}
               >
                 {av}
@@ -371,7 +393,7 @@ export default function NavBar({ title }) {
           </div>
 
           <div className="flex justify-end">
-            <Button variant="secondary" onClick={() => setShowAvatarDialog(false)}>
+            <Button variant="outline" onClick={() => setShowAvatarDialog(false)}>
               Done
             </Button>
           </div>

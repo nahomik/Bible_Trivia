@@ -64,10 +64,10 @@ export default function LeaderboardPage() {
       <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-8">
         {/* Header */}
         <div className="text-center space-y-3 max-w-2xl mx-auto">
-          <div className="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500 mx-auto shadow-sm">
-            <Trophy className="w-8 h-8 text-amber-500" />
+          <div className="w-14 h-14 rounded-xl bg-secondary border border-border flex items-center justify-center text-gold-dark dark:text-gold mx-auto shadow-sm">
+            <Trophy className="w-7 h-7" />
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground">
+          <h1 className="text-3xl sm:text-4xl font-serif font-black tracking-tight text-foreground">
             Champions of Scripture
           </h1>
           <p className="text-muted-foreground text-sm sm:text-base">
@@ -151,16 +151,16 @@ export default function LeaderboardPage() {
 
                 {/* 1st Place Champion */}
                 {top3[0] && (
-                  <Card className="border-2 border-amber-500 bg-gradient-to-b from-amber-500/10 via-card to-card text-center p-8 space-y-3 order-1 md:order-2 shadow-xl ring-2 ring-amber-500/20 md:-translate-y-2">
-                    <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-amber-500 text-white font-extrabold text-xs shadow-md mx-auto">
-                      👑 Champion
+                  <Card className="border-2 border-gold bg-card text-center p-8 space-y-3 order-1 md:order-2 shadow-md md:-translate-y-2">
+                    <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-gold text-white font-bold text-xs shadow-sm mx-auto">
+                      👑 1st Place
                     </div>
-                    <div className="w-20 h-20 rounded-full bg-amber-500/20 border-2 border-amber-500 flex items-center justify-center text-4xl mx-auto shadow-md">
+                    <div className="w-20 h-20 rounded-full bg-secondary border-2 border-gold flex items-center justify-center text-4xl mx-auto shadow-sm">
                       {top3[0].avatar || '📖'}
                     </div>
                     <div>
-                      <h4 className="font-extrabold text-xl text-foreground truncate">{top3[0].username}</h4>
-                      <p className="text-3xl font-extrabold text-amber-500 mt-1">{getMetricDisplay(top3[0], sortBy)}</p>
+                      <h4 className="font-bold text-xl font-serif text-foreground truncate">{top3[0].username}</h4>
+                      <p className="text-3xl font-black font-serif text-gold-dark dark:text-gold mt-1">{getMetricDisplay(top3[0], sortBy)}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">{top3[0].games_played} games played</p>
                     </div>
                   </Card>
