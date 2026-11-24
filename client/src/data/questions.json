@@ -11398,5 +11398,1929 @@
       "አንድ ሀያ",
       "አንድ ሰማንያ"
     ]
+  },
+  [
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Matthew 1:18",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "የኢየሱስ እናት ስም ማን ነበር?",
+    "options_am": [
+      "ማርያም",
+      "ኤልሳቤጥ",
+      "ማርታ",
+      "ሐና"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Places",
+    "difficulty": "Easy",
+    "verse": "Genesis 2:8",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "አዳምና ሔዋን የኖሩበት የአትክልት ስፍራ ስም ማን ነበር?",
+    "options_am": [
+      "ኤደን ገነት",
+      "ጌቴሴማኒ",
+      "ከነዓን",
+      "ሲና"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "Miracles",
+    "difficulty": "Easy",
+    "verse": "Matthew 14:19",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ኢየሱስ 5,000 ሰዎችን የመገበው በምን ዓይነት ምግብ ነበር?",
+    "options_am": [
+      "እንጀራና ዓሣ",
+      "መናና ድርጭት",
+      "ወይንና ፍራፍሬ",
+      "ማርና አንበጣ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Mark",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Mark 15:25",
+    "story": "Scripture reveals this truth in the book of Mark. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ሮማውያን ኢየሱስን ለመግደል የተጠቀሙበት ዘዴ ምንድን ነበር?",
+    "options_am": [
+      "ስቅለት",
+      "በድንጋይ መውገር",
+      "በሰይፍ መምታት",
+      "በእሳት ማቃጠል"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Genesis 2:21",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "እግዚአብሔር ሔዋንን የፈጠረው ከየትኛው የአዳም የሰውነት ክፍል ነው?",
+    "options_am": [
+      "ከጎድን አጥንቱ",
+      "ከእጁ",
+      "ከልቡ",
+      "ከትከሻው"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Matthew 26:69-74",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ከኢየሱስ ጋር ነበርክ ተብሎ ሲከሰስ አላውቀውም ብሎ ሦስት ጊዜ የካደው ማን ነው?",
+    "options_am": [
+      "ስምዖን ጴጥሮስ",
+      "ይሁዳ አስቆሮቱ",
+      "ቶማስ",
+      "ዮሐንስ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Genesis 3:1-6",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ሔዋንን የተከለከለውን ፍሬ እንድትበላ ያታለላት ፍጡር የትኛው ነው?",
+    "options_am": [
+      "እባብ",
+      "አንበሳ",
+      "ቀበሮ",
+      "ቁራ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Matthew 27:29",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ክርስቶስ በተሰቀለበት ጊዜ ወታደሮቹ በራሱ ላይ ምን አደረጉበት?",
+    "options_am": [
+      "የእሾህ አክሊል",
+      "የወርቅ ዘውድ",
+      "የብረት ቆብ",
+      "የጨርቅ መጠምጠሚያ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "Teachings",
+    "difficulty": "Easy",
+    "verse": "Matthew 6:9",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "የጌታ ጸሎት የመጀመሪያው መስመር ምንድን ነው?",
+    "options_am": [
+      "በሰማያት የምትኖር አባታችን ሆይ",
+      "እግዚአብሔር እረኛዬ ነው",
+      "በመጀመሪያ እግዚአብሔር ሰማይንና ምድርን ፈጠረ",
+      "ስምህ ይቀደስ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Ruth",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Ruth 1:4",
+    "story": "Scripture reveals this truth in the book of Ruth. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ሩት ለኑኃሚን ምኗ ነበረች?",
+    "options_am": [
+      "ምራቷ",
+      "እህቷ",
+      "ልጇ",
+      "አክስቷ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Genesis 4:9",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ወንድምህ ወዴት ነው ተብሎ ሲጠየቅ እግዚአብሔርን የዋሸው ማን ነው?",
+    "options_am": [
+      "ቃየን",
+      "አቤል",
+      "ሴት",
+      "ያዕቆብ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "James",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "James 2:21-22",
+    "story": "Scripture reveals this truth in the book of James. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ልጁን በመሠዊያ ላይ ለእግዚአብሔር ለማቅረብ ፈቃደኛ በመሆን እምነቱን ያሳየው የብሉይ ኪዳን ሰው ማን ነው?",
+    "options_am": [
+      "አብርሃም",
+      "ኖኅ",
+      "ሙሴ",
+      "ዳዊት"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Genesis 1-2",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "በኦሪት ዘፍጥረት ምዕራፍ 1 እና 2 ላይ የተመዘገበው ታላቅ ክስተት ምንድን ነው?",
+    "options_am": [
+      "ፍጥረት",
+      "የጥፋት ውኃ",
+      "የባቤል ግንብ",
+      "የእስራኤል ከግብፅ መውጣት"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Mark",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Mark 15:26",
+    "story": "Scripture reveals this truth in the book of Mark. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ከኢየሱስ መስቀል በላይ የተጻፈው ጽሑፍ ምን ነበር?",
+    "options_am": [
+      "የአይሁድ ንጉሥ",
+      "የእግዚአብሔር ልጅ",
+      "የዓለም መድኃኒት",
+      "ነቢዩ ኢየሱስ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Exodus",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Exodus 2:3",
+    "story": "Scripture reveals this truth in the book of Exodus. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "እናቱ በደንገል ሣጥን ውስጥ ያስቀመጠችው ማንን ነው?",
+    "options_am": [
+      "ሙሴ",
+      "ሳሙኤል",
+      "ዮሴፍ",
+      "ዳዊት"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Genesis 7:12",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "በጥፋት ውኃ ታሪክ ውስጥ ዝናቡ ለስንት ቀንና ሌሊት ዘነበ?",
+    "options_am": [
+      "40 ቀንና ሌሊት",
+      "7 ቀንና ሌሊት",
+      "120 ቀንና ሌሊት",
+      "30 ቀንና ሌሊት"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Matthew 1:23",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ስለ ኢየሱስ እናት ልዩ የነበረው ነገር ምንድን ነው?",
+    "options_am": [
+      "ድንግል ነበረች",
+      "ንግሥት ነበረች",
+      "ነቢይት ነበረች",
+      "ሀብታም ነበረች"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Matthew 2:7-10",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ኢየሱስ ሕፃን በነበረበት ጊዜ ስጦታ የሰጡት እነማን ናቸው?",
+    "options_am": [
+      "ሰብአ ሰገል",
+      "ፈሪሳውያን",
+      "ሮማውያን ወታደሮች",
+      "ሐዋርያት"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Jonah",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Jonah 1:17",
+    "story": "Scripture reveals this truth in the book of Jonah. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ዮናስ ወደ ባሕር ከተጣለ በኋላ ምን ሆነ?",
+    "options_am": [
+      "በታላቅ ዓሣ ተዋጠ",
+      "ወደ ዳርቻ ዋኘ",
+      "በሌላ መርከብ ተረፈ",
+      "በደሴት ላይ አረፈ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Teachings",
+    "difficulty": "Easy",
+    "verse": "Genesis 1:27",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ሰው የተፈጠረው በማን መልክ ነው?",
+    "options_am": [
+      "በእግዚአብሔር መልክ",
+      "በመላእክት መልክ",
+      "በእንስሳት መልክ",
+      "በከዋክብት መልክ"
+    ]
   }
+  [
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Matthew 1:18",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "የኢየሱስ እናት ስም ማን ነበር?",
+    "options_am": [
+      "ማርያም",
+      "ኤልሳቤጥ",
+      "ማርታ",
+      "ሐና"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Places",
+    "difficulty": "Easy",
+    "verse": "Genesis 2:8",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "አዳምና ሔዋን የኖሩበት የአትክልት ስፍራ ስም ማን ነበር?",
+    "options_am": [
+      "ኤደን ገነት",
+      "ጌቴሴማኒ",
+      "ከነዓን",
+      "ሲና"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "Miracles",
+    "difficulty": "Easy",
+    "verse": "Matthew 14:19",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ኢየሱስ 5,000 ሰዎችን የመገበው በምን ዓይነት ምግብ ነበር?",
+    "options_am": [
+      "እንጀራና ዓሣ",
+      "መናና ድርጭት",
+      "ወይንና ፍራፍሬ",
+      "ማርና አንበጣ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Mark",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Mark 15:25",
+    "story": "Scripture reveals this truth in the book of Mark. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ሮማውያን ኢየሱስን ለመግደል የተጠቀሙበት ዘዴ ምንድን ነበር?",
+    "options_am": [
+      "ስቅለት",
+      "በድንጋይ መውገር",
+      "በሰይፍ መምታት",
+      "በእሳት ማቃጠል"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Genesis 2:21",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "እግዚአብሔር ሔዋንን የፈጠረው ከየትኛው የአዳም የሰውነት ክፍል ነው?",
+    "options_am": [
+      "ከጎድን አጥንቱ",
+      "ከእጁ",
+      "ከልቡ",
+      "ከትከሻው"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Matthew 26:69-74",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ከኢየሱስ ጋር ነበርክ ተብሎ ሲከሰስ አላውቀውም ብሎ ሦስት ጊዜ የካደው ማን ነው?",
+    "options_am": [
+      "ስምዖን ጴጥሮስ",
+      "ይሁዳ አስቆሮቱ",
+      "ቶማስ",
+      "ዮሐንስ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Genesis 3:1-6",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ሔዋንን የተከለከለውን ፍሬ እንድትበላ ያታለላት ፍጡር የትኛው ነው?",
+    "options_am": [
+      "እባብ",
+      "አንበሳ",
+      "ቀበሮ",
+      "ቁራ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Matthew 27:29",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ክርስቶስ በተሰቀለበት ጊዜ ወታደሮቹ በራሱ ላይ ምን አደረጉበት?",
+    "options_am": [
+      "የእሾህ አክሊል",
+      "የወርቅ ዘውድ",
+      "የብረት ቆብ",
+      "የጨርቅ መጠምጠሚያ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "Scripture",
+    "difficulty": "Easy",
+    "verse": "Matthew 6:9",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "የጌታ ጸሎት (አባታችን ሆይ) የመጀመሪያው መስመር ምንድን ነው?",
+    "options_am": [
+      "በሰማያት የምትኖር አባታችን ሆይ",
+      "እግዚአብሔር እረኛዬ ነው",
+      "በመጀመሪያ እግዚአብሔር ሰማይንና ምድርን ፈጠረ",
+      "ስምህ ይቀደስ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Ruth",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Ruth 1:4",
+    "story": "Scripture reveals this truth in the book of Ruth. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ሩት ለኑኃሚን ምኗ ነበረች?",
+    "options_am": [
+      "ምራቷ",
+      "እህቷ",
+      "ልጇ",
+      "አክስቷ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Genesis 4:9",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ወንድምህ ወዴት ነው ተብሎ ሲጠየቅ እግዚአብሔርን የዋሸው ማን ነው?",
+    "options_am": [
+      "ቃየን",
+      "አቤል",
+      "ሴት",
+      "ያዕቆብ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "James",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "James 2:21-22",
+    "story": "Scripture reveals this truth in the book of James. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ልጁን በመሠዊያ ላይ ለእግዚአብሔር ለማቅረብ ፈቃደኛ በመሆን እምነቱን ያሳየው የብሉይ ኪዳን ሰው ማን ነው?",
+    "options_am": [
+      "አብርሃም",
+      "ኖኅ",
+      "ሙሴ",
+      "ዳዊት"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Genesis 1 - 2",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "በኦሪት ዘፍጥረት ምዕራፍ 1 እና 2 ላይ የተመዘገበው ታላቅ ክስተት ምንድን ነው?",
+    "options_am": [
+      "ፍጥረት",
+      "የጥፋት ውኃ",
+      "የባቤል ግንብ",
+      "የእስራኤል ከግብፅ መውጣት"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Mark",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Mark 15:26; Matthew 27:27",
+    "story": "Scripture reveals this truth in the book of Mark. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ከኢየሱስ መስቀል በላይ የተጻፈው ጽሑፍ ምን ነበር?",
+    "options_am": [
+      "የአይሁድ ንጉሥ",
+      "የእግዚአብሔር ልጅ",
+      "የዓለም መድኃኒት",
+      "ነቢዩ ኢየሱስ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Exodus",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Exodus 2:3",
+    "story": "Scripture reveals this truth in the book of Exodus. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "እናቱ በደንገል ሣጥን ውስጥ ያስቀመጠችው ማንን ነው?",
+    "options_am": [
+      "ሙሴ",
+      "ሳሙኤል",
+      "ዮሴፍ",
+      "ዳዊት"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Genesis 7:12",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "በጥፋት ውኃ ታሪክ ውስጥ ዝናቡ ለስንት ቀንና ሌሊት ዘነበ?",
+    "options_am": [
+      "40 ቀንና ሌሊት",
+      "7 ቀንና ሌሊት",
+      "120 ቀንና ሌሊት",
+      "30 ቀንና ሌሊት"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Matthew 1:23",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ስለ ኢየሱስ እናት ልዩ የነበረው ነገር ምንድን ነው?",
+    "options_am": [
+      "ድንግል ነበረች",
+      "ንግሥት ነበረች",
+      "ነቢይት ነበረች",
+      "ሀብታም ነበረች"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Matthew 2:7-10",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ኢየሱስ ሕፃን በነበረበት ጊዜ ስጦታ የሰጡት እነማን ናቸው?",
+    "options_am": [
+      "ሰብአ ሰገል (ጠቢባን)",
+      "ፈሪሳውያን",
+      "ሮማውያን ወታደሮች",
+      "ሐዋርያት"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Jonah",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Jonah 1:17",
+    "story": "Scripture reveals this truth in the book of Jonah. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ዮናስ ወደ ባሕር ከተጣለ በኋላ ምን ሆነ?",
+    "options_am": [
+      "በታላቅ ዓሣ ተዋጠ",
+      "ወደ ዳርቻ ዋኘ",
+      "በሌላ መርከብ ተረፈ",
+      "በደሴት ላይ አረፈ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Genesis 1:27",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ሰው የተፈጠረው በማን መልክ ነው?",
+    "options_am": [
+      "በእግዚአብሔር መልክ",
+      "በመላእክት መልክ",
+      "በእንስሳት መልክ",
+      "በከዋክብት መልክ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Luke",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Luke 6:13",
+    "story": "Scripture reveals this truth in the book of Luke. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ኢየሱስ ስንት ሐዋርያትን መረጠ?",
+    "options_am": [
+      "12",
+      "10",
+      "7",
+      "14"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Romans",
+    "category": "Teachings",
+    "difficulty": "Easy",
+    "verse": "Romans 6:23",
+    "story": "Scripture reveals this truth in the book of Romans. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "የኃጢአት ደመወዝ ምንድን ነው?",
+    "options_am": [
+      "ሞት",
+      "ድህነት",
+      "በሽታ",
+      "ስደት"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Genesis 4:1",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "በመጽሐፍ ቅዱስ ውስጥ የተጠቀሰችው የመጀመሪያዋ እናት ማን ናት?",
+    "options_am": [
+      "ሔዋን",
+      "ሣራ",
+      "ርብቃ",
+      "ራሔል"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Luke",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Luke 2:16",
+    "story": "Scripture reveals this truth in the book of Luke. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ከሰብአ ሰገል (ጠቢባን) በተጨማሪ ኢየሱስ ሕፃን ሳለ ሊጠይቁት የመጡት እነማን ናቸው?",
+    "options_am": [
+      "እረኞች",
+      "ዓሣ አጥማጆች",
+      "ካህናት",
+      "ነጋዴዎች"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Judges",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Judges 16:15",
+    "story": "Scripture reveals this truth in the book of Judges. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "የታላቅ ኃይሉን ምንጭ እንዲናገር ሲጠየቅ የዋሸው ማን ነው?",
+    "options_am": [
+      "ሶምሶን",
+      "ጌዴዎን",
+      "ዳዊት",
+      "ሳኦል"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Matthew 1:19",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "የኢየሱስ እናት በጸነሰችበት ጊዜ ታጭታለት የነበረው ሰው ስም ማን ነበር?",
+    "options_am": [
+      "ዮሴፍ",
+      "ዘካርያስ",
+      "ስምዖን",
+      "ያዕቆብ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Psalms",
+    "category": "Scripture",
+    "difficulty": "Easy",
+    "verse": "Psalms 1:1-150:6",
+    "story": "Scripture reveals this truth in the book of Psalms. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ዳዊት የጻፋቸው ብዙ መዝሙሮች የሚገኙበት የመጽሐፍ ቅዱስ መጽሐፍ የትኛው ነው?",
+    "options_am": [
+      "መዝሙረ ዳዊት",
+      "መጽሐፈ ምሳሌ",
+      "መኃልየ መኃልይ",
+      "መጽሐፈ መክብብ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Genesis 7:7",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "መርከቡ ኖኅን ከምን ዓይነት ጥፋት አዳነው?",
+    "options_am": [
+      "ከጥፋት ውኃ",
+      "ከእሳትና ዲን",
+      "ከረሃብ",
+      "ከምድር መንቀጥቀጥ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Acts",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Acts 1:3-11",
+    "story": "Scripture reveals this truth in the book of Acts. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ኢየሱስ ከትንሣኤው በኋላ በአርባኛው ቀን ምን ሆነ?",
+    "options_am": [
+      "ወደ ሰማይ ዐረገ",
+      "ወደ ገሊላ ተመለሰ",
+      "ወደ ግብፅ ሄደ",
+      "በቤተ መቅደስ አስተማረ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Matthew 8:32",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ኢየሱስ ወደ ባሕር ሮጠው እንዲሰጥሙ ያደረጋቸው እንስሳት የትኞቹ ናቸው?",
+    "options_am": [
+      "እሪያዎች (አሳማዎች)",
+      "በጎች",
+      "ፍየሎች",
+      "ከብቶች"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Deuteronomy",
+    "category": "Teachings",
+    "difficulty": "Easy",
+    "verse": "Deuteronomy 5:22",
+    "story": "Scripture reveals this truth in the book of Deuteronomy. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "አሥሩ ትእዛዛት በምን ላይ ነበር የተጻፉት?",
+    "options_am": [
+      "በሁለት የድንጋይ ጽላቶች",
+      "በብራና ጥቅልል",
+      "በወርቅ ሳህን",
+      "በእንጨት ሰሌዳ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Luke",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Luke 2:7",
+    "story": "Scripture reveals this truth in the book of Luke. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ኢየሱስ ከተወለደ በኋላ በምን ውስጥ ተኛ?",
+    "options_am": [
+      "በግርግም ውስጥ",
+      "በእንግዳ ማረፊያ አልጋ ላይ",
+      "በድንኳን ውስጥ",
+      "በቤተ መቅደስ ውስጥ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Genesis 2:7",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ሰው ከምን ተፈጠረ?",
+    "options_am": [
+      "ከምድር አፈር",
+      "ከባሕር ውኃ",
+      "ከሰማይ ብርሃን",
+      "ከነፋስ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "John",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "John 13:1-5",
+    "story": "Scripture reveals this truth in the book of John. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ኢየሱስ በመጨረሻው እራት ወቅት ለእያንዳንዱ ደቀ መዝሙር ምን አደረገ?",
+    "options_am": [
+      "እግራቸውን አጠበ",
+      "ራሳቸውን ቀባ",
+      "ልብሳቸውን ሰጣቸው",
+      "በትር ሰጣቸው"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Jonah",
+    "category": "Places",
+    "difficulty": "Easy",
+    "verse": "Jonah 1:2",
+    "story": "Scripture reveals this truth in the book of Jonah. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "እግዚአብሔር ዮናስን መልእክቱን እንዲያደርስ ወደ የትኛዋ ከተማ ላከው?",
+    "options_am": [
+      "ነነዌ",
+      "ተርሴስ",
+      "ባቢሎን",
+      "ኢያሪኮ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Ruth",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Ruth 4:22",
+    "story": "Scripture reveals this truth in the book of Ruth. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "የዳዊት አባት ማን ነበር?",
+    "options_am": [
+      "እሴይ",
+      "ቦዔዝ",
+      "ኢዮቤድ",
+      "ሳኦል"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Matthew 1:1 - John 21:25",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "በመጽሐፍ ቅዱስ ውስጥ በመጨረሻ የሚገኘው ወንጌል የትኛው ነው?",
+    "options_am": [
+      "የዮሐንስ ወንጌል",
+      "የሉቃስ ወንጌል",
+      "የማርቆስ ወንጌል",
+      "የማቴዎስ ወንጌል"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Mark",
+    "category": "Teachings",
+    "difficulty": "Easy",
+    "verse": "Mark 3:29",
+    "story": "Scripture reveals this truth in the book of Mark. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ይቅር የማይባለው ብቸኛው ኃጢአት ምንድን ነው?",
+    "options_am": [
+      "መንፈስ ቅዱስን መሳደብ",
+      "መዋሸት",
+      "መስረቅ",
+      "መቆጣት"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "1 Samuel",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "1 Samuel 17:49-50",
+    "story": "Scripture reveals this truth in the book of 1 Samuel. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ዳዊት ጎልያድን እንዴት አሸነፈው?",
+    "options_am": [
+      "በወንጭፍ ድንጋይ መትቶ",
+      "በቀስት ወግቶ",
+      "በጦር ወግቶ",
+      "በእሳት አቃጥሎ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Genesis 37:24-27",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "የዮሴፍ ወንድሞች እሱን ለማስወገድ ምን አደረጉ?",
+    "options_am": [
+      "ጉድጓድ ውስጥ ጥለው ለባዕዳን ሸጡት",
+      "ወደ ባሕር ጣሉት",
+      "በእስር ቤት አሰሩት",
+      "ወደ በረሃ አባረሩት"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Philemon",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Philemon 1:1",
+    "story": "Scripture reveals this truth in the book of Philemon. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ወደ ፊልሞና የተላከውን መልእክት የጻፈው ማን ነው?",
+    "options_am": [
+      "ጳውሎስ",
+      "ጴጥሮስ",
+      "ዮሐንስ",
+      "ያዕቆብ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "John",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "John 19:40",
+    "story": "Scripture reveals this truth in the book of John. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ኢየሱስ ከመቀበሩ በፊት በምን ተገነዘ?",
+    "options_am": [
+      "በተልባ እግር ልብስ (በፍታ)",
+      "በሐር ጨርቅ",
+      "በቆዳ ልብስ",
+      "በሐምራዊ መጎናጸፊያ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Exodus",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Exodus 7:1",
+    "story": "Scripture reveals this truth in the book of Exodus. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "የሙሴ ወንድም ስም ማን ነበር?",
+    "options_am": [
+      "አሮን",
+      "ኢያሱ",
+      "ካሌብ",
+      "ዮቶር"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Genesis 4:8",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ቃየን የሚታወሰው በምን ዓይነት ኃጢአት ነው?",
+    "options_am": [
+      "በነፍስ ግድያ",
+      "በስርቆት",
+      "በጣዖት አምልኮ",
+      "በዝሙት"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Psalms",
+    "category": "Scripture",
+    "difficulty": "Easy",
+    "verse": "Psalms 23:1",
+    "story": "Scripture reveals this truth in the book of Psalms. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "«እግዚአብሔር እረኛዬ ነው» የሚለው የየትኛው መዝሙር መክፈቻ መስመር ነው?",
+    "options_am": [
+      "መዝሙር 23",
+      "መዝሙር 1",
+      "መዝሙር 91",
+      "መዝሙር 119"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Revelation",
+    "category": "Scripture",
+    "difficulty": "Easy",
+    "verse": "Revelation 1:1-22:21",
+    "story": "Scripture reveals this truth in the book of Revelation. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "የአዲስ ኪዳን የመጨረሻ መጽሐፍ የትኛው ነው?",
+    "options_am": [
+      "የዮሐንስ ራእይ",
+      "የይሁዳ መልእክት",
+      "የሐዋርያት ሥራ",
+      "ወደ ዕብራውያን"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Romans",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Romans 1:1 - Jude 1:25",
+    "story": "Scripture reveals this truth in the book of Romans. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "አብዛኛዎቹን የአዲስ ኪዳን መልእክታት የጻፈው ማን ነው?",
+    "options_am": [
+      "ጳውሎስ",
+      "ጴጥሮስ",
+      "ሉቃስ",
+      "ዮሐንስ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "1 Samuel",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "1 Samuel 17:15",
+    "story": "Scripture reveals this truth in the book of 1 Samuel. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ዳዊት ንጉሥ ከመሆኑ በፊት ሥራው ምን ነበር?",
+    "options_am": [
+      "እረኛ",
+      "አናጢ",
+      "ዓሣ አጥማጅ",
+      "ነጋዴ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Joshua",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Joshua 2:1-5",
+    "story": "Scripture reveals this truth in the book of Joshua. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ሁለት ሰላዮችን ደብቃ ሲጠየቅ ግን ያሉበትን አላውቅም ያለችው ማን ናት?",
+    "options_am": [
+      "ረዓብ",
+      "ዲቦራ",
+      "አስቴር",
+      "ሩት"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Daniel",
+    "category": "Teachings",
+    "difficulty": "Easy",
+    "verse": "Daniel 6:7",
+    "story": "Scripture reveals this truth in the book of Daniel. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "በጸሎቱ ምክንያት ወደ አንበሶች ጉድጓድ የተጣለው ማን ነው?",
+    "options_am": [
+      "ዳንኤል",
+      "ኤርምያስ",
+      "ሕዝቅኤል",
+      "ኢሳይያስ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Judges",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Judges 16:17",
+    "story": "Scripture reveals this truth in the book of Judges. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "የሶምሶን ኃይል ምንጭ የነበረው ምንድን ነው?",
+    "options_am": [
+      "ረጅም ፀጉሩ",
+      "ሰይፉ",
+      "ቀበቶው",
+      "በትሩ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Exodus",
+    "category": "Places",
+    "difficulty": "Easy",
+    "verse": "Exodus 13:3",
+    "story": "Scripture reveals this truth in the book of Exodus. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ሙሴ እስራኤላውያንን ከባርነት ሕይወት እንዲያመልጡ የረዳቸው ከየትኛው አገር ነው?",
+    "options_am": [
+      "ግብፅ",
+      "ባቢሎን",
+      "አሦር",
+      "ሞዓብ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Daniel",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Daniel 3:28",
+    "story": "Scripture reveals this truth in the book of Daniel. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ከዳንኤል ጓደኞች ጋር በሚነድደው የእሳት እቶን ውስጥ የታየው አራተኛው ሰው ማን ነበር?",
+    "options_am": [
+      "መልአክ",
+      "ዳንኤል",
+      "ንጉሥ ናቡከደነፆር",
+      "ኤርምያስ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Genesis 37:31",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "የዮሴፍ ወንድሞች ዮሴፍን ለባርነት መሸጣቸውን ለመደበቅ አባታቸውን ለማታለል ምን አደረጉ?",
+    "options_am": [
+      "ቀሚሱን በፍየል ደም ነከሩት",
+      "ቀሚሱን በእሳት አቃጠሉት",
+      "የውሸት ደብዳቤ ጻፉ",
+      "ወደ ባሕር ሰጠመ አሉት"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Genesis 3:7",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "አዳምና ሔዋን ለራሳቸው ልብስ ለመሥራት የየትኛውን ዛፍ ቅጠል ሰፉ?",
+    "options_am": [
+      "የበለስ ቅጠል",
+      "የወይራ ቅጠል",
+      "የዘንባባ ቅጠል",
+      "የአርዘ ሊባኖስ ቅጠል"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "John",
+    "category": "Teachings",
+    "difficulty": "Easy",
+    "verse": "John 8:44",
+    "story": "Scripture reveals this truth in the book of John. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ኢየሱስ «የሐሰት አባት» ያለው ማንን ነው?",
+    "options_am": [
+      "ዲያብሎስን",
+      "ሄሮድስን",
+      "ይሁዳን",
+      "ቀያፋን"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Genesis 11:4,9",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "እግዚአብሔር ቋንቋቸውን በደባለቀበት ጊዜ ሰዎች ይገነቡት የነበረው ግንብ ስም ማን ነበር?",
+    "options_am": [
+      "የባቤል ግንብ",
+      "የሰሎሞን ግንብ",
+      "የኢያሪኮ ግንብ",
+      "የሲና ግንብ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "Teachings",
+    "difficulty": "Easy",
+    "verse": "Matthew 6:9",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ኢየሱስ ለደቀ መዛሙርቱ ያስተማረው ጸሎት በተለምዶ ምን ተብሎ ይጠራል?",
+    "options_am": [
+      "የጌታ ጸሎት (አባታችን ሆይ)",
+      "የዳዊት መዝሙር",
+      "የማርያም ጸሎት",
+      "የሐዋርያት ጸሎት"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Genesis 17:5",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "«የብዙ አሕዛብ አባት» የሚል ትርጉም ያለው የማን ስም ነው?",
+    "options_am": [
+      "አብርሃም",
+      "ይስሐቅ",
+      "ያዕቆብ",
+      "ኖኅ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Genesis 39:12-20",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "የጲጥፋራ ሚስት ዮሴፍን በሐሰት በምን ከሰሰችውና ወደ እስር ቤት እንዲጣል አደረገች?",
+    "options_am": [
+      "በመድፈር ሙከራ",
+      "በስርቆት",
+      "በግድያ ሙከራ",
+      "በክህደት"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Exodus",
+    "category": "Places",
+    "difficulty": "Easy",
+    "verse": "Exodus 13:18",
+    "story": "Scripture reveals this truth in the book of Exodus. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "እስራኤላውያን ከግብፃውያን ለማምለጥ የትኛውን ባሕር ተሻገሩ?",
+    "options_am": [
+      "ቀይ ባሕር",
+      "የገሊላ ባሕር",
+      "ሙት ባሕር",
+      "ሜዲትራኒያን ባሕር"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Matthew 19:24",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "«ግመል በመርፌ ቀዳዳ ከሚያልፍ» የበለጠ የሚከብደው ምንድን ነው?",
+    "options_am": [
+      "ባለጠጋ ወደ እግዚአብሔር መንግሥት መግባት",
+      "ተራራን ከስፍራው ማንቀሳቀስ",
+      "ጠላትን መውደድ",
+      "ሕጉን ሁሉ መጠበቅ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Joshua",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Joshua 5:6",
+    "story": "Scripture reveals this truth in the book of Joshua. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "እስራኤላውያን በምድረ በዳ ለስንት ዓመታት ተንከራተቱ?",
+    "options_am": [
+      "40 ዓመታት",
+      "70 ዓመታት",
+      "12 ዓመታት",
+      "20 ዓመታት"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Matthew 7:17",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "«መልካም ዛፍ» ምን ያፈራል?",
+    "options_am": [
+      "መልካም ፍሬ",
+      "ብዙ ቅጠል",
+      "ረጅም ቅርንጫፍ",
+      "ጥልቅ ሥር"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "James",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "James 3:5",
+    "story": "Scripture reveals this truth in the book of James. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "«በታላቅ ነገር የምትመካ» ትንሽ የሰውነት ክፍል የትኛዋ ናት?",
+    "options_am": [
+      "ምላስ",
+      "ዓይን",
+      "ጣት",
+      "ጆሮ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Genesis 17:15",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "የአብርሃም የመጀመሪያ ሚስት ስም ማን ነበር?",
+    "options_am": [
+      "ሣራ",
+      "አጋር",
+      "ኬጡራ",
+      "ርብቃ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Genesis 2:1-3",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "እግዚአብሔር ሁሉን ነገር ፈጥሮ ከጨረሰ በኋላ በሰባተኛው ቀን ምን አደረገ?",
+    "options_am": [
+      "ዐረፈ",
+      "መላእክትን ፈጠረ",
+      "ዝናብ አዘነበ",
+      "ገነትን ተከለ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Acts",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Acts 2:1-4",
+    "story": "Scripture reveals this truth in the book of Acts. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ሐዋርያት መንፈስ ቅዱስን የተቀበሉት በየትኛው ቀን ነው?",
+    "options_am": [
+      "በበዓለ ሃምሳ (ጰንጠቆስጤ) ቀን",
+      "በፋሲካ ቀን",
+      "በዳስ በዓል ቀን",
+      "በሰንበት ቀን"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Matthew 26:26-27",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ኢየሱስ በመጨረሻው እራት ላይ ለየትኞቹ ምግብና መጠጥ ምስጋና አቀረበ?",
+    "options_am": [
+      "እንጀራና ወይን",
+      "ዓሣና ውኃ",
+      "ማርና ወተት",
+      "በግና ወይን"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Matthew 4:3",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ኢየሱስ በምድረ በዳ ሳለ ምንን ወደ እንጀራ እንዲለውጥ ተፈተነ?",
+    "options_am": [
+      "ድንጋዮችን",
+      "አሸዋን",
+      "ቅጠሎችን",
+      "እንጨትን"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Mark",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Mark 10:2",
+    "story": "Scripture reveals this truth in the book of Mark. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ኢየሱስን በጥያቄዎቻቸው ለማጥመድ ያለማቋረጥ ይሞክሩ የነበሩት የሃይማኖት መሪዎች እነማን ነበሩ?",
+    "options_am": [
+      "ፈሪሳውያንና ሰዱቃውያን",
+      "ቀራጮችና ወታደሮች",
+      "ሳምራውያንና ግሪካውያን",
+      "ነቢያትና እረኞች"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "John",
+    "category": "Miracles",
+    "difficulty": "Easy",
+    "verse": "John 11:43-44",
+    "story": "Scripture reveals this truth in the book of John. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ኢየሱስ ለአልዓዛር ምን ተአምር አደረገለት?",
+    "options_am": [
+      "ከሙታን አስነሣው",
+      "ዓይኑን አበራለት",
+      "ከለምጽ አነጻው",
+      "ሽባነቱን ፈወሰለት"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Exodus",
+    "category": "Places",
+    "difficulty": "Easy",
+    "verse": "Exodus 34:32",
+    "story": "Scripture reveals this truth in the book of Exodus. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "እስራኤላውያን አሥሩን ትእዛዛት የተቀበሉት በየትኛው ተራራ ላይ ነው?",
+    "options_am": [
+      "በሲና ተራራ",
+      "በቀርሜሎስ ተራራ",
+      "በደብረ ዘይት ተራራ",
+      "በነቦ ተራራ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "1 Kings",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "1 Kings 2:12",
+    "story": "Scripture reveals this truth in the book of 1 Kings. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "የሰሎሞን አባት ማን ነበር?",
+    "options_am": [
+      "ዳዊት",
+      "ሳኦል",
+      "እሴይ",
+      "ሳሙኤል"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Matthew 13:55",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "የኢየሱስ ምድራዊ አባት ዮሴፍ ምን ሥራ ይሠራ ነበር?",
+    "options_am": [
+      "አናጢ",
+      "ዓሣ አጥማጅ",
+      "እረኛ",
+      "ድንኳን ሰፊ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Luke",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Luke 22:48",
+    "story": "Scripture reveals this truth in the book of Luke. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ይሁዳ ክርስቶስን እንዴት አሳልፎ ሰጠው?",
+    "options_am": [
+      "በመሳም",
+      "በእጁ በመጠቆም",
+      "ስሙን በመጥራት",
+      "በደብዳቤ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "1 Kings",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "1 Kings 3:25",
+    "story": "Scripture reveals this truth in the book of 1 Kings. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ሰሎሞን የሕፃኑን እውነተኛ እናት በጥበብ ሲፈርድ ልጁ የማን እንደሆነ እንዴት አወቀ?",
+    "options_am": [
+      "ሕፃኑን በሰይፍ ለሁለት እንዲከፍሉት በማዘዝ",
+      "ምስክሮችን በመጥራት",
+      "ዕጣ በማውጣት",
+      "ሕፃኑን ወደ እናቱ እንዲሄድ በመተው"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Genesis 22:9",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "አባቱ በመሠዊያ ላይ ሊሠዋው ተዘጋጅቶ የነበረው ማን ነው?",
+    "options_am": [
+      "ይስሐቅ",
+      "እስማኤል",
+      "ያዕቆብ",
+      "ዮሴፍ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Luke",
+    "category": "Places",
+    "difficulty": "Easy",
+    "verse": "Luke 2:42-46",
+    "story": "Scripture reveals this truth in the book of Luke. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ኢየሱስ የአሥራ ሁለት ዓመት ልጅ ሳለ በኢየሩሳሌም ቀርቶ ነበር፤ ወላጆቹ የት አገኙት?",
+    "options_am": [
+      "በቤተ መቅደስ ውስጥ",
+      "በገበያ ቦታ",
+      "በጌቴሴማኒ",
+      "በዘመዶቹ ቤት"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "Miracles",
+    "difficulty": "Easy",
+    "verse": "Matthew 14:26",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ደቀ መዛሙርቱ ኢየሱስ በባሕር ላይ ሲራመድ ባዩት ጊዜ ምን መሰላቸው?",
+    "options_am": [
+      "ምትሐት (መንፈስ)",
+      "መልአክ",
+      "ነቢዩ ኤልያስ",
+      "ዓሣ አጥማጅ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Matthew 14:6-8",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "የሄሮድያዳ ልጅ ሰሎሜ ለሄሮድስ ከደነሰች በኋላ ምን ስጦታ ጠየቀች?",
+    "options_am": [
+      "የመጥምቁ ዮሐንስን ራስ",
+      "የመንግሥቱን እኩሌታ",
+      "የወርቅ ዘውድ",
+      "የኢየሱስን መታሰር"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Judges",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Judges 16:30",
+    "story": "Scripture reveals this truth in the book of Judges. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ሶምሶን በቤተ መቅደሱ ውስጥ የነበሩትን ሰዎች ሁሉ እንዴት ገደላቸው?",
+    "options_am": [
+      "ምሰሶዎቹን ገፍቶ ቤተ መቅደሱ እንዲፈርስ በማድረግ",
+      "ቤተ መቅደሱን በእሳት በማቃጠል",
+      "በአህያ መንጋጋ",
+      "በሰይፍ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "1 Samuel",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "1 Samuel 16:23",
+    "story": "Scripture reveals this truth in the book of 1 Samuel. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ዳዊት ለሳኦል የትኛውን የሙዚቃ መሣሪያ ይጫወትለት ነበር?",
+    "options_am": [
+      "በገና",
+      "መለከት",
+      "ከበሮ",
+      "ዋሽንት"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Genesis 27:1-3,23",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ያዕቆብ የዔሳውን በረከት በሰረቀበት ጊዜ ዔሳው ምን እያደረገ ነበር?",
+    "options_am": [
+      "አደን እያደነ ነበር",
+      "ተኝቶ ነበር",
+      "በጎችን እየጠበቀ ነበር",
+      "እርሻ እያረሰ ነበር"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Genesis 42:2-3",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ያዕቆብ በመጀመሪያ የዮሴፍን ወንድሞች ወደ ግብፅ ለምን ላካቸው?",
+    "options_am": [
+      "እህል እንዲገዙ",
+      "ዮሴፍን እንዲፈልጉ",
+      "ከፈርዖን ጋር እንዲነጋገሩ",
+      "ከብቶችን እንዲሸጡ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "1 Samuel",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "1 Samuel 18:1",
+    "story": "Scripture reveals this truth in the book of 1 Samuel. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "የዳዊት የቅርብ ጓደኛ ማን ነበር?",
+    "options_am": [
+      "ዮናታን",
+      "ኢዮአብ",
+      "አቢሳ",
+      "ናታን"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Ruth",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Ruth 1:16",
+    "story": "Scripture reveals this truth in the book of Ruth. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "«አምላክሽ አምላኬ ይሆናል» ያለችው ማን ናት?",
+    "options_am": [
+      "ሩት",
+      "አስቴር",
+      "ረዓብ",
+      "ኦርፋ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Matthew 27:35",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ወታደሮቹ ክርስቶስን ከሰቀሉት በኋላ በየትኛው ንብረቱ ላይ ዕጣ ተጣጣሉ?",
+    "options_am": [
+      "በእጀ ጠባቡ (ስፌት በሌለው ቀሚሱ)",
+      "በጫማው",
+      "በመቀነቱ",
+      "በበትሩ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Matthew 1:23",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "አማኑኤል የሚለው ስም ትርጉም ምንድን ነው?",
+    "options_am": [
+      "እግዚአብሔር ከእኛ ጋር",
+      "እግዚአብሔር ያድናል",
+      "የሰላም አለቃ",
+      "የእግዚአብሔር በግ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "James",
+    "category": "Teachings",
+    "difficulty": "Easy",
+    "verse": "James 1:5",
+    "story": "Scripture reveals this truth in the book of James. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ያዕቆብ ጥበብ ቢጎድለን ምን ማድረግ አለብን ይላል?",
+    "options_am": [
+      "በእምነት እግዚአብሔርን መለመን",
+      "ብዙ መጻሕፍትን ማንበብ",
+      "ሽማግሌዎችን መጠየቅ",
+      "ለሰባት ቀን መጾም"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "John",
+    "category": "Places",
+    "difficulty": "Easy",
+    "verse": "John 4:7",
+    "story": "Scripture reveals this truth in the book of John. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ኢየሱስ ሳምራዊቷን ሴት የት አገኛት?",
+    "options_am": [
+      "በውኃ ጉድጓድ አጠገብ",
+      "በቤተ መቅደስ",
+      "በገበያ ስፍራ",
+      "በባሕር ዳርቻ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Matthew",
+    "category": "Miracles",
+    "difficulty": "Easy",
+    "verse": "Matthew 14:29",
+    "story": "Scripture reveals this truth in the book of Matthew. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "እንደ ኢየሱስ በውኃ ላይ ለመራመድ የሞከረው ደቀ መዝሙር የትኛው ነው?",
+    "options_am": [
+      "ስምዖን ጴጥሮስ",
+      "ዮሐንስ",
+      "እንድርያስ",
+      "ያዕቆብ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Ruth",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Ruth 1:1-2",
+    "story": "Scripture reveals this truth in the book of Ruth. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "አቤሜሌክ ከቤተሰቡ ጋር ወደ ሞዓብ ለመኖር ለምን ሄደ?",
+    "options_am": [
+      "በአገሩ ረሃብ ስለነበረ",
+      "በጦርነት ምክንያት",
+      "ለንግድ ሥራ",
+      "እግዚአብሔር ስላዘዘው"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Acts",
+    "category": "People",
+    "difficulty": "Easy",
+    "verse": "Acts 5:1-11",
+    "story": "Scripture reveals this truth in the book of Acts. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ስለ ሸጡት መሬት ዋጋ ዋሽተው በዚህም ምክንያት የሞቱት እነማን ናቸው?",
+    "options_am": [
+      "ሐናንያና ሰጲራ",
+      "አቂላና ጵርስቅላ",
+      "አክዓብና ኤልዛቤል",
+      "ዘካርያስና ኤልሳቤጥ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "2 Samuel",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "2 Samuel 11:4",
+    "story": "Scripture reveals this truth in the book of 2 Samuel. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ዳዊት ከማን ጋር አመነዘረ?",
+    "options_am": [
+      "ከቤርሳቤህ",
+      "ከአቢግያ",
+      "ከሜልኮል",
+      "ከትዕማር"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "Luke",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Luke 15:22",
+    "story": "Scripture reveals this truth in the book of Luke. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ጠፍቶ የነበረው ልጅ ሲመለስ አባቱ ልብስ፣ ጫማና ሌላ ምን ሰጠው?",
+    "options_am": [
+      "ቀለበት",
+      "የወርቅ ሐብል",
+      "ዘውድ",
+      "በትር"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Scripture",
+    "difficulty": "Easy",
+    "verse": "Genesis 1:1 - Revelation 22:21",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "በፕሮቴስታንት (KJV) መጽሐፍ ቅዱስ ውስጥ ስንት መጻሕፍት አሉ?",
+    "options_am": [
+      "66",
+      "73",
+      "81",
+      "39"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "New",
+    "book": "John",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "John 11:1-3",
+    "story": "Scripture reveals this truth in the book of John. As recorded in the New Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "የአልዓዛር እህቶች ስም እነማን ናቸው?",
+    "options_am": [
+      "ማርያምና ማርታ",
+      "ራሔልና ልያ",
+      "ሩትና ኦርፋ",
+      "ማርያምና ሰሎሜ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Jonah",
+    "category": "Places",
+    "difficulty": "Easy",
+    "verse": "Jonah 3:3",
+    "story": "Scripture reveals this truth in the book of Jonah. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ዮናስ ወደ ባሕር ተጥሎ ደረቅ ምድር ላይ ከወጣ በኋላ ወዴት ሄደ?",
+    "options_am": [
+      "ወደ ነነዌ",
+      "ወደ ተርሴስ",
+      "ወደ ኢየሩሳሌም",
+      "ወደ ኢዮጴ"
+    ]
+  },
+  {
+    "correctAnswer": 0,
+    "testament": "Old",
+    "book": "Genesis",
+    "category": "Events",
+    "difficulty": "Easy",
+    "verse": "Genesis 25:30-34",
+    "story": "Scripture reveals this truth in the book of Genesis. As recorded in the Old Testament, God's Word guides His people in righteousness and truth.",
+    "question_am": "ዔሳው ብኩርናውን ለያዕቆብ በምን ሸጠለት?",
+    "options_am": [
+      "በምስር ወጥ",
+      "በሠላሳ ብር",
+      "በአንድ መንጋ በግ",
+      "በወርቅ ቀለበት"
+    ]
+  }
+]
+]
 ]
